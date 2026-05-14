@@ -1,0 +1,1296 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Kurokaa — Coming Soon</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --paper: #F6F1E6;
+    --paper-2: #EFE9DA;
+    --paper-3: #E6DFCD;
+    --ink: #0A0F22;
+    --ink-2: #1B2038;
+    --ink-soft: #4B4E63;
+    --ink-mute: #7D7C87;
+    --rule: #2E2A1F1A; /* warm hairline */
+    --rule-strong: #2E2A1F33;
+    --gold: #B07A22;
+    --gold-2: #C99659;
+    --gold-soft: #B07A2222;
+    --serif: 'Cormorant Garamond', 'Times New Roman', serif;
+    --sans: 'Manrope', system-ui, -apple-system, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: var(--sans);
+    color: var(--ink);
+    background: var(--paper);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    font-size: 16px;
+    line-height: 1.55;
+    overflow-x: hidden;
+  }
+
+  /* Warm grain overlay */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.18  0 0 0 0 0.12  0 0 0 0 0.05  0 0 0 0.06 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    opacity: 0.55;
+    mix-blend-mode: multiply;
+    z-index: 1;
+  }
+
+  /* layout */
+  .wrap { max-width: 1320px; margin: 0 auto; padding: 0 48px; position: relative; z-index: 2; }
+  @media (max-width: 720px) { .wrap { padding: 0 24px; } }
+
+  /* Reusable type */
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .eyebrow .dot {
+    display: inline-block;
+    width: 6px; height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    margin-right: 10px;
+    transform: translateY(-1px);
+  }
+  .display {
+    font-family: var(--serif);
+    font-weight: 500;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    line-height: 0.98;
+  }
+  .display em { font-style: italic; color: var(--gold); font-weight: 500; }
+
+  /* nav */
+  .nav {
+    position: sticky; top: 0; z-index: 50;
+    background: color-mix(in oklch, var(--paper) 88%, transparent);
+    backdrop-filter: saturate(120%) blur(8px);
+    -webkit-backdrop-filter: saturate(120%) blur(8px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+  }
+  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); }
+  .brand .mark { height: 22px; width: auto; display: block; }
+  .brand .tm { font-family: var(--mono); font-size: 10px; color: var(--ink-mute); align-self: flex-start; margin-top: 2px; }
+
+  .nav-links { display: flex; gap: 28px; }
+  .nav-link {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    text-decoration: none;
+    cursor: pointer;
+    background: none; border: 0; padding: 0;
+    transition: color .2s ease;
+  }
+  .nav-link:hover, .nav-link[data-active="true"] { color: var(--ink); }
+  .nav-link[data-active="true"] .num { color: var(--gold); }
+  .nav-link .num { color: var(--ink-mute); margin-right: 8px; }
+  @media (max-width: 820px) { .nav-links { display: none; } }
+
+  .nav-cta {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--paper);
+    background: var(--ink);
+    border: 0;
+    padding: 10px 16px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: transform .2s ease, background .2s ease;
+  }
+  .nav-cta:hover { background: var(--ink-2); transform: translateY(-1px); }
+
+  /* HERO */
+  .hero { position: relative; padding: 90px 0 60px; }
+  .hero-spotlight {
+    position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(420px 320px at var(--mx, 50%) var(--my, 35%), rgba(176,122,34,0.10), transparent 70%);
+    transition: background .2s ease;
+  }
+  .hero-grid {
+    display: grid; grid-template-columns: 1.35fr 1fr; gap: 80px;
+    align-items: end;
+  }
+  @media (max-width: 980px) { .hero-grid { grid-template-columns: 1fr; gap: 48px; } }
+
+  .hero h1 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(56px, 8.8vw, 132px);
+    line-height: 0.92;
+    letter-spacing: -0.02em;
+    margin: 22px 0 0;
+    color: var(--ink);
+  }
+  .hero h1 em { font-style: italic; color: var(--gold); }
+  .hero .lede {
+    font-family: var(--serif);
+    font-size: clamp(20px, 2vw, 26px);
+    line-height: 1.35;
+    color: var(--ink-soft);
+    max-width: 52ch;
+    margin: 28px 0 0;
+  }
+
+  .hero-meta {
+    display: flex; flex-direction: column; gap: 22px;
+    padding-bottom: 6px;
+  }
+  .meta-card {
+    border: 1px solid var(--rule-strong);
+    padding: 22px 22px 20px;
+    border-radius: 4px;
+    background: color-mix(in oklch, var(--paper) 70%, white);
+  }
+  .meta-card .eyebrow { margin-bottom: 14px; display: block; }
+  .meta-card .ticker {
+    font-family: var(--serif);
+    font-size: 28px;
+    line-height: 1.1;
+    font-style: italic;
+    color: var(--ink);
+    min-height: 1.2em;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .meta-card .ticker .cursor {
+    display: inline-block; width: 2px; height: 1em; background: var(--gold);
+    animation: blink 1s steps(2,end) infinite;
+    transform: translateY(2px);
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  .countdown { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .cd-cell { text-align: left; }
+  .cd-num {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 44px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    font-variant-numeric: tabular-nums;
+  }
+  .cd-lbl {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-top: 6px;
+  }
+
+  /* email capture */
+  .capture { margin-top: 44px; max-width: 620px; }
+  .capture-row {
+    display: flex; align-items: stretch; gap: 0;
+    border: 1px solid var(--ink);
+    border-radius: 999px;
+    background: color-mix(in oklch, var(--paper) 60%, white);
+    overflow: hidden;
+    transition: box-shadow .25s ease, border-color .2s ease;
+  }
+  .capture-row:focus-within {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 4px var(--gold-soft);
+  }
+  .capture-row.error { border-color: #8B2A2A; box-shadow: 0 0 0 4px rgba(139,42,42,0.12); }
+  .capture-row input {
+    flex: 1; min-width: 0;
+    border: 0; outline: 0;
+    background: transparent;
+    padding: 18px 24px;
+    font-family: var(--sans);
+    font-size: 16px;
+    color: var(--ink);
+  }
+  .capture-row input::placeholder { color: var(--ink-mute); }
+  .capture-row button {
+    border: 0; cursor: pointer;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 0 28px;
+    transition: background .2s ease, color .2s ease;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .capture-row button:hover:not(:disabled) { background: var(--gold); }
+  .capture-row button:disabled { opacity: 0.7; cursor: progress; }
+  .capture-row button svg { width: 14px; height: 14px; }
+
+  .capture-help {
+    margin-top: 14px;
+    display: flex; gap: 16px; align-items: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    color: var(--ink-mute);
+  }
+  .capture-help.error { color: #8B2A2A; }
+  .capture-help.success { color: #1F5C3B; }
+  .capture-help .pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 4px 10px;
+    border: 1px solid var(--rule-strong);
+    border-radius: 999px;
+  }
+  .capture-help .pill .dot {
+    width: 6px; height: 6px; border-radius: 50%; background: var(--gold);
+    box-shadow: 0 0 0 3px var(--gold-soft);
+  }
+
+  .hero-foot {
+    margin-top: 80px;
+    display: flex; justify-content: space-between; align-items: end;
+    gap: 24px;
+    padding-top: 26px;
+    border-top: 1px solid var(--rule);
+  }
+  .stat { display: flex; flex-direction: column; gap: 4px; }
+  .stat .num { font-family: var(--serif); font-size: 38px; line-height: 1; }
+  .stat .num em { color: var(--gold); font-style: italic; }
+  .stat .lbl { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-mute); }
+  @media (max-width: 720px) { .hero-foot { flex-wrap: wrap; gap: 28px; } }
+
+  /* section frame */
+  section.scene { padding: 120px 0; position: relative; }
+  section.scene + section.scene { border-top: 1px solid var(--rule); }
+
+  .section-head {
+    display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px;
+    margin-bottom: 64px;
+    align-items: end;
+  }
+  @media (max-width: 980px) { .section-head { grid-template-columns: 1fr; gap: 24px; } }
+
+  .section-head .left .eyebrow { display: block; margin-bottom: 14px; }
+  .section-head h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(48px, 6vw, 92px);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+  .section-head h2 em { font-style: italic; color: var(--gold); }
+  .section-head .right p {
+    font-family: var(--serif);
+    font-size: clamp(20px, 1.6vw, 24px);
+    line-height: 1.4;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  /* STORY */
+  .story-layout { display: grid; grid-template-columns: 1fr 1.1fr; gap: 80px; align-items: start; }
+  @media (max-width: 980px) { .story-layout { grid-template-columns: 1fr; gap: 48px; } }
+
+  .story-figure {
+    border: 1px solid var(--rule-strong);
+    background: linear-gradient(180deg, var(--paper-2), var(--paper-3));
+    border-radius: 4px;
+    overflow: hidden;
+    aspect-ratio: 4 / 5;
+    position: relative;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .story-figure .figure-img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center 25%;
+    z-index: 1;
+    display: block;
+    filter: saturate(0.92) contrast(1.02);
+  }
+  .story-figure .figure-tag {
+    position: relative; z-index: 2;
+    padding: 22px 24px;
+    display: flex; justify-content: space-between;
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--paper);
+    background: linear-gradient(180deg, rgba(10,15,34,0.55), transparent);
+  }
+  .story-figure .figure-cap {
+    position: relative; z-index: 2;
+    padding: 24px;
+    font-family: var(--mono); font-size: 11px; color: var(--paper);
+    background: linear-gradient(0deg, rgba(10,15,34,0.7), transparent);
+  }
+  .story-figure .figure-cap b { color: var(--paper); font-weight: 600; }
+  .story-figure .figure-glyph {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+    font-family: var(--serif); font-style: italic;
+    font-size: clamp(90px, 14vw, 180px);
+    color: var(--ink);
+    opacity: 0.9;
+    z-index: 1;
+  }
+  .story-figure .figure-glyph .acc { color: var(--gold); }
+
+  .story-copy { font-family: var(--serif); font-size: 22px; line-height: 1.55; color: var(--ink); }
+  .story-copy .dropcap::first-letter {
+    font-family: var(--serif);
+    font-size: 5em;
+    line-height: 0.82;
+    float: left;
+    padding: 6px 14px 0 0;
+    color: var(--gold);
+    font-style: italic;
+    font-weight: 500;
+  }
+  .story-copy p + p { margin-top: 22px; }
+  .story-copy em { color: var(--gold); font-style: italic; }
+
+  .story-meta {
+    margin-top: 36px;
+    padding-top: 22px;
+    border-top: 1px solid var(--rule);
+    display: flex; gap: 32px; flex-wrap: wrap;
+  }
+  .story-meta .kv { display: flex; flex-direction: column; gap: 4px; }
+  .story-meta .kv .k { font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-mute); }
+  .story-meta .kv .v { font-family: var(--sans); font-size: 15px; color: var(--ink); }
+
+  /* WHY */
+  .why-scene { background: var(--ink); color: var(--paper); }
+  .why-scene::before {
+    content: ""; position: absolute; inset: 0;
+    background-image:
+      radial-gradient(800px 380px at 20% -10%, rgba(176,122,34,0.18), transparent 60%),
+      radial-gradient(600px 260px at 90% 110%, rgba(176,122,34,0.10), transparent 60%);
+    pointer-events: none;
+  }
+  .why-scene .eyebrow { color: var(--gold-2); }
+  .why-scene h2 { color: var(--paper); }
+  .why-scene .section-head .right p { color: color-mix(in oklch, var(--paper) 75%, transparent); }
+  .why-scene + .scene { border-top: 0; }
+
+  .pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; position: relative; }
+  @media (max-width: 980px) { .pillars { grid-template-columns: 1fr; } }
+  .pillar {
+    border: 1px solid rgba(246,241,230,0.16);
+    background: rgba(246,241,230,0.03);
+    padding: 28px 26px 30px;
+    border-radius: 4px;
+    position: relative;
+    transition: transform .25s ease, background .25s ease, border-color .25s ease;
+  }
+  .pillar:hover {
+    background: rgba(246,241,230,0.06);
+    border-color: rgba(201,150,89,0.5);
+    transform: translateY(-3px);
+  }
+  .pillar .pn {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em;
+    color: var(--gold-2);
+  }
+  .pillar h3 {
+    font-family: var(--serif); font-weight: 500; font-size: 32px; line-height: 1.05;
+    margin: 18px 0 14px;
+    letter-spacing: -0.01em;
+  }
+  .pillar h3 em { color: var(--gold-2); font-style: italic; }
+  .pillar p { color: color-mix(in oklch, var(--paper) 80%, transparent); font-size: 15px; line-height: 1.55; margin: 0; }
+  .pillar .underline {
+    margin-top: 22px;
+    display: flex; align-items: center; gap: 10px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--gold-2);
+  }
+  .pillar .underline .arr {
+    width: 24px; height: 1px; background: var(--gold-2);
+    transition: width .25s ease;
+  }
+  .pillar:hover .underline .arr { width: 48px; }
+
+  /* WHAT */
+  .agents-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 18px;
+  }
+  .agent {
+    border: 1px solid var(--rule-strong);
+    background: color-mix(in oklch, var(--paper) 60%, white);
+    padding: 26px 24px 28px;
+    border-radius: 4px;
+    position: relative;
+    cursor: pointer;
+    transition: background .25s ease, transform .25s ease, border-color .25s ease;
+    display: flex; flex-direction: column; gap: 18px;
+    min-height: 220px;
+  }
+  .agent:hover {
+    border-color: var(--ink);
+    background: color-mix(in oklch, var(--paper) 30%, white);
+    transform: translateY(-3px);
+  }
+  .agent[data-active="true"] {
+    background: var(--ink); color: var(--paper);
+    border-color: var(--ink);
+  }
+  .agent[data-active="true"] .agent-name { color: var(--paper); }
+  .agent[data-active="true"] .agent-num { color: var(--gold-2); }
+  .agent[data-active="true"] .agent-blurb { color: color-mix(in oklch, var(--paper) 75%, transparent); }
+  .agent[data-active="true"] .agent-icon { color: var(--gold-2); border-color: rgba(246,241,230,0.4); }
+
+  .agent .agent-head { display: flex; justify-content: space-between; align-items: start; gap: 12px; }
+  .agent-num { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; color: var(--ink-mute); }
+  .agent-icon {
+    width: 40px; height: 40px;
+    border: 1px solid var(--rule-strong);
+    border-radius: 50%;
+    display: grid; place-items: center;
+    color: var(--gold);
+    transition: color .25s ease, border-color .25s ease, transform .4s ease;
+  }
+  .agent:hover .agent-icon { transform: rotate(8deg); }
+  .agent-name {
+    font-family: var(--serif); font-weight: 500; font-size: 26px; line-height: 1.05;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .agent-blurb { font-size: 14px; color: var(--ink-soft); line-height: 1.55; }
+  .agent-foot {
+    margin-top: auto;
+    display: flex; justify-content: space-between; align-items: end;
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+  .agent[data-active="true"] .agent-foot { color: color-mix(in oklch, var(--paper) 60%, transparent); }
+
+  /* Grid spans for editorial rhythm */
+  .agent.s4 { grid-column: span 4; }
+  .agent.s6 { grid-column: span 6; }
+  .agent.s8 { grid-column: span 8; }
+  @media (max-width: 980px) {
+    .agent.s4, .agent.s6, .agent.s8 { grid-column: span 12; }
+  }
+
+  .what-stat-row {
+    margin-top: 32px;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+    border-top: 1px solid var(--rule-strong);
+    border-bottom: 1px solid var(--rule-strong);
+  }
+  @media (max-width: 720px) { .what-stat-row { grid-template-columns: 1fr; } }
+  .ws {
+    padding: 28px 24px;
+    border-right: 1px solid var(--rule);
+  }
+  .ws:last-child { border-right: 0; }
+  @media (max-width: 720px) { .ws { border-right: 0; border-bottom: 1px solid var(--rule); } .ws:last-child { border-bottom: 0; } }
+  .ws .v { font-family: var(--serif); font-size: 56px; line-height: 1; letter-spacing: -0.02em; }
+  .ws .v em { color: var(--gold); font-style: italic; }
+  .ws .v sup { font-size: 0.45em; vertical-align: super; color: var(--ink-mute); margin-left: 4px; }
+  .ws .k { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); margin-top: 12px; }
+
+  /* MESSAGE */
+  .msg-scene { background: var(--paper-2); }
+  .msg-grid { display: grid; grid-template-columns: 0.9fr 1.2fr; gap: 80px; align-items: start; }
+  @media (max-width: 980px) { .msg-grid { grid-template-columns: 1fr; gap: 48px; } }
+  .msg-left h2 { font-family: var(--serif); font-weight: 500; font-size: clamp(40px, 5vw, 72px); line-height: 0.98; margin: 12px 0 0; letter-spacing: -0.02em; }
+  .msg-left h2 em { font-style: italic; color: var(--gold); }
+  .msg-left p { font-family: var(--serif); font-size: 20px; line-height: 1.45; color: var(--ink-soft); margin-top: 18px; }
+  .msg-left .quote {
+    margin-top: 32px;
+    padding: 22px 24px;
+    border-left: 3px solid var(--gold);
+    background: color-mix(in oklch, var(--paper) 60%, white);
+    font-family: var(--serif); font-style: italic; color: var(--ink); font-size: 18px; line-height: 1.5;
+  }
+  .msg-left .quote .who {
+    display: block; margin-top: 12px;
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-mute); font-style: normal;
+  }
+
+  .form-card {
+    background: color-mix(in oklch, var(--paper) 50%, white);
+    border: 1px solid var(--rule-strong);
+    padding: 32px 32px 28px;
+    border-radius: 6px;
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  @media (max-width: 640px) { .form-row { grid-template-columns: 1fr; } }
+  .field { display: flex; flex-direction: column; gap: 8px; margin-bottom: 18px; }
+  .field label {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .field label .count { color: var(--ink-mute); }
+  .field input, .field textarea, .field select {
+    font-family: var(--sans);
+    font-size: 15px;
+    color: var(--ink);
+    background: var(--paper);
+    border: 1px solid var(--rule-strong);
+    border-radius: 4px;
+    padding: 12px 14px;
+    outline: 0;
+    transition: border-color .2s ease, box-shadow .2s ease;
+    resize: vertical;
+  }
+  .field input:focus, .field textarea:focus, .field select:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 4px var(--gold-soft);
+  }
+  .field textarea { min-height: 130px; line-height: 1.5; }
+  .field.err input, .field.err textarea, .field.err select { border-color: #8B2A2A; }
+  .field .hint { font-family: var(--mono); font-size: 11px; color: var(--ink-mute); }
+  .field .err-msg { font-family: var(--mono); font-size: 11px; color: #8B2A2A; }
+
+  .role-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 8px 14px; border-radius: 999px;
+    border: 1px solid var(--rule-strong);
+    background: transparent;
+    color: var(--ink-soft);
+    cursor: pointer;
+    transition: all .2s ease;
+  }
+  .chip:hover { color: var(--ink); border-color: var(--ink); }
+  .chip[data-on="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+  .submit-row {
+    display: flex; justify-content: space-between; align-items: center; gap: 16px;
+    margin-top: 14px;
+  }
+  .submit-row .privacy { font-family: var(--mono); font-size: 11px; color: var(--ink-mute); max-width: 280px; }
+  .submit-btn {
+    background: var(--ink); color: var(--paper);
+    border: 0; cursor: pointer;
+    padding: 16px 28px; border-radius: 999px;
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+    display: inline-flex; align-items: center; gap: 10px;
+    transition: background .2s ease, transform .2s ease;
+  }
+  .submit-btn:hover:not(:disabled) { background: var(--gold); }
+  .submit-btn:disabled { opacity: .75; cursor: progress; }
+  .submit-btn svg { width: 14px; height: 14px; }
+
+  .form-success {
+    border: 1px solid var(--gold);
+    background: color-mix(in oklch, var(--paper) 50%, white);
+    padding: 32px;
+    border-radius: 6px;
+    text-align: center;
+  }
+  .form-success h3 { font-family: var(--serif); font-weight: 500; font-size: 36px; margin: 8px 0 6px; letter-spacing: -0.01em; }
+  .form-success h3 em { color: var(--gold); font-style: italic; }
+  .form-success p { color: var(--ink-soft); font-family: var(--serif); font-size: 18px; margin: 0; }
+  .form-success .check {
+    width: 48px; height: 48px; border-radius: 50%; background: var(--gold-soft); color: var(--gold);
+    display: inline-grid; place-items: center;
+    margin-bottom: 12px;
+  }
+
+  /* FOOTER */
+  footer.foot {
+    background: var(--ink);
+    color: color-mix(in oklch, var(--paper) 75%, transparent);
+    padding: 56px 0 36px;
+    position: relative;
+    z-index: 2;
+  }
+  .foot-top { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 48px; }
+  @media (max-width: 720px) { .foot-top { grid-template-columns: 1fr; gap: 32px; } }
+  .foot h4 { font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: color-mix(in oklch, var(--paper) 55%, transparent); margin: 0 0 14px; font-weight: 500; }
+  .foot a { color: color-mix(in oklch, var(--paper) 90%, transparent); text-decoration: none; font-size: 14px; display: block; padding: 4px 0; transition: color .2s ease; }
+  .foot a:hover { color: var(--gold-2); }
+  .foot-brand .blurb { font-family: var(--serif); font-size: 20px; line-height: 1.4; color: color-mix(in oklch, var(--paper) 85%, transparent); margin: 14px 0 0; max-width: 36ch; font-style: italic; }
+  .foot-bottom {
+    border-top: 1px solid rgba(246,241,230,0.14);
+    margin-top: 48px; padding-top: 24px;
+    display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: color-mix(in oklch, var(--paper) 55%, transparent);
+  }
+  .foot-bottom .right { display: flex; gap: 18px; }
+
+  /* utility */
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+</style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script src="image-slot.js"></script>
+
+  <script type="text/babel" data-presets="react">
+
+
+const { useState, useEffect, useRef, useMemo, useCallback } = React;
+
+/* ============================ Icons (line, geometric) ============================ */
+const Icon = ({ name, size = 18 }) => {
+  const p = { width: size, height: size, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 1.4, strokeLinecap: 'round', strokeLinejoin: 'round' };
+  switch (name) {
+    case 'pos':return <svg {...p}><rect x="3.5" y="4.5" width="17" height="14" rx="2" /><path d="M3.5 9h17" /><path d="M8 13.5h3.5" /><circle cx="16.5" cy="14" r="1.2" /></svg>;
+    case 'inv':return <svg {...p}><path d="M3.5 7.5 12 4l8.5 3.5v9L12 20l-8.5-3.5z" /><path d="M3.5 7.5 12 11l8.5-3.5" /><path d="M12 11v9" /></svg>;
+    case 'pay':return <svg {...p}><circle cx="12" cy="12" r="8" /><path d="M9.5 9.5h4.5a2 2 0 0 1 0 4H10l4 4" /><path d="M9 13.5h6" /></svg>;
+    case 'waste':return <svg {...p}><path d="M4 7.5h16" /><path d="M9 7.5V5.5a1.5 1.5 0 0 1 1.5-1.5h3A1.5 1.5 0 0 1 15 5.5v2" /><path d="M6 7.5 7 20h10l1-12.5" /><path d="M10 11v6" /><path d="M14 11v6" /></svg>;
+    case 'floor':return <svg {...p}><circle cx="12" cy="12" r="8" /><path d="M12 4v3" /><path d="M12 17v3" /><path d="M4 12h3" /><path d="M17 12h3" /><path d="m15.5 8.5-3 3.5 4.5 1.5" /></svg>;
+    case 'arrow':return <svg {...p}><path d="M5 12h14" /><path d="m13 6 6 6-6 6" /></svg>;
+    case 'check':return <svg {...p} strokeWidth="1.8"><path d="m5 12 5 5 9-11" /></svg>;
+    case 'spark':return <svg {...p}><path d="M12 4v6" /><path d="M12 14v6" /><path d="M4 12h6" /><path d="M14 12h6" /></svg>;
+    case 'clock':return <svg {...p}><circle cx="12" cy="12" r="8" /><path d="M12 7.5V12l3 2" /></svg>;
+    default:return null;
+  }
+};
+
+/* ============================ Brand mark (inline SVG, original) ============================ */
+const Wordmark = ({ height = 22 }) =>
+<svg height={height} viewBox="0 0 240 44" xmlns="http://www.w3.org/2000/svg" aria-label="Kurokaa">
+    <g fill="none" stroke="#0A0F22" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+      {/* K */}
+      <path d="M6 6 V38" />
+      <path d="M6 22 L22 6" />
+      <path d="M6 22 L22 38" />
+      {/* U */}
+      <path d="M32 6 V28 a8 8 0 0 0 16 0 V6" />
+      {/* R */}
+      <path d="M58 38 V6 h10 a7 7 0 0 1 0 14 H58" />
+      <path d="M64 20 L74 38" />
+      {/* O */}
+      <circle cx="92" cy="22" r="14" />
+      {/* K */}
+      <path d="M114 6 V38" />
+      <path d="M114 22 L130 6" />
+      <path d="M114 22 L130 38" />
+      {/* A */}
+      <path d="M140 38 L152 6 L164 38" />
+      <path d="M145 28 H159" />
+      {/* A */}
+      <path d="M172 38 L184 6 L196 38" />
+      <path d="M177 28 H191" />
+    </g>
+    {/* gold dots in the A's */}
+    <circle cx="152" cy="32" r="2.2" fill="#B07A22" />
+    <circle cx="184" cy="32" r="2.2" fill="#B07A22" />
+    <text x="206" y="14" fontFamily="JetBrains Mono, monospace" fontSize="8" fill="#7D7C87">TM</text>
+  </svg>;
+
+
+/* ============================ Countdown ============================ */
+const LAUNCH = new Date('2026-09-15T09:00:00+05:30').getTime();
+function useCountdown(target) {
+  const [now, setNow] = useState(() => Date.now());
+  useEffect(() => {
+    const id = setInterval(() => setNow(Date.now()), 1000);
+    return () => clearInterval(id);
+  }, []);
+  const diff = Math.max(0, target - now);
+  const d = Math.floor(diff / 86400000);
+  const h = Math.floor(diff / 3600000) % 24;
+  const m = Math.floor(diff / 60000) % 60;
+  const s = Math.floor(diff / 1000) % 60;
+  return { d, h, m, s };
+}
+
+/* ============================ Type-cycle ticker ============================ */
+const TICKER_LINES = [
+'a 3-day vacation, finally',
+'inventory that counts itself',
+'a Floor Manager that suggests the pivot',
+'payroll, closed before midnight',
+'2–3 decisions, every five minutes'];
+
+function useTicker(lines, { type = 38, hold = 1600, erase = 22 } = {}) {
+  const [i, setI] = useState(0);
+  const [text, setText] = useState('');
+  const [phase, setPhase] = useState('typing'); // typing | holding | erasing
+  useEffect(() => {
+    const full = lines[i];
+    let id;
+    if (phase === 'typing') {
+      if (text.length < full.length) id = setTimeout(() => setText(full.slice(0, text.length + 1)), type);else
+      id = setTimeout(() => setPhase('holding'), hold);
+    } else if (phase === 'holding') {
+      id = setTimeout(() => setPhase('erasing'), hold);
+    } else {
+      if (text.length > 0) id = setTimeout(() => setText(text.slice(0, -1)), erase);else
+      {setPhase('typing');setI((i + 1) % lines.length);}
+    }
+    return () => clearTimeout(id);
+  }, [text, phase, i, lines, type, hold, erase]);
+  return text;
+}
+
+/* ============================ Nav ============================ */
+const NAV = [
+{ id: 'story', n: '01', label: 'Our Story' },
+{ id: 'why', n: '02', label: 'Why Us' },
+{ id: 'what', n: '03', label: 'What We Do' },
+{ id: 'contact', n: '04', label: 'Get in Touch' }];
+
+
+function Nav({ active, onCta }) {
+  const go = (id) => {
+    const el = document.getElementById(id);
+    if (el) window.scrollTo({ top: el.offsetTop - 64, behavior: 'smooth' });
+  };
+  return (
+    <nav className="nav">
+      <div className="wrap nav-inner">
+        <a href="#top" className="brand" onClick={(e) => {e.preventDefault();window.scrollTo({ top: 0, behavior: 'smooth' });}}>
+          <Wordmark height={22} />
+        </a>
+        <div className="nav-links">
+          {NAV.map((n) =>
+          <button key={n.id} className="nav-link" data-active={active === n.id} onClick={() => go(n.id)}>
+              <span className="num">{n.n}</span>{n.label}
+            </button>
+          )}
+        </div>
+        <button className="nav-cta" onClick={onCta}>Request Access</button>
+      </div>
+    </nav>);
+
+}
+
+/* ============================ Hero ============================ */
+function Hero({ onSubmitted }) {
+  const { d, h, m, s } = useCountdown(LAUNCH);
+  const tick = useTicker(TICKER_LINES);
+  const [email, setEmail] = useState('');
+  const [state, setState] = useState('idle'); // idle | sending | success | error
+  const [error, setError] = useState('');
+  const heroRef = useRef(null);
+
+  const validEmail = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+
+  const onSubmit = useCallback((e) => {
+    e.preventDefault();
+    setError('');
+    if (!validEmail(email)) {
+      setState('error');
+      setError('That email doesn’t look right. Try again?');
+      return;
+    }
+    setState('sending');
+    setTimeout(() => {
+      setState('success');
+      onSubmitted?.(email);
+    }, 1100);
+  }, [email, onSubmitted]);
+
+  const onMove = (e) => {
+    const r = heroRef.current?.getBoundingClientRect();
+    if (!r) return;
+    heroRef.current.style.setProperty('--mx', `${e.clientX - r.left}px`);
+    heroRef.current.style.setProperty('--my', `${e.clientY - r.top}px`);
+  };
+
+  return (
+    <section className="hero" id="top" ref={heroRef} onMouseMove={onMove}>
+      <div className="hero-spotlight" />
+      <div className="wrap">
+        <div className="hero-grid">
+          <div>
+            <span className="eyebrow"><span className="dot" />Coming soon · Private beta · Closed circle</span>
+            <h1>
+              The agentic<br />
+              <em>operating system</em><br />
+              for Indian<br />
+              restaurants.
+            </h1>
+            <p className="lede">
+              Kurokaa runs five agents — POS, Inventory, Payroll, Waste Prevention,
+              and a Floor Manager — every five minutes, synthesising your raw operations
+              into two or three decisions worth making today.
+            </p>
+
+            <form className="capture" onSubmit={onSubmit} noValidate>
+              {state !== 'success' ?
+              <>
+                  <div className={`capture-row ${state === 'error' ? 'error' : ''}`}>
+                    <label htmlFor="email" className="sr-only">Email</label>
+                    <input
+                    id="email"
+                    type="email"
+                    autoComplete="email"
+                    placeholder="you@your-restaurant.com"
+                    value={email}
+                    onChange={(e) => {setEmail(e.target.value);if (state === 'error') setState('idle');}} />
+                  
+                    <button type="submit" disabled={state === 'sending'}>
+                      {state === 'sending' ? 'Reserving…' : 'Get early access'}
+                      <Icon name="arrow" size={14} />
+                    </button>
+                  </div>
+                  <div className={`capture-help ${state === 'error' ? 'error' : ''}`}>
+                    {state === 'error' ?
+                  <span>{error}</span> :
+
+                  <>
+                        <span className="pill"><span className="dot" />147 restaurants waitlisted</span>
+                        <span>No spam. We write once a month, when there's something worth saying.</span>
+                      </>
+                  }
+                  </div>
+                </> :
+
+              <div className="capture-help success" style={{ marginTop: 0 }}>
+                  <span className="pill" style={{ borderColor: 'var(--gold)', color: 'var(--gold)' }}>
+                    <span className="dot" />You're on the list
+                  </span>
+                  <span>We'll be in touch from <b style={{ color: 'var(--ink)' }}>hello@kurokaa.com</b> before launch.</span>
+                </div>
+              }
+            </form>
+          </div>
+
+          <div className="hero-meta">
+            <div className="meta-card">
+              <span className="eyebrow"><span className="dot" />What you'll wake up to</span>
+              <div className="ticker">
+                <span>{tick}</span><span className="cursor" />
+              </div>
+            </div>
+            <div className="meta-card">
+              <span className="eyebrow"><span className="dot" />Launch window — Q3 2026</span>
+              <div className="countdown" style={{ marginTop: 12 }}>
+                <div className="cd-cell"><div className="cd-num">{String(d).padStart(2, '0')}</div><div className="cd-lbl">Days</div></div>
+                <div className="cd-cell"><div className="cd-num">{String(h).padStart(2, '0')}</div><div className="cd-lbl">Hours</div></div>
+                <div className="cd-cell"><div className="cd-num">{String(m).padStart(2, '0')}</div><div className="cd-lbl">Minutes</div></div>
+                <div className="cd-cell"><div className="cd-num">{String(s).padStart(2, '0')}</div><div className="cd-lbl">Seconds</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="hero-foot">
+          <div className="stat"><div className="num">5</div><div className="lbl">Specialist agents</div></div>
+          <div className="stat"><div className="num"><em>5</em> min</div><div className="lbl">Decision loop</div></div>
+          <div className="stat"><div className="num">3-tier</div><div className="lbl">Recipe schema</div></div>
+          <div className="stat"><div className="num">↓<em>15</em>%</div><div className="lbl">Avoidable waste</div></div>
+          <div className="stat"><div className="num">1</div><div className="lbl">Owner. Finally free.</div></div>
+        </div>
+      </div>
+    </section>);
+
+}
+
+/* ============================ Story ============================ */
+function Story() {
+  return (
+    <section className="scene" id="story">
+      <div className="wrap">
+        <div className="section-head">
+          <div className="left">
+            <span className="eyebrow"><span className="dot" />OUR STORY</span>
+            <h2>Born in the heat of a <em>10 PM dinner rush.</em></h2>
+          </div>
+          <div className="right">
+            <p>Kurokaa wasn't born in a sterile boardroom. It was built in the whites, by a chef who learned to code because the kitchen's brain was still stuck in the 90s.</p>
+          </div>
+        </div>
+
+        <div className="story-layout">
+          <figure className="story-figure" aria-hidden="true">
+            <div className="figure-body" style={{ opacity: "1" }} />
+            <div className="figure-glyph"><span>Kuro</span><span className="acc"></span><span></span><span className="acc"></span></div>
+            <div className="figure-tag">
+              <span></span>
+              <span></span>
+            </div>
+            <figcaption className="figure-cap">
+              <b></b> 
+            </figcaption>
+          </figure>
+
+          <div>
+            <div className="story-copy">
+              <p className="dropcap">
+                Our founder, <b>Abhishek Bose</b>, spent years in the whites as a professional chef in Pan-Asian kitchens before trading the ladle for the keyboard. As a full-stack developer and AI evaluator, he kept hitting the same wall: while the kitchen equipment had evolved, the <em>brain of the restaurant</em> was still stuck in the 90s.
+              </p>
+              <p>
+                Reports came in three days late. Inventory was a guess. The owner was the integration layer — and the moment they stepped out of the building, the business started to drift.
+              </p>
+              <p>
+                Kurokaa is the partner he wishes he had — a system that doesn't just record history, but actually helps you write it. We combine the grit of a 19-hour kitchen shift with the precision of high-tier agentic AI to give Indian restaurateurs <em>a seat at their own table again.</em>
+              </p>
+            </div>
+
+            <div className="story-meta">
+              <div className="kv"><div className="k">Founder</div><div className="v">Abhishek Bose</div></div>
+              <div className="kv"><div className="k">Background</div><div className="v">Chef · Full-stack dev</div></div>
+              <div className="kv"><div className="k">Home base</div><div className="v">Kolkata, India</div></div>
+              <div className="kv"><div className="k">Built since</div><div className="v">2026</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>);
+
+}
+
+/* ============================ Why ============================ */
+const PILLARS = [
+{
+  n: '01',
+  h: <>Owner <em>Freedom.</em></>,
+  p: 'A 3-day vacation shouldn\'t be a business risk. Kurokaa runs the floor when you can\'t — so stepping away stops costing you margin.',
+  cta: 'Reclaim your week'
+},
+{
+  n: '02',
+  h: <>Librarian <em>→</em> Orchestrator.</>,
+  p: 'You stop reading yesterday and start composing tomorrow. We hand you the levers — pricing, prep, staffing — before the shift, not after.',
+  cta: 'Make the pivot'
+},
+{
+  n: '03',
+  h: <>Bandwidth, <em>bought back.</em></>,
+  p: 'Inventory, payroll, floor strategy — automated at the invisible mental layer. Kurokaa doesn\'t just save you money. It buys you back your time.',
+  cta: 'Get your hours back'
+}];
+
+
+function Why() {
+  return (
+    <section className="scene why-scene" id="why">
+      <div className="wrap">
+        <div className="section-head">
+          <div className="left">
+            <span className="eyebrow"><span className="dot" />WHY US</span>
+            <h2>The books are late. <em>The decisions are early.</em></h2>
+          </div>
+          <div className="right">
+            <p>In Indian restaurants, the owner is the integration layer. Step out of the building and everything drifts. Our north star is simple: <em style={{ color: 'var(--gold-2)', fontStyle: 'italic' }}>Owner Freedom.</em></p>
+          </div>
+        </div>
+
+        <div className="pillars">
+          {PILLARS.map((pl) =>
+          <article key={pl.n} className="pillar" tabIndex={0}>
+              <div className="pn">{pl.n}</div>
+              <h3>{pl.h}</h3>
+              <p>{pl.p}</p>
+              <div className="underline"><span className="arr" />{pl.cta}</div>
+            </article>
+          )}
+        </div>
+      </div>
+    </section>);
+
+}
+
+/* ============================ What ============================ */
+const AGENTS = [
+{ icon: 'pos', n: '01', name: 'POS Agent', blurb: 'Listens to every transaction in real time. Reconciles the till, the kitchen, and the books — so closeout takes ten minutes, not two hours.', span: 's4', tag: 'Live · since boot' },
+{ icon: 'inv', n: '02', name: 'Inventory Agent', blurb: 'A 3-tier recipe schema that tracks every gram of sauce. Knows when the cumin is short before the prep cook does.', span: 's8', tag: 'Recipe-aware · per-gram' },
+{ icon: 'pay', n: '03', name: 'Payroll Agent', blurb: 'Hours, overtime, shift swaps, statutory deductions — closed nightly. Zero spreadsheets, zero surprises on payday.', span: 's6', tag: 'Nightly close · IND compliant' },
+{ icon: 'waste', n: '04', name: 'Waste Prevention', blurb: 'Cross-checks prep against forward demand. Flags the over-production before it becomes Sunday\'s loss.', span: 's6', tag: 'Pre-shift signal' },
+{ icon: 'floor', n: '05', name: 'Floor Manager', blurb: 'Reads the room. Suggests a menu pivot during a demand spike, reroutes covers, calls the next service window before you do.', span: 's8', tag: 'Conversational · in-shift' }];
+
+
+function What() {
+  const [active, setActive] = useState(null);
+  return (
+    <section className="scene" id="what">
+      <div className="wrap">
+        <div className="section-head">
+          <div className="left">
+            <span className="eyebrow"><span className="dot" />WHAT WE DO</span>
+            <h2>Five agents. <em>One brain.</em><br />Every five minutes.</h2>
+          </div>
+          <div className="right">
+            <p>Kurokaa is the first true Agentic Operating System for the Indian restaurant ecosystem. We don't replace your POS — we give it a brain. Hover any agent to see it run.</p>
+          </div>
+        </div>
+
+        <div className="agents-grid">
+          {AGENTS.map((a, i) =>
+          <article
+            key={a.n}
+            className={`agent ${a.span}`}
+            data-active={active === a.n}
+            onMouseEnter={() => setActive(a.n)}
+            onMouseLeave={() => setActive((prev) => prev === a.n ? null : prev)}
+            tabIndex={0}>
+            
+              <div className="agent-head">
+                <div>
+                  <div className="agent-num">AGENT {a.n}</div>
+                  <div className="agent-name" style={{ marginTop: 8 }}>{a.name}</div>
+                </div>
+                <div className="agent-icon"><Icon name={a.icon} size={18} /></div>
+              </div>
+              <div className="agent-blurb">{a.blurb}</div>
+              <div className="agent-foot">
+                <span>{a.tag}</span>
+                <span>↻ every 5 min</span>
+              </div>
+            </article>
+          )}
+        </div>
+
+        <div className="what-stat-row">
+          <div className="ws">
+            <div className="v">2–<em>3</em></div>
+            <div className="k">Decisions surfaced per cycle</div>
+          </div>
+          <div className="ws">
+            <div className="v">↓<em>15</em><sup>%</sup></div>
+            <div className="k">Avoidable waste, on average</div>
+          </div>
+          <div className="ws">
+            <div className="v">0<em>×</em></div>
+            <div className="k">POS replacements required</div>
+          </div>
+        </div>
+      </div>
+    </section>);
+
+}
+
+/* ============================ Message capture ============================ */
+const ROLES = ['Owner', 'Operator', 'Chef', 'Investor', 'Press', 'Curious'];
+const SIZES = ['1 outlet', '2–4 outlets', '5–10 outlets', '10+ outlets', 'Pre-opening'];
+
+function MessageCapture() {
+  const [form, setForm] = useState({ name: '', email: '', restaurant: '', role: 'Owner', size: '2–4 outlets', message: '' });
+  const [errors, setErrors] = useState({});
+  const [state, setState] = useState('idle');
+
+  const set = (k, v) => setForm((f) => ({ ...f, [k]: v }));
+
+  const validate = () => {
+    const e = {};
+    if (!form.name.trim()) e.name = 'Tell us what to call you.';
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = 'A real email, please.';
+    if (!form.message.trim() || form.message.trim().length < 12) e.message = 'A sentence or two — what should we know?';
+    setErrors(e);
+    return Object.keys(e).length === 0;
+  };
+
+  const submit = (e) => {
+    e.preventDefault();
+    if (!validate()) return;
+    setState('sending');
+    setTimeout(() => setState('sent'), 1200);
+  };
+
+  return (
+    <section className="scene msg-scene" id="contact">
+      <div className="wrap">
+        <div className="msg-grid">
+          <div className="msg-left">
+            <span className="eyebrow"><span className="dot" />04 — Get in Touch</span>
+            <h2>Tell us about your <em>restaurant.</em></h2>
+            <p>
+              We're hand-picking the first cohort. If you run a kitchen — or are about to — we'd like to hear from you.
+              The more specific you are about where the operation hurts, the better the conversation.
+            </p>
+            <div className="quote">
+              "The owner shouldn't be the integration layer.
+              That's the whole reason we built this."
+              <span className="who">Abhishek Bose · Founder</span>
+            </div>
+          </div>
+
+          <div>
+            {state === 'sent' ?
+            <div className="form-success">
+                <div className="check"><Icon name="check" size={22} /></div>
+                <h3>Message <em>received.</em></h3>
+                <p>Thanks, {form.name.split(' ')[0]}. We'll write back within two business days — usually faster.</p>
+              </div> :
+
+            <form className="form-card" onSubmit={submit} noValidate>
+                <div className="form-row">
+                  <div className={`field ${errors.name ? 'err' : ''}`}>
+                    <label htmlFor="f-name">Your name</label>
+                    <input id="f-name" type="text" value={form.name} onChange={(e) => set('name', e.target.value)} placeholder="Abhishek Bose" />
+                    {errors.name && <div className="err-msg">{errors.name}</div>}
+                  </div>
+                  <div className={`field ${errors.email ? 'err' : ''}`}>
+                    <label htmlFor="f-email">Email</label>
+                    <input id="f-email" type="email" value={form.email} onChange={(e) => set('email', e.target.value)} placeholder="you@your-restaurant.com" />
+                    {errors.email && <div className="err-msg">{errors.email}</div>}
+                  </div>
+                </div>
+
+                <div className="form-row">
+                  <div className="field">
+                    <label htmlFor="f-rest">Restaurant / Group <span style={{ color: 'var(--ink-mute)' }}>(optional)</span></label>
+                    <input id="f-rest" type="text" value={form.restaurant} onChange={(e) => set('restaurant', e.target.value)} placeholder="e.g. Park Plaza, Pan-Asian" />
+                  </div>
+                  <div className="field">
+                    <label htmlFor="f-size">Operation size</label>
+                    <select id="f-size" value={form.size} onChange={(e) => set('size', e.target.value)}>
+                      {SIZES.map((s) => <option key={s} value={s}>{s}</option>)}
+                    </select>
+                  </div>
+                </div>
+
+                <div className="field">
+                  <label>You are a…</label>
+                  <div className="role-chips" role="radiogroup">
+                    {ROLES.map((r) =>
+                  <button
+                    key={r}
+                    type="button"
+                    role="radio"
+                    aria-checked={form.role === r}
+                    className="chip"
+                    data-on={form.role === r}
+                    onClick={() => set('role', r)}>
+                    
+                        {r}
+                      </button>
+                  )}
+                  </div>
+                </div>
+
+                <div className={`field ${errors.message ? 'err' : ''}`}>
+                  <label htmlFor="f-msg">
+                    What should we know?
+                    <span className="count">{form.message.length} / 600</span>
+                  </label>
+                  <textarea
+                  id="f-msg"
+                  value={form.message}
+                  onChange={(e) => set('message', e.target.value.slice(0, 600))}
+                  placeholder="The shift where everything broke. The metric you can't get to. The vacation you haven't taken. Any of it." />
+                
+                  {errors.message ?
+                <div className="err-msg">{errors.message}</div> :
+                <div className="hint">We read every message. No CRM auto-responder, we promise.</div>}
+                </div>
+
+                <div className="submit-row">
+                  <div className="privacy">By submitting you agree we may write back. We don't sell data, ever.</div>
+                  <button className="submit-btn" type="submit" disabled={state === 'sending'}>
+                    {state === 'sending' ? 'Sending…' : 'Send message'}
+                    <Icon name="arrow" size={14} />
+                  </button>
+                </div>
+              </form>
+            }
+          </div>
+        </div>
+      </div>
+    </section>);
+
+}
+
+/* ============================ Footer ============================ */
+function Footer() {
+  return (
+    <footer className="foot" style={{ backgroundColor: "rgb(69, 64, 64)" }}>
+      <div className="wrap">
+        <div className="foot-top">
+          <div className="foot-brand">
+            <Wordmark height={26} />
+            <div className="blurb">"The invisible force behind great operations." Pre-launch — built quietly, with operators, in Kolkata.</div>
+          </div>
+          <div>
+            <h4>Company</h4>
+            <a href="#story">Our Story</a>
+            <a href="#why">Why Us</a>
+            <a href="#what">What We Do</a>
+            <a href="#contact">Contact</a>
+          </div>
+          <div>
+            <h4>Reach us</h4>
+            <a href="mailto:hello@kurokaa.com" style={{ padding: "0px 0px 4px", height: "0px" }}></a>
+            <a href="mailto:abhishek@kurokaa.com" style={{ padding: "0px" }}></a>
+            <a href="#contact">Press inquiries</a>
+            <a href="#contact">Pilot program</a>
+          </div>
+        </div>
+        <div className="foot-bottom">
+          <div>© 2026 Kurokaa™ — All rights reserved.</div>
+          <div className="right">
+            <span></span>
+            <span>Made in India</span>
+          </div>
+        </div>
+      </div>
+    </footer>);
+
+}
+
+/* ============================ Root ============================ */
+function App() {
+  const [active, setActive] = useState('');
+
+  useEffect(() => {
+    const ids = NAV.map((n) => n.id);
+    const onScroll = () => {
+      const y = window.scrollY + 100;
+      let cur = '';
+      for (const id of ids) {
+        const el = document.getElementById(id);
+        if (el && el.offsetTop <= y) cur = id;
+      }
+      setActive(cur);
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  const goContact = () => {
+    const el = document.getElementById('contact');
+    if (el) window.scrollTo({ top: el.offsetTop - 64, behavior: 'smooth' });
+  };
+
+  return (
+    <>
+      <Nav active={active} onCta={goContact} />
+      <Hero />
+      <Story />
+      <Why />
+      <What />
+      <MessageCapture />
+      <Footer />
+    </>);
+
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>
