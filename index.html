@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Kurokaa — Coming Soon</title>
+<title>Kurokaa — The Agentic OS for Indian Restaurants</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -642,6 +642,27 @@
   }
   .foot-bottom .right { display: flex; gap: 18px; }
 
+  /* Hero CTA buttons */
+  .cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 44px; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--ink); color: var(--paper);
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
+    padding: 16px 28px; border-radius: 999px;
+    text-decoration: none; border: 0; cursor: pointer;
+    transition: background .2s ease, transform .2s ease;
+  }
+  .btn-primary:hover { background: var(--gold); transform: translateY(-1px); }
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: transparent; color: var(--ink);
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
+    padding: 15px 28px; border-radius: 999px;
+    text-decoration: none; border: 1px solid var(--ink); cursor: pointer;
+    transition: background .2s ease, color .2s ease, border-color .2s ease, transform .2s ease;
+  }
+  .btn-outline:hover { background: var(--ink); color: var(--paper); transform: translateY(-1px); }
+
   /* utility */
   .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 
@@ -711,22 +732,6 @@ const Wordmark = ({ height = 22 }) =>
   </svg>;
 
 
-/* ============================ Countdown ============================ */
-const LAUNCH = new Date('2026-09-15T09:00:00+05:30').getTime();
-function useCountdown(target) {
-  const [now, setNow] = useState(() => Date.now());
-  useEffect(() => {
-    const id = setInterval(() => setNow(Date.now()), 1000);
-    return () => clearInterval(id);
-  }, []);
-  const diff = Math.max(0, target - now);
-  const d = Math.floor(diff / 86400000);
-  const h = Math.floor(diff / 3600000) % 24;
-  const m = Math.floor(diff / 60000) % 60;
-  const s = Math.floor(diff / 1000) % 60;
-  return { d, h, m, s };
-}
-
 /* ============================ Type-cycle ticker ============================ */
 const TICKER_LINES = [
 'a 3-day vacation, finally',
@@ -764,7 +769,7 @@ const NAV = [
 { id: 'contact', n: '04', label: 'Get in Touch' }];
 
 
-function Nav({ active, onCta }) {
+function Nav({ active }) {
   const go = (id) => {
     const el = document.getElementById(id);
     if (el) window.scrollTo({ top: el.offsetTop - 64, behavior: 'smooth' });
@@ -782,67 +787,16 @@ function Nav({ active, onCta }) {
             </button>
           )}
         </div>
-        <button className="nav-cta" onClick={onCta}>Request Access</button>
+        <a href="https://app.kurokaa.com/signup" className="nav-cta" style={{ textDecoration: 'none' }}>Get Started</a>
       </div>
     </nav>);
 
 }
 
 /* ============================ Hero ============================ */
-function Hero({ onSubmitted }) {
-  const { d, h, m, s } = useCountdown(LAUNCH);
+function Hero() {
   const tick = useTicker(TICKER_LINES);
-  const [email, setEmail] = useState('');
-  const [state, setState] = useState('idle'); // idle | sending | success | error
-  const [error, setError] = useState('');
   const heroRef = useRef(null);
-
-  const validEmail = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
-
- const onSubmit = useCallback(async (e) => {
-  e.preventDefault();
-
-  setError('');
-
-  if (!validEmail(email)) {
-    setState('error');
-    setError('That email doesn’t look right. Try again?');
-    return;
-  }
-
-  setState('sending');
-
-  try {
-    const response = await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json"
-      },
-      body: JSON.stringify({
-        access_key: WEB3FORM_KEY,
-        subject: "New Early Access Signup — Kurokaa",
-        from_name: "Kurokaa Landing Page",
-        email: email
-      })
-    });
-
-    const result = await response.json();
-
-    if (result.success) {
-      setState('success');
-      onSubmitted?.(email);
-    } else {
-      setState('error');
-      setError('Something went wrong. Try again.');
-    }
-
-  } catch (err) {
-    setState('error');
-    setError('Network error. Please try again.');
-  }
-
-}, [email, onSubmitted]);
 
   const onMove = (e) => {
     const r = heroRef.current?.getBoundingClientRect();
@@ -857,7 +811,7 @@ function Hero({ onSubmitted }) {
       <div className="wrap">
         <div className="hero-grid">
           <div>
-            <span className="eyebrow"><span className="dot" />Coming soon · Private beta · Closed circle</span>
+            <span className="eyebrow"><span className="dot" />Now live · Open to all restaurants</span>
             <h1>
               The agentic<br />
               <em>operating system</em><br />
@@ -870,44 +824,18 @@ function Hero({ onSubmitted }) {
               into two or three decisions worth making today.
             </p>
 
-            <form className="capture" onSubmit={onSubmit} noValidate>
-              {state !== 'success' ?
-              <>
-                  <div className={`capture-row ${state === 'error' ? 'error' : ''}`}>
-                    <label htmlFor="email" className="sr-only">Email</label>
-                    <input
-                    id="email"
-                    type="email"
-                    autoComplete="email"
-                    placeholder="you@your-restaurant.com"
-                    value={email}
-                    onChange={(e) => {setEmail(e.target.value);if (state === 'error') setState('idle');}} />
-                  
-                    <button type="submit" disabled={state === 'sending'}>
-                      {state === 'sending' ? 'Reserving…' : 'Get early access'}
-                      <Icon name="arrow" size={14} />
-                    </button>
-                  </div>
-                  <div className={`capture-help ${state === 'error' ? 'error' : ''}`}>
-                    {state === 'error' ?
-                  <span>{error}</span> :
-
-                  <>
-                        <span className="pill"><span className="dot" />147 restaurants waitlisted</span>
-                        <span>No spam. We write once a month, when there's something worth saying.</span>
-                      </>
-                  }
-                  </div>
-                </> :
-
-              <div className="capture-help success" style={{ marginTop: 0 }}>
-                  <span className="pill" style={{ borderColor: 'var(--gold)', color: 'var(--gold)' }}>
-                    <span className="dot" />You're on the list
-                  </span>
-                  <span>We'll be in touch from <b style={{ color: 'var(--ink)' }}>hello@kurokaa.com</b> before launch.</span>
-                </div>
-              }
-            </form>
+            <div className="cta-row">
+              <a href="https://app.kurokaa.com/signup" className="btn-primary">
+                Get Started <Icon name="arrow" size={14} />
+              </a>
+              <a href="https://app.kurokaa.com/login" className="btn-outline">
+                Sign In
+              </a>
+            </div>
+            <div className="capture-help" style={{ marginTop: 14 }}>
+              <span className="pill"><span className="dot" />No credit card required</span>
+              <span>Your first 30 days are on us.</span>
+            </div>
           </div>
 
           <div className="hero-meta">
@@ -918,12 +846,20 @@ function Hero({ onSubmitted }) {
               </div>
             </div>
             <div className="meta-card">
-              <span className="eyebrow"><span className="dot" />Launch window — Q3 2026</span>
-              <div className="countdown" style={{ marginTop: 12 }}>
-                <div className="cd-cell"><div className="cd-num">{String(d).padStart(2, '0')}</div><div className="cd-lbl">Days</div></div>
-                <div className="cd-cell"><div className="cd-num">{String(h).padStart(2, '0')}</div><div className="cd-lbl">Hours</div></div>
-                <div className="cd-cell"><div className="cd-num">{String(m).padStart(2, '0')}</div><div className="cd-lbl">Minutes</div></div>
-                <div className="cd-cell"><div className="cd-num">{String(s).padStart(2, '0')}</div><div className="cd-lbl">Seconds</div></div>
+              <span className="eyebrow"><span className="dot" />Five agents · Live now</span>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginTop: 14 }}>
+                {[
+                  { name: 'POS Agent', tag: 'Live · since boot' },
+                  { name: 'Inventory Agent', tag: 'Recipe-aware · per-gram' },
+                  { name: 'Payroll Agent', tag: 'Nightly close' },
+                  { name: 'Waste Prevention', tag: 'Pre-shift signal' },
+                  { name: 'Floor Manager', tag: 'Conversational · in-shift' }
+                ].map(({ name, tag }) => (
+                  <div key={name} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <span style={{ fontFamily: 'var(--sans)', fontSize: 14, color: 'var(--ink)' }}>{name}</span>
+                    <span style={{ fontFamily: 'var(--mono)', fontSize: 10, letterSpacing: '0.12em', color: '#1F5C3B' }}>● LIVE</span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -1186,7 +1122,7 @@ function MessageCapture() {
             <span className="eyebrow"><span className="dot" />04 — Get in Touch</span>
             <h2>Tell us about your <em>restaurant.</em></h2>
             <p>
-              We're hand-picking the first cohort. If you run a kitchen — or are about to — we'd like to hear from you.
+              Kurokaa is live. If you run a kitchen — or are about to — we'd love to hear from you.
               The more specific you are about where the operation hurts, the better the conversation.
             </p>
             <div className="quote">
@@ -1290,7 +1226,7 @@ function Footer() {
         <div className="foot-top">
           <div className="foot-brand">
             <Wordmark height={26} />
-            <div className="blurb">"The invisible force behind great operations." Pre-launch — built quietly, with operators, in Kolkata.</div>
+            <div className="blurb">"The invisible force behind great operations." Now live — built quietly, with operators, in Kolkata.</div>
           </div>
           <div>
             <h4>Company</h4>
@@ -1339,14 +1275,9 @@ function App() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const goContact = () => {
-    const el = document.getElementById('contact');
-    if (el) window.scrollTo({ top: el.offsetTop - 64, behavior: 'smooth' });
-  };
-
   return (
     <>
-      <Nav active={active} onCta={goContact} />
+      <Nav active={active} />
       <Hero />
       <Story />
       <Why />
