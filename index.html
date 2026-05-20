@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Kurokaa — The Agentic OS for Indian Restaurants</title>
+<title>Kurokaa — The agentic operating system for Indian restaurants</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,7 +18,7 @@
     --ink-2: #1B2038;
     --ink-soft: #4B4E63;
     --ink-mute: #7D7C87;
-    --rule: #2E2A1F1A; /* warm hairline */
+    --rule: #2E2A1F1A;
     --rule-strong: #2E2A1F33;
     --gold: #B07A22;
     --gold-2: #C99659;
@@ -29,7 +29,6 @@
   }
 
   *, *::before, *::after { box-sizing: border-box; }
-
   html, body { margin: 0; padding: 0; }
   body {
     font-family: var(--sans);
@@ -42,23 +41,20 @@
     overflow-x: hidden;
   }
 
-  /* Warm grain overlay */
   body::before {
     content: "";
     position: fixed;
     inset: 0;
     pointer-events: none;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.18  0 0 0 0 0.12  0 0 0 0 0.05  0 0 0 0.06 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScyMjAnIGhlaWdodD0nMjIwJz48ZmlsdGVyIGlkPSduJz48ZmVUdXJidWxlbmNlIHR5cGU9J2ZyYWN0YWxOb2lzZScgYmFzZUZyZXF1ZW5jeT0nMC45JyBudW1PY3RhdmVzPScyJyBzdGl0Y2hUaWxlcz0nc3RpdGNoJy8+PGZlQ29sb3JNYXRyaXggdmFsdWVzPScwIDAgMCAwIDAuMTggIDAgMCAwIDAgMC4xMiAgMCAwIDAgMCAwLjA1ICAwIDAgMCAwLjA2IDAnLz48L2ZpbHRlcj48cmVjdCB3aWR0aD0nMTAwJScgaGVpZ2h0PScxMDAlJyBmaWx0ZXI9J3VybCgjbiknLz48L3N2Zz4=");
     opacity: 0.55;
     mix-blend-mode: multiply;
     z-index: 1;
   }
 
-  /* layout */
   .wrap { max-width: 1320px; margin: 0 auto; padding: 0 48px; position: relative; z-index: 2; }
   @media (max-width: 720px) { .wrap { padding: 0 24px; } }
 
-  /* Reusable type */
   .eyebrow {
     font-family: var(--mono);
     font-size: 11px;
@@ -75,14 +71,6 @@
     margin-right: 10px;
     transform: translateY(-1px);
   }
-  .display {
-    font-family: var(--serif);
-    font-weight: 500;
-    color: var(--ink);
-    letter-spacing: -0.01em;
-    line-height: 0.98;
-  }
-  .display em { font-style: italic; color: var(--gold); font-weight: 500; }
 
   /* nav */
   .nav {
@@ -92,13 +80,8 @@
     -webkit-backdrop-filter: saturate(120%) blur(8px);
     border-bottom: 1px solid var(--rule);
   }
-  .nav-inner {
-    display: flex; align-items: center; justify-content: space-between;
-    height: 64px;
-  }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
   .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); }
-  .brand .mark { height: 22px; width: auto; display: block; }
-  .brand .tm { font-family: var(--mono); font-size: 10px; color: var(--ink-mute); align-self: flex-start; margin-top: 2px; }
 
   .nav-links { display: flex; gap: 28px; }
   .nav-link {
@@ -117,6 +100,17 @@
   .nav-link .num { color: var(--ink-mute); margin-right: 8px; }
   @media (max-width: 820px) { .nav-links { display: none; } }
 
+  .nav-actions { display: flex; align-items: center; gap: 18px; }
+  .nav-signin {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    transition: color .2s ease;
+  }
+  .nav-signin:hover { color: var(--gold); }
   .nav-cta {
     font-family: var(--mono);
     font-size: 11px;
@@ -128,28 +122,30 @@
     padding: 10px 16px;
     border-radius: 999px;
     cursor: pointer;
+    text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
     transition: transform .2s ease, background .2s ease;
   }
   .nav-cta:hover { background: var(--ink-2); transform: translateY(-1px); }
 
   /* HERO */
-  .hero { position: relative; padding: 90px 0 60px; }
+  .hero { position: relative; padding: 96px 0 80px; }
   .hero-spotlight {
     position: absolute; inset: 0; pointer-events: none;
     background: radial-gradient(420px 320px at var(--mx, 50%) var(--my, 35%), rgba(176,122,34,0.10), transparent 70%);
     transition: background .2s ease;
   }
   .hero-grid {
-    display: grid; grid-template-columns: 1.35fr 1fr; gap: 80px;
-    align-items: end;
+    display: grid; grid-template-columns: 1.25fr 1fr; gap: 80px;
+    align-items: start;
   }
   @media (max-width: 980px) { .hero-grid { grid-template-columns: 1fr; gap: 48px; } }
 
   .hero h1 {
     font-family: var(--serif);
     font-weight: 500;
-    font-size: clamp(56px, 8.8vw, 132px);
-    line-height: 0.92;
+    font-size: clamp(52px, 8.2vw, 124px);
+    line-height: 0.94;
     letter-spacing: -0.02em;
     margin: 22px 0 0;
     color: var(--ink);
@@ -157,152 +153,142 @@
   .hero h1 em { font-style: italic; color: var(--gold); }
   .hero .lede {
     font-family: var(--serif);
-    font-size: clamp(20px, 2vw, 26px);
-    line-height: 1.35;
+    font-size: clamp(20px, 1.9vw, 26px);
+    line-height: 1.4;
     color: var(--ink-soft);
-    max-width: 52ch;
+    max-width: 50ch;
     margin: 28px 0 0;
   }
 
-  .hero-meta {
-    display: flex; flex-direction: column; gap: 22px;
-    padding-bottom: 6px;
+  .hero-ctas {
+    margin-top: 40px;
+    display: flex; flex-wrap: wrap; gap: 14px; align-items: center;
   }
-  .meta-card {
-    border: 1px solid var(--rule-strong);
-    padding: 22px 22px 20px;
-    border-radius: 4px;
-    background: color-mix(in oklch, var(--paper) 70%, white);
-  }
-  .meta-card .eyebrow { margin-bottom: 14px; display: block; }
-  .meta-card .ticker {
-    font-family: var(--serif);
-    font-size: 28px;
-    line-height: 1.1;
-    font-style: italic;
-    color: var(--ink);
-    min-height: 1.2em;
-    display: flex; align-items: center; gap: 10px;
-  }
-  .meta-card .ticker .cursor {
-    display: inline-block; width: 2px; height: 1em; background: var(--gold);
-    animation: blink 1s steps(2,end) infinite;
-    transform: translateY(2px);
-  }
-  @keyframes blink { 50% { opacity: 0; } }
-
-  .countdown { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
-  .cd-cell { text-align: left; }
-  .cd-num {
-    font-family: var(--serif);
-    font-weight: 500;
-    font-size: 44px;
-    line-height: 1;
-    letter-spacing: -0.02em;
-    color: var(--ink);
-    font-variant-numeric: tabular-nums;
-  }
-  .cd-lbl {
-    font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--ink-mute);
-    margin-top: 6px;
-  }
-
-  /* email capture */
-  .capture { margin-top: 44px; max-width: 620px; }
-  .capture-row {
-    display: flex; align-items: stretch; gap: 0;
-    border: 1px solid var(--ink);
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+    padding: 16px 26px;
     border-radius: 999px;
-    background: color-mix(in oklch, var(--paper) 60%, white);
-    overflow: hidden;
-    transition: box-shadow .25s ease, border-color .2s ease;
+    text-decoration: none;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: background .2s ease, color .2s ease, border-color .2s ease, transform .2s ease;
   }
-  .capture-row:focus-within {
-    border-color: var(--gold);
-    box-shadow: 0 0 0 4px var(--gold-soft);
-  }
-  .capture-row.error { border-color: #8B2A2A; box-shadow: 0 0 0 4px rgba(139,42,42,0.12); }
-  .capture-row input {
-    flex: 1; min-width: 0;
-    border: 0; outline: 0;
-    background: transparent;
-    padding: 18px 24px;
-    font-family: var(--sans);
-    font-size: 16px;
-    color: var(--ink);
-  }
-  .capture-row input::placeholder { color: var(--ink-mute); }
-  .capture-row button {
-    border: 0; cursor: pointer;
-    background: var(--ink);
-    color: var(--paper);
-    font-family: var(--mono);
-    font-size: 12px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    padding: 0 28px;
-    transition: background .2s ease, color .2s ease;
-    display: flex; align-items: center; gap: 8px;
-  }
-  .capture-row button:hover:not(:disabled) { background: var(--gold); }
-  .capture-row button:disabled { opacity: 0.7; cursor: progress; }
-  .capture-row button svg { width: 14px; height: 14px; }
+  .btn svg { width: 14px; height: 14px; }
+  .btn-primary { background: var(--ink); color: var(--paper); }
+  .btn-primary:hover { background: var(--gold); transform: translateY(-1px); }
+  .btn-ghost { background: transparent; color: var(--ink); border-color: var(--ink); }
+  .btn-ghost:hover { background: var(--ink); color: var(--paper); }
+  .btn-ghost-light { background: transparent; color: var(--paper); border-color: rgba(246,241,230,0.5); }
+  .btn-ghost-light:hover { background: var(--paper); color: var(--ink); border-color: var(--paper); }
 
-  .capture-help {
-    margin-top: 14px;
-    display: flex; gap: 16px; align-items: center;
+  .hero-reassure {
+    margin-top: 18px;
     font-family: var(--mono);
     font-size: 11px;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.06em;
     color: var(--ink-mute);
   }
-  .capture-help.error { color: #8B2A2A; }
-  .capture-help.success { color: #1F5C3B; }
-  .capture-help .pill {
-    display: inline-flex; align-items: center; gap: 6px;
-    padding: 4px 10px;
+
+  /* Operational recommendations card */
+  .ops-card {
     border: 1px solid var(--rule-strong);
-    border-radius: 999px;
+    background: color-mix(in oklch, var(--paper) 60%, white);
+    border-radius: 6px;
+    overflow: hidden;
   }
-  .capture-help .pill .dot {
-    width: 6px; height: 6px; border-radius: 50%; background: var(--gold);
-    box-shadow: 0 0 0 3px var(--gold-soft);
+  .ops-head {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--rule);
+    background: color-mix(in oklch, var(--paper) 40%, white);
   }
+  .ops-head .left { display: flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-soft); }
+  .ops-head .live-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: #1F8A5B;
+    box-shadow: 0 0 0 4px rgba(31,138,91,0.18);
+    animation: pulse 2.2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 4px rgba(31,138,91,0.18); }
+    50% { box-shadow: 0 0 0 7px rgba(31,138,91,0.06); }
+  }
+  .ops-head .time { font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; color: var(--ink-mute); font-variant-numeric: tabular-nums; }
+
+  .ops-list { padding: 6px 0; }
+  .ops-item {
+    display: grid; grid-template-columns: 28px 1fr;
+    gap: 14px;
+    padding: 18px 20px;
+    border-top: 1px solid var(--rule);
+    transition: background .25s ease;
+  }
+  .ops-item:first-child { border-top: 0; }
+  .ops-item[data-fresh="true"] {
+    background: color-mix(in oklch, var(--gold-soft) 60%, transparent);
+    animation: fade-in 0.7s ease;
+  }
+  @keyframes fade-in {
+    from { background: color-mix(in oklch, var(--gold-soft) 100%, transparent); opacity: 0.4; transform: translateY(-2px); }
+    to   { background: color-mix(in oklch, var(--gold-soft) 60%, transparent); opacity: 1; transform: none; }
+  }
+  .ops-arr {
+    font-family: var(--serif); font-style: italic; font-size: 22px; line-height: 1; color: var(--gold);
+    padding-top: 2px;
+  }
+  .ops-body {
+    font-family: var(--serif);
+    font-size: 19px;
+    line-height: 1.35;
+    color: var(--ink);
+  }
+  .ops-body b { font-weight: 500; color: var(--ink); }
+  .ops-body .why {
+    display: block; margin-top: 4px;
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+
+  .ops-foot {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 20px;
+    border-top: 1px solid var(--rule);
+    background: color-mix(in oklch, var(--paper) 80%, transparent);
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-mute);
+  }
+  .ops-foot .since { color: var(--ink-soft); }
 
   .hero-foot {
-    margin-top: 80px;
-    display: flex; justify-content: space-between; align-items: end;
-    gap: 24px;
+    margin-top: 96px;
     padding-top: 26px;
     border-top: 1px solid var(--rule);
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px;
   }
-  .stat { display: flex; flex-direction: column; gap: 4px; }
-  .stat .num { font-family: var(--serif); font-size: 38px; line-height: 1; }
-  .stat .num em { color: var(--gold); font-style: italic; }
-  .stat .lbl { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-mute); }
-  @media (max-width: 720px) { .hero-foot { flex-wrap: wrap; gap: 28px; } }
+  @media (max-width: 720px) { .hero-foot { grid-template-columns: repeat(2, 1fr); } }
+  .signal {
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .signal .v { font-family: var(--serif); font-size: 38px; line-height: 1; letter-spacing: -0.01em; }
+  .signal .v em { color: var(--gold); font-style: italic; }
+  .signal .k { font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-mute); }
 
-  /* section frame */
-  section.scene { padding: 120px 0; position: relative; }
+  /* generic section */
+  section.scene { padding: 130px 0; position: relative; }
   section.scene + section.scene { border-top: 1px solid var(--rule); }
 
   .section-head {
     display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px;
-    margin-bottom: 64px;
+    margin-bottom: 72px;
     align-items: end;
   }
   @media (max-width: 980px) { .section-head { grid-template-columns: 1fr; gap: 24px; } }
-
   .section-head .left .eyebrow { display: block; margin-bottom: 14px; }
   .section-head h2 {
     font-family: var(--serif);
     font-weight: 500;
-    font-size: clamp(48px, 6vw, 92px);
-    line-height: 0.95;
+    font-size: clamp(46px, 5.6vw, 88px);
+    line-height: 0.96;
     letter-spacing: -0.02em;
     margin: 0;
   }
@@ -313,6 +299,292 @@
     line-height: 1.4;
     color: var(--ink-soft);
     margin: 0;
+  }
+
+  /* DINNER RUSH */
+  .rush-scene { background: var(--ink); color: var(--paper); overflow: hidden; }
+  .rush-scene::before {
+    content: ""; position: absolute; inset: 0;
+    background-image:
+      radial-gradient(900px 460px at 8% -10%, rgba(176,122,34,0.18), transparent 60%),
+      radial-gradient(700px 320px at 100% 110%, rgba(176,122,34,0.10), transparent 60%);
+    pointer-events: none;
+  }
+  .rush-scene .eyebrow { color: var(--gold-2); }
+  .rush-scene h2 { color: var(--paper); }
+  .rush-scene .section-head .right p { color: color-mix(in oklch, var(--paper) 75%, transparent); }
+
+  .rush-stage {
+    position: relative; z-index: 2;
+    border: 1px solid rgba(246,241,230,0.16);
+    background: rgba(246,241,230,0.03);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .rush-meta {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 24px;
+    border-bottom: 1px solid rgba(246,241,230,0.12);
+    background: rgba(10,15,34,0.4);
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: color-mix(in oklch, var(--paper) 70%, transparent);
+  }
+  .rush-meta .when { display: flex; gap: 18px; align-items: center; }
+  .rush-meta .pressure {
+    display: inline-flex; align-items: center; gap: 8px;
+    color: var(--gold-2);
+  }
+  .rush-meta .pressure .bar {
+    display: inline-block; width: 90px; height: 6px;
+    background: rgba(246,241,230,0.12);
+    border-radius: 3px; overflow: hidden;
+  }
+  .rush-meta .pressure .bar i {
+    display: block; height: 100%;
+    background: linear-gradient(90deg, var(--gold-2), #E26A4D);
+    transition: width .6s ease;
+  }
+
+  .rush-cols {
+    display: grid;
+    grid-template-columns: 1.1fr auto 1fr auto 1.1fr;
+    gap: 0;
+  }
+  @media (max-width: 980px) { .rush-cols { grid-template-columns: 1fr; } }
+  .rush-col { padding: 28px 26px 32px; }
+  .rush-col + .rush-col { border-left: 1px solid rgba(246,241,230,0.10); }
+  @media (max-width: 980px) {
+    .rush-col + .rush-col { border-left: 0; border-top: 1px solid rgba(246,241,230,0.10); }
+    .rush-sep { display: none; }
+  }
+  .rush-sep {
+    display: grid; place-items: center;
+    color: color-mix(in oklch, var(--paper) 40%, transparent);
+    padding: 0 6px;
+    border-left: 1px solid rgba(246,241,230,0.10);
+    border-right: 1px solid rgba(246,241,230,0.10);
+  }
+  .rush-sep svg { width: 22px; height: 22px; }
+
+  .rush-col h4 {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-2);
+    margin: 0 0 18px;
+    font-weight: 500;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .rush-col h4 .num { color: color-mix(in oklch, var(--paper) 40%, transparent); }
+
+  .signals-list { display: flex; flex-direction: column; gap: 14px; }
+  .signal-line {
+    display: grid; grid-template-columns: 56px 1fr auto;
+    align-items: center; gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px dashed rgba(246,241,230,0.10);
+    font-family: var(--sans); font-size: 14px;
+    color: color-mix(in oklch, var(--paper) 88%, transparent);
+  }
+  .signal-line:last-child { border-bottom: 0; }
+  .signal-line .src {
+    font-family: var(--mono); font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: color-mix(in oklch, var(--paper) 50%, transparent);
+  }
+  .signal-line .lvl {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em;
+    padding: 3px 8px; border-radius: 999px;
+    border: 1px solid rgba(246,241,230,0.20);
+    color: color-mix(in oklch, var(--paper) 80%, transparent);
+  }
+  .signal-line .lvl.hot { border-color: rgba(226,106,77,0.5); color: #F3B4A0; background: rgba(226,106,77,0.08); }
+  .signal-line .lvl.warm { border-color: rgba(201,150,89,0.5); color: var(--gold-2); background: rgba(201,150,89,0.08); }
+
+  .interp-list { display: flex; flex-direction: column; gap: 16px; }
+  .interp {
+    font-family: var(--serif);
+    font-size: 19px;
+    line-height: 1.4;
+    color: color-mix(in oklch, var(--paper) 92%, transparent);
+    padding-left: 14px;
+    border-left: 2px solid var(--gold);
+  }
+  .interp em { font-style: italic; color: var(--gold-2); }
+
+  .calls-list { display: flex; flex-direction: column; gap: 14px; }
+  .call {
+    display: grid; grid-template-columns: 20px 1fr;
+    gap: 12px; align-items: start;
+    padding: 14px 16px;
+    background: rgba(246,241,230,0.04);
+    border: 1px solid rgba(246,241,230,0.10);
+    border-radius: 4px;
+    transition: background .25s ease, border-color .25s ease, transform .25s ease;
+  }
+  .call:hover { background: rgba(176,122,34,0.10); border-color: rgba(201,150,89,0.4); transform: translateX(2px); }
+  .call .arr { color: var(--gold-2); font-family: var(--serif); font-style: italic; font-size: 22px; line-height: 1; }
+  .call .body { font-family: var(--serif); font-size: 19px; line-height: 1.3; color: var(--paper); }
+  .call .meta {
+    margin-top: 6px;
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: color-mix(in oklch, var(--paper) 55%, transparent);
+  }
+
+  .rush-foot {
+    padding: 18px 24px;
+    border-top: 1px solid rgba(246,241,230,0.12);
+    background: rgba(10,15,34,0.3);
+    display: flex; justify-content: space-between; align-items: center; gap: 18px;
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: color-mix(in oklch, var(--paper) 60%, transparent);
+  }
+  .rush-foot .scenarios { display: flex; gap: 6px; }
+  .rush-foot .sc-dot {
+    width: 26px; height: 4px; border-radius: 2px; background: rgba(246,241,230,0.18);
+    cursor: pointer; border: 0; padding: 0;
+    transition: background .25s ease;
+  }
+  .rush-foot .sc-dot[data-on="true"] { background: var(--gold-2); }
+
+  /* NERVOUS SYSTEM */
+  .ns-scene { background: var(--paper); }
+  .ns-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    position: relative;
+  }
+  @media (max-width: 980px) { .ns-grid { grid-template-columns: 1fr; } }
+  .ns-card {
+    border: 1px solid var(--rule-strong);
+    background: color-mix(in oklch, var(--paper) 60%, white);
+    padding: 32px 30px 36px;
+    border-radius: 6px;
+    display: flex; flex-direction: column; gap: 22px;
+    min-height: 420px;
+    transition: background .25s ease, border-color .25s ease, transform .25s ease;
+  }
+  .ns-card:hover {
+    border-color: var(--ink);
+    background: color-mix(in oklch, var(--paper) 30%, white);
+    transform: translateY(-3px);
+  }
+  .ns-num {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em;
+    color: var(--ink-mute);
+  }
+  .ns-h {
+    font-family: var(--serif); font-weight: 500;
+    font-size: 44px; line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin: 0;
+  }
+  .ns-h em { color: var(--gold); font-style: italic; }
+  .ns-lede {
+    font-family: var(--serif);
+    font-size: 22px; line-height: 1.3;
+    color: var(--ink);
+    font-style: italic;
+    margin: 0;
+  }
+  .ns-body {
+    font-family: var(--sans);
+    font-size: 14.5px; line-height: 1.55;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .ns-tags {
+    margin-top: auto;
+    display: flex; flex-wrap: wrap; gap: 8px;
+  }
+  .ns-tag {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+    padding: 6px 10px;
+    border: 1px solid var(--rule-strong);
+    border-radius: 999px;
+    color: var(--ink-soft);
+  }
+
+  .ns-closer {
+    margin-top: 56px;
+    padding-top: 36px;
+    border-top: 1px solid var(--rule);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+    align-items: end;
+  }
+  @media (max-width: 980px) { .ns-closer { grid-template-columns: 1fr; gap: 32px; } }
+  .ns-closer .big {
+    font-family: var(--serif);
+    font-size: clamp(40px, 4.4vw, 64px);
+    line-height: 0.98;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+  .ns-closer .big em { font-style: italic; color: var(--gold); }
+  .ns-closer .small {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--ink-soft);
+    text-align: right;
+  }
+  @media (max-width: 980px) { .ns-closer .small { text-align: left; } }
+
+  /* REAL SERVICE */
+  .rs-scene { background: var(--paper-2); }
+  .rs-grid {
+    display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px;
+    align-items: start;
+  }
+  @media (max-width: 980px) { .rs-grid { grid-template-columns: 1fr; gap: 48px; } }
+  .rs-copy {
+    font-family: var(--serif);
+    font-size: 22px;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+  .rs-copy p { margin: 0 0 22px; }
+  .rs-copy em { font-style: italic; color: var(--gold); }
+  .rs-copy .close {
+    margin-top: 36px; padding-top: 26px;
+    border-top: 1px solid var(--rule-strong);
+    font-style: italic;
+    font-size: 24px;
+    color: var(--ink);
+  }
+  .rs-copy .close em { color: var(--gold); }
+
+  .moments {
+    display: flex; flex-direction: column;
+    border-top: 1px solid var(--rule-strong);
+  }
+  .moment {
+    display: grid; grid-template-columns: 72px 1fr auto;
+    align-items: center; gap: 18px;
+    padding: 20px 8px;
+    border-bottom: 1px solid var(--rule);
+    transition: background .25s ease, padding .25s ease;
+  }
+  .moment:hover { background: color-mix(in oklch, var(--paper) 60%, white); padding-left: 20px; }
+  .moment .t {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em;
+    color: var(--ink-mute);
+    font-variant-numeric: tabular-nums;
+  }
+  .moment .text {
+    font-family: var(--serif);
+    font-size: 21px;
+    line-height: 1.3;
+    color: var(--ink);
+  }
+  .moment .text em { font-style: italic; color: var(--gold); }
+  .moment .pos {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+  @media (max-width: 640px) {
+    .moment { grid-template-columns: 1fr; gap: 6px; }
+    .moment .pos { display: none; }
   }
 
   /* STORY */
@@ -328,30 +600,18 @@
     position: relative;
     display: flex; flex-direction: column; justify-content: space-between;
   }
-  .story-figure .figure-img {
-    position: absolute; inset: 0;
-    width: 100%; height: 100%;
-    object-fit: cover;
-    object-position: center 25%;
-    z-index: 1;
-    display: block;
-    filter: saturate(0.92) contrast(1.02);
-  }
   .story-figure .figure-tag {
     position: relative; z-index: 2;
     padding: 22px 24px;
     display: flex; justify-content: space-between;
     font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
-    color: var(--paper);
-    background: linear-gradient(180deg, rgba(10,15,34,0.55), transparent);
+    color: var(--ink-soft);
   }
   .story-figure .figure-cap {
     position: relative; z-index: 2;
     padding: 24px;
-    font-family: var(--mono); font-size: 11px; color: var(--paper);
-    background: linear-gradient(0deg, rgba(10,15,34,0.7), transparent);
+    font-family: var(--mono); font-size: 11px; color: var(--ink-soft);
   }
-  .story-figure .figure-cap b { color: var(--paper); font-weight: 600; }
   .story-figure .figure-glyph {
     position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
     font-family: var(--serif); font-style: italic;
@@ -386,243 +646,47 @@
   .story-meta .kv .k { font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-mute); }
   .story-meta .kv .v { font-family: var(--sans); font-size: 15px; color: var(--ink); }
 
-  /* WHY */
-  .why-scene { background: var(--ink); color: var(--paper); }
-  .why-scene::before {
+  /* CLOSING CTA */
+  .close-scene { background: var(--ink); color: var(--paper); padding: 140px 0 130px; position: relative; overflow: hidden; }
+  .close-scene::before {
     content: ""; position: absolute; inset: 0;
     background-image:
-      radial-gradient(800px 380px at 20% -10%, rgba(176,122,34,0.18), transparent 60%),
-      radial-gradient(600px 260px at 90% 110%, rgba(176,122,34,0.10), transparent 60%);
+      radial-gradient(800px 380px at 50% -10%, rgba(176,122,34,0.18), transparent 60%),
+      radial-gradient(600px 260px at 0% 110%, rgba(176,122,34,0.10), transparent 60%);
     pointer-events: none;
   }
-  .why-scene .eyebrow { color: var(--gold-2); }
-  .why-scene h2 { color: var(--paper); }
-  .why-scene .section-head .right p { color: color-mix(in oklch, var(--paper) 75%, transparent); }
-  .why-scene + .scene { border-top: 0; }
-
-  .pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; position: relative; }
-  @media (max-width: 980px) { .pillars { grid-template-columns: 1fr; } }
-  .pillar {
-    border: 1px solid rgba(246,241,230,0.16);
-    background: rgba(246,241,230,0.03);
-    padding: 28px 26px 30px;
-    border-radius: 4px;
-    position: relative;
-    transition: transform .25s ease, background .25s ease, border-color .25s ease;
+  .close-inner { position: relative; z-index: 2; text-align: center; max-width: 920px; margin: 0 auto; }
+  .close-eye { color: var(--gold-2); }
+  .close-inner h2 {
+    font-family: var(--serif); font-weight: 500;
+    font-size: clamp(56px, 7.4vw, 116px);
+    line-height: 0.96; letter-spacing: -0.02em;
+    margin: 22px 0 0;
+    color: var(--paper);
   }
-  .pillar:hover {
-    background: rgba(246,241,230,0.06);
-    border-color: rgba(201,150,89,0.5);
-    transform: translateY(-3px);
+  .close-inner h2 em { font-style: italic; color: var(--gold-2); }
+  .close-inner p.lede {
+    font-family: var(--serif);
+    font-size: clamp(20px, 1.8vw, 26px);
+    line-height: 1.45;
+    color: color-mix(in oklch, var(--paper) 80%, transparent);
+    margin: 30px auto 0;
+    max-width: 38ch;
   }
-  .pillar .pn {
-    font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em;
-    color: var(--gold-2);
+  .close-inner p.lede em { color: var(--gold-2); font-style: italic; }
+  .close-ctas {
+    margin-top: 44px;
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 14px;
   }
-  .pillar h3 {
-    font-family: var(--serif); font-weight: 500; font-size: 32px; line-height: 1.05;
-    margin: 18px 0 14px;
-    letter-spacing: -0.01em;
-  }
-  .pillar h3 em { color: var(--gold-2); font-style: italic; }
-  .pillar p { color: color-mix(in oklch, var(--paper) 80%, transparent); font-size: 15px; line-height: 1.55; margin: 0; }
-  .pillar .underline {
+  .close-reassure {
     margin-top: 22px;
-    display: flex; align-items: center; gap: 10px;
-    font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
-    color: var(--gold-2);
-  }
-  .pillar .underline .arr {
-    width: 24px; height: 1px; background: var(--gold-2);
-    transition: width .25s ease;
-  }
-  .pillar:hover .underline .arr { width: 48px; }
-
-  /* WHAT */
-  .agents-grid {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: 18px;
-  }
-  .agent {
-    border: 1px solid var(--rule-strong);
-    background: color-mix(in oklch, var(--paper) 60%, white);
-    padding: 26px 24px 28px;
-    border-radius: 4px;
-    position: relative;
-    cursor: pointer;
-    transition: background .25s ease, transform .25s ease, border-color .25s ease;
-    display: flex; flex-direction: column; gap: 18px;
-    min-height: 220px;
-  }
-  .agent:hover {
-    border-color: var(--ink);
-    background: color-mix(in oklch, var(--paper) 30%, white);
-    transform: translateY(-3px);
-  }
-  .agent[data-active="true"] {
-    background: var(--ink); color: var(--paper);
-    border-color: var(--ink);
-  }
-  .agent[data-active="true"] .agent-name { color: var(--paper); }
-  .agent[data-active="true"] .agent-num { color: var(--gold-2); }
-  .agent[data-active="true"] .agent-blurb { color: color-mix(in oklch, var(--paper) 75%, transparent); }
-  .agent[data-active="true"] .agent-icon { color: var(--gold-2); border-color: rgba(246,241,230,0.4); }
-
-  .agent .agent-head { display: flex; justify-content: space-between; align-items: start; gap: 12px; }
-  .agent-num { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; color: var(--ink-mute); }
-  .agent-icon {
-    width: 40px; height: 40px;
-    border: 1px solid var(--rule-strong);
-    border-radius: 50%;
-    display: grid; place-items: center;
-    color: var(--gold);
-    transition: color .25s ease, border-color .25s ease, transform .4s ease;
-  }
-  .agent:hover .agent-icon { transform: rotate(8deg); }
-  .agent-name {
-    font-family: var(--serif); font-weight: 500; font-size: 26px; line-height: 1.05;
-    letter-spacing: -0.01em;
-    color: var(--ink);
-  }
-  .agent-blurb { font-size: 14px; color: var(--ink-soft); line-height: 1.55; }
-  .agent-foot {
-    margin-top: auto;
-    display: flex; justify-content: space-between; align-items: end;
-    font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
-    color: var(--ink-mute);
-  }
-  .agent[data-active="true"] .agent-foot { color: color-mix(in oklch, var(--paper) 60%, transparent); }
-
-  /* Grid spans for editorial rhythm */
-  .agent.s4 { grid-column: span 4; }
-  .agent.s6 { grid-column: span 6; }
-  .agent.s8 { grid-column: span 8; }
-  @media (max-width: 980px) {
-    .agent.s4, .agent.s6, .agent.s8 { grid-column: span 12; }
-  }
-
-  .what-stat-row {
-    margin-top: 32px;
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
-    border-top: 1px solid var(--rule-strong);
-    border-bottom: 1px solid var(--rule-strong);
-  }
-  @media (max-width: 720px) { .what-stat-row { grid-template-columns: 1fr; } }
-  .ws {
-    padding: 28px 24px;
-    border-right: 1px solid var(--rule);
-  }
-  .ws:last-child { border-right: 0; }
-  @media (max-width: 720px) { .ws { border-right: 0; border-bottom: 1px solid var(--rule); } .ws:last-child { border-bottom: 0; } }
-  .ws .v { font-family: var(--serif); font-size: 56px; line-height: 1; letter-spacing: -0.02em; }
-  .ws .v em { color: var(--gold); font-style: italic; }
-  .ws .v sup { font-size: 0.45em; vertical-align: super; color: var(--ink-mute); margin-left: 4px; }
-  .ws .k { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); margin-top: 12px; }
-
-  /* MESSAGE */
-  .msg-scene { background: var(--paper-2); }
-  .msg-grid { display: grid; grid-template-columns: 0.9fr 1.2fr; gap: 80px; align-items: start; }
-  @media (max-width: 980px) { .msg-grid { grid-template-columns: 1fr; gap: 48px; } }
-  .msg-left h2 { font-family: var(--serif); font-weight: 500; font-size: clamp(40px, 5vw, 72px); line-height: 0.98; margin: 12px 0 0; letter-spacing: -0.02em; }
-  .msg-left h2 em { font-style: italic; color: var(--gold); }
-  .msg-left p { font-family: var(--serif); font-size: 20px; line-height: 1.45; color: var(--ink-soft); margin-top: 18px; }
-  .msg-left .quote {
-    margin-top: 32px;
-    padding: 22px 24px;
-    border-left: 3px solid var(--gold);
-    background: color-mix(in oklch, var(--paper) 60%, white);
-    font-family: var(--serif); font-style: italic; color: var(--ink); font-size: 18px; line-height: 1.5;
-  }
-  .msg-left .quote .who {
-    display: block; margin-top: 12px;
-    font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-mute); font-style: normal;
-  }
-
-  .form-card {
-    background: color-mix(in oklch, var(--paper) 50%, white);
-    border: 1px solid var(--rule-strong);
-    padding: 32px 32px 28px;
-    border-radius: 6px;
-  }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-  @media (max-width: 640px) { .form-row { grid-template-columns: 1fr; } }
-  .field { display: flex; flex-direction: column; gap: 8px; margin-bottom: 18px; }
-  .field label {
-    font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft);
-    display: flex; justify-content: space-between; align-items: center;
-  }
-  .field label .count { color: var(--ink-mute); }
-  .field input, .field textarea, .field select {
-    font-family: var(--sans);
-    font-size: 15px;
-    color: var(--ink);
-    background: var(--paper);
-    border: 1px solid var(--rule-strong);
-    border-radius: 4px;
-    padding: 12px 14px;
-    outline: 0;
-    transition: border-color .2s ease, box-shadow .2s ease;
-    resize: vertical;
-  }
-  .field input:focus, .field textarea:focus, .field select:focus {
-    border-color: var(--gold);
-    box-shadow: 0 0 0 4px var(--gold-soft);
-  }
-  .field textarea { min-height: 130px; line-height: 1.5; }
-  .field.err input, .field.err textarea, .field.err select { border-color: #8B2A2A; }
-  .field .hint { font-family: var(--mono); font-size: 11px; color: var(--ink-mute); }
-  .field .err-msg { font-family: var(--mono); font-size: 11px; color: #8B2A2A; }
-
-  .role-chips { display: flex; flex-wrap: wrap; gap: 8px; }
-  .chip {
-    font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
-    padding: 8px 14px; border-radius: 999px;
-    border: 1px solid var(--rule-strong);
-    background: transparent;
-    color: var(--ink-soft);
-    cursor: pointer;
-    transition: all .2s ease;
-  }
-  .chip:hover { color: var(--ink); border-color: var(--ink); }
-  .chip[data-on="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
-
-  .submit-row {
-    display: flex; justify-content: space-between; align-items: center; gap: 16px;
-    margin-top: 14px;
-  }
-  .submit-row .privacy { font-family: var(--mono); font-size: 11px; color: var(--ink-mute); max-width: 280px; }
-  .submit-btn {
-    background: var(--ink); color: var(--paper);
-    border: 0; cursor: pointer;
-    padding: 16px 28px; border-radius: 999px;
-    font-family: var(--mono); font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
-    display: inline-flex; align-items: center; gap: 10px;
-    transition: background .2s ease, transform .2s ease;
-  }
-  .submit-btn:hover:not(:disabled) { background: var(--gold); }
-  .submit-btn:disabled { opacity: .75; cursor: progress; }
-  .submit-btn svg { width: 14px; height: 14px; }
-
-  .form-success {
-    border: 1px solid var(--gold);
-    background: color-mix(in oklch, var(--paper) 50%, white);
-    padding: 32px;
-    border-radius: 6px;
-    text-align: center;
-  }
-  .form-success h3 { font-family: var(--serif); font-weight: 500; font-size: 36px; margin: 8px 0 6px; letter-spacing: -0.01em; }
-  .form-success h3 em { color: var(--gold); font-style: italic; }
-  .form-success p { color: var(--ink-soft); font-family: var(--serif); font-size: 18px; margin: 0; }
-  .form-success .check {
-    width: 48px; height: 48px; border-radius: 50%; background: var(--gold-soft); color: var(--gold);
-    display: inline-grid; place-items: center;
-    margin-bottom: 12px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em;
+    color: color-mix(in oklch, var(--paper) 55%, transparent);
   }
 
   /* FOOTER */
   footer.foot {
-    background: var(--ink);
+    background: #0A0F22;
     color: color-mix(in oklch, var(--paper) 75%, transparent);
     padding: 56px 0 36px;
     position: relative;
@@ -633,7 +697,7 @@
   .foot h4 { font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: color-mix(in oklch, var(--paper) 55%, transparent); margin: 0 0 14px; font-weight: 500; }
   .foot a { color: color-mix(in oklch, var(--paper) 90%, transparent); text-decoration: none; font-size: 14px; display: block; padding: 4px 0; transition: color .2s ease; }
   .foot a:hover { color: var(--gold-2); }
-  .foot-brand .blurb { font-family: var(--serif); font-size: 20px; line-height: 1.4; color: color-mix(in oklch, var(--paper) 85%, transparent); margin: 14px 0 0; max-width: 36ch; font-style: italic; }
+  .foot-brand .blurb { font-family: var(--serif); font-size: 20px; line-height: 1.4; color: color-mix(in oklch, var(--paper) 85%, transparent); margin: 14px 0 0; max-width: 38ch; font-style: italic; }
   .foot-bottom {
     border-top: 1px solid rgba(246,241,230,0.14);
     margin-top: 48px; padding-top: 24px;
@@ -642,132 +706,82 @@
   }
   .foot-bottom .right { display: flex; gap: 18px; }
 
-  /* Hero CTA buttons */
-  .cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 44px; }
-  .btn-primary {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: var(--ink); color: var(--paper);
-    font-family: var(--mono); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
-    padding: 16px 28px; border-radius: 999px;
-    text-decoration: none; border: 0; cursor: pointer;
-    transition: background .2s ease, transform .2s ease;
-  }
-  .btn-primary:hover { background: var(--gold); transform: translateY(-1px); }
-  .btn-outline {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: transparent; color: var(--ink);
-    font-family: var(--mono); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
-    padding: 15px 28px; border-radius: 999px;
-    text-decoration: none; border: 1px solid var(--ink); cursor: pointer;
-    transition: background .2s ease, color .2s ease, border-color .2s ease, transform .2s ease;
-  }
-  .btn-outline:hover { background: var(--ink); color: var(--paper); transform: translateY(-1px); }
-
-  /* utility */
   .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
-
 </style>
 </head>
 <body>
+  <template id="__bundler_thumbnail" data-bg-color="#F6F1E6">
+    <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+      <rect width="1200" height="800" fill="#F6F1E6" />
+      <g transform="translate(420, 320)" fill="none" stroke="#0A0F22" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M0 0 V160" />
+        <path d="M0 80 L80 0" />
+        <path d="M0 80 L80 160" />
+        <circle cx="200" cy="80" r="70" />
+        <path d="M290 160 L340 0 L390 160" />
+        <path d="M310 110 H370" />
+      </g>
+      <circle cx="760" cy="490" r="14" fill="#B07A22" />
+      <text x="600" y="600" text-anchor="middle" font-family="Cormorant Garamond, Times New Roman, serif" font-size="44" font-style="italic" fill="#0A0F22">Kurokaa</text>
+      <text x="600" y="650" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="14" letter-spacing="3" fill="#7D7C87">OPERATIONAL · NERVOUS · SYSTEM</text>
+    </svg>
+  </template>
+
   <div id="root"></div>
 
   <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
-  <script src="image-slot.js"></script>
 
   <script type="text/babel" data-presets="react">
+const { useState, useEffect, useRef, useCallback, useMemo } = React;
 
+const SIGNUP_URL = "https://app.kurokaa.com/signup";
+const SIGNIN_URL = "https://app.kurokaa.com/signin";
 
-const WEB3FORM_KEY = "fc588208-fc66-4999-a89e-817bbad05e1e";
-const { useState, useEffect, useRef, useMemo, useCallback } = React;
-
-/* ============================ Icons (line, geometric) ============================ */
+/* ============================ Icons ============================ */
 const Icon = ({ name, size = 18 }) => {
   const p = { width: size, height: size, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 1.4, strokeLinecap: 'round', strokeLinejoin: 'round' };
   switch (name) {
-    case 'pos':return <svg {...p}><rect x="3.5" y="4.5" width="17" height="14" rx="2" /><path d="M3.5 9h17" /><path d="M8 13.5h3.5" /><circle cx="16.5" cy="14" r="1.2" /></svg>;
-    case 'inv':return <svg {...p}><path d="M3.5 7.5 12 4l8.5 3.5v9L12 20l-8.5-3.5z" /><path d="M3.5 7.5 12 11l8.5-3.5" /><path d="M12 11v9" /></svg>;
-    case 'pay':return <svg {...p}><circle cx="12" cy="12" r="8" /><path d="M9.5 9.5h4.5a2 2 0 0 1 0 4H10l4 4" /><path d="M9 13.5h6" /></svg>;
-    case 'waste':return <svg {...p}><path d="M4 7.5h16" /><path d="M9 7.5V5.5a1.5 1.5 0 0 1 1.5-1.5h3A1.5 1.5 0 0 1 15 5.5v2" /><path d="M6 7.5 7 20h10l1-12.5" /><path d="M10 11v6" /><path d="M14 11v6" /></svg>;
-    case 'floor':return <svg {...p}><circle cx="12" cy="12" r="8" /><path d="M12 4v3" /><path d="M12 17v3" /><path d="M4 12h3" /><path d="M17 12h3" /><path d="m15.5 8.5-3 3.5 4.5 1.5" /></svg>;
-    case 'arrow':return <svg {...p}><path d="M5 12h14" /><path d="m13 6 6 6-6 6" /></svg>;
-    case 'check':return <svg {...p} strokeWidth="1.8"><path d="m5 12 5 5 9-11" /></svg>;
-    case 'spark':return <svg {...p}><path d="M12 4v6" /><path d="M12 14v6" /><path d="M4 12h6" /><path d="M14 12h6" /></svg>;
-    case 'clock':return <svg {...p}><circle cx="12" cy="12" r="8" /><path d="M12 7.5V12l3 2" /></svg>;
-    default:return null;
+    case 'arrow': return <svg {...p}><path d="M5 12h14" /><path d="m13 6 6 6-6 6" /></svg>;
+    case 'arrowDown': return <svg {...p}><path d="M12 5v14" /><path d="m6 13 6 6 6-6" /></svg>;
+    case 'flow': return <svg {...p}><path d="M4 12h16" /><path d="m14 6 6 6-6 6" /></svg>;
+    default: return null;
   }
 };
 
-/* ============================ Brand mark (inline SVG, original) ============================ */
-const Wordmark = ({ height = 22 }) =>
-<svg height={height} viewBox="0 0 240 44" xmlns="http://www.w3.org/2000/svg" aria-label="Kurokaa">
-    <g fill="none" stroke="#0A0F22" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-      {/* K */}
+/* ============================ Wordmark ============================ */
+const Wordmark = ({ height = 22, light = false }) => (
+  <svg height={height} viewBox="0 0 240 44" xmlns="http://www.w3.org/2000/svg" aria-label="Kurokaa">
+    <g fill="none" stroke={light ? "#F6F1E6" : "#0A0F22"} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
       <path d="M6 6 V38" />
       <path d="M6 22 L22 6" />
       <path d="M6 22 L22 38" />
-      {/* U */}
       <path d="M32 6 V28 a8 8 0 0 0 16 0 V6" />
-      {/* R */}
       <path d="M58 38 V6 h10 a7 7 0 0 1 0 14 H58" />
       <path d="M64 20 L74 38" />
-      {/* O */}
       <circle cx="92" cy="22" r="14" />
-      {/* K */}
       <path d="M114 6 V38" />
       <path d="M114 22 L130 6" />
       <path d="M114 22 L130 38" />
-      {/* A */}
       <path d="M140 38 L152 6 L164 38" />
       <path d="M145 28 H159" />
-      {/* A */}
       <path d="M172 38 L184 6 L196 38" />
       <path d="M177 28 H191" />
     </g>
-    {/* gold dots in the A's */}
     <circle cx="152" cy="32" r="2.2" fill="#B07A22" />
     <circle cx="184" cy="32" r="2.2" fill="#B07A22" />
-    <text x="206" y="14" fontFamily="JetBrains Mono, monospace" fontSize="8" fill="#7D7C87">TM</text>
-  </svg>;
-
-
-/* ============================ Type-cycle ticker ============================ */
-const TICKER_LINES = [
-'a 3-day vacation, finally',
-'inventory that counts itself',
-'a Floor Manager that suggests the pivot',
-'payroll, closed before midnight',
-'2–3 decisions, every five minutes'];
-
-function useTicker(lines, { type = 38, hold = 1600, erase = 22 } = {}) {
-  const [i, setI] = useState(0);
-  const [text, setText] = useState('');
-  const [phase, setPhase] = useState('typing'); // typing | holding | erasing
-  useEffect(() => {
-    const full = lines[i];
-    let id;
-    if (phase === 'typing') {
-      if (text.length < full.length) id = setTimeout(() => setText(full.slice(0, text.length + 1)), type);else
-      id = setTimeout(() => setPhase('holding'), hold);
-    } else if (phase === 'holding') {
-      id = setTimeout(() => setPhase('erasing'), hold);
-    } else {
-      if (text.length > 0) id = setTimeout(() => setText(text.slice(0, -1)), erase);else
-      {setPhase('typing');setI((i + 1) % lines.length);}
-    }
-    return () => clearTimeout(id);
-  }, [text, phase, i, lines, type, hold, erase]);
-  return text;
-}
+    <text x="206" y="14" fontFamily="JetBrains Mono, monospace" fontSize="8" fill={light ? "#C99659" : "#7D7C87"}>TM</text>
+  </svg>
+);
 
 /* ============================ Nav ============================ */
 const NAV = [
-{ id: 'story', n: '01', label: 'Our Story' },
-{ id: 'why', n: '02', label: 'Why Us' },
-{ id: 'what', n: '03', label: 'What We Do' },
-{ id: 'contact', n: '04', label: 'Get in Touch' }];
-
+  { id: 'rush',    n: '01', label: 'A live decision' },
+  { id: 'nervous', n: '02', label: 'Nervous system' },
+  { id: 'service', n: '03', label: 'Built from service' },
+  { id: 'story',   n: '04', label: 'Founder' }
+];
 
 function Nav({ active }) {
   const go = (id) => {
@@ -777,41 +791,123 @@ function Nav({ active }) {
   return (
     <nav className="nav">
       <div className="wrap nav-inner">
-        <a href="#top" className="brand" onClick={(e) => {e.preventDefault();window.scrollTo({ top: 0, behavior: 'smooth' });}}>
+        <a href="#top" className="brand" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
           <Wordmark height={22} />
         </a>
         <div className="nav-links">
-          {NAV.map((n) =>
-          <button key={n.id} className="nav-link" data-active={active === n.id} onClick={() => go(n.id)}>
+          {NAV.map((n) => (
+            <button key={n.id} className="nav-link" data-active={active === n.id} onClick={() => go(n.id)}>
               <span className="num">{n.n}</span>{n.label}
             </button>
-          )}
+          ))}
         </div>
-        <a href="https://app.kurokaa.com/signup" className="nav-cta" style={{ textDecoration: 'none' }}>Get Started</a>
+        <div className="nav-actions">
+          <a className="nav-signin" href={SIGNIN_URL}>Sign in</a>
+          <a className="nav-cta" href={SIGNUP_URL}>Start Free Trial<Icon name="arrow" size={12} /></a>
+        </div>
       </div>
-    </nav>);
-
+    </nav>
+  );
 }
 
-/* ============================ Hero ============================ */
-function Hero() {
-  const tick = useTicker(TICKER_LINES);
-  const heroRef = useRef(null);
+/* ============================ Hero — operational recommendations ============================ */
+const OPS_STREAM = [
+  {
+    t: '21:14',
+    text: <><b>Pause seating in Section B.</b> Kitchen needs 12 minutes to stabilise.</>,
+    why: 'Pass · 14 open tickets · pacing slipping'
+  },
+  {
+    t: '21:11',
+    text: <><b>Stop orders for Butter Chicken</b> — stock running low. Suggest Murgh Lababdar to the floor.</>,
+    why: 'Inventory · 6 portions of gravy left'
+  },
+  {
+    t: '21:08',
+    text: <><b>Bar backlog building.</b> Push non-cocktail tables first.</>,
+    why: 'Bar · 11 dockets · avg 7 min late'
+  },
+  {
+    t: '21:05',
+    text: <><b>Hold large-party firing.</b> Run two 2-tops first to clear the grill.</>,
+    why: 'Grill saturation 92% · 6-top arriving 21:18'
+  },
+  {
+    t: '21:02',
+    text: <><b>Garnish station behind.</b> Pull Vikram from runner duty for 8 minutes.</>,
+    why: 'Floor pulse · garnish overload reported'
+  },
+  {
+    t: '20:58',
+    text: <><b>Reroute covers from Table 12.</b> Server is six tickets deep — handoff to Anjali.</>,
+    why: 'Floor · table still unpaid · 41 min'
+  }
+];
 
+function HeroOps() {
+  const [items, setItems] = useState(() => OPS_STREAM.slice(0, 3));
+  const [clock, setClock] = useState('21:14');
+  const headRef = useRef(0);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      headRef.current = (headRef.current + 1) % OPS_STREAM.length;
+      const start = headRef.current;
+      const slice = [];
+      for (let i = 0; i < 3; i++) slice.push(OPS_STREAM[(start + i) % OPS_STREAM.length]);
+      setItems(slice);
+      setClock(slice[0].t);
+    }, 4200);
+    return () => clearInterval(id);
+  }, []);
+
+  return (
+    <div className="ops-card" aria-label="Live operational recommendations">
+      <div className="ops-head">
+        <div className="left">
+          <span className="live-dot" />
+          Live · Saturday dinner service
+        </div>
+        <div className="time">{clock} IST</div>
+      </div>
+      <div className="ops-list">
+        {items.map((it, idx) => (
+          <div key={it.t + idx} className="ops-item" data-fresh={idx === 0}>
+            <div className="ops-arr">→</div>
+            <div className="ops-body">
+              {it.text}
+              <span className="why">{it.why}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className="ops-foot">
+        <span className="since">Operational calls only · not analytics</span>
+        <span>Cycle ↻ 5 min</span>
+      </div>
+    </div>
+  );
+}
+
+function Hero() {
+  const heroRef = useRef(null);
   const onMove = (e) => {
     const r = heroRef.current?.getBoundingClientRect();
     if (!r) return;
     heroRef.current.style.setProperty('--mx', `${e.clientX - r.left}px`);
     heroRef.current.style.setProperty('--my', `${e.clientY - r.top}px`);
   };
-
+  const scrollTo = (id) => {
+    const el = document.getElementById(id);
+    if (el) window.scrollTo({ top: el.offsetTop - 64, behavior: 'smooth' });
+  };
   return (
     <section className="hero" id="top" ref={heroRef} onMouseMove={onMove}>
       <div className="hero-spotlight" />
       <div className="wrap">
         <div className="hero-grid">
           <div>
-            <span className="eyebrow"><span className="dot" />Now live · Open to all restaurants</span>
+            <span className="eyebrow"><span className="dot" />Operational nervous system · for restaurants</span>
             <h1>
               The agentic<br />
               <em>operating system</em><br />
@@ -819,102 +915,366 @@ function Hero() {
               restaurants.
             </h1>
             <p className="lede">
-              Kurokaa runs five agents — POS, Inventory, Payroll, Waste Prevention,
-              and a Floor Manager — every five minutes, synthesising your raw operations
-              into two or three decisions worth making today.
+              Built in the heat of service, Kurokaa thinks like your best floor manager
+              and head chef working together.
             </p>
 
-            <div className="cta-row">
-              <a href="https://app.kurokaa.com/signup" className="btn-primary">
-                Get Started <Icon name="arrow" size={14} />
+            <div className="hero-ctas">
+              <a className="btn btn-primary" href={SIGNUP_URL}>
+                Start Free Trial <Icon name="arrow" size={14} />
               </a>
-              <a href="https://app.kurokaa.com/login" className="btn-outline">
-                Sign In
-              </a>
+              <button type="button" className="btn btn-ghost" onClick={() => scrollTo('rush')}>
+                See a dinner rush decision <Icon name="arrowDown" size={14} />
+              </button>
             </div>
-            <div className="capture-help" style={{ marginTop: 14 }}>
-              <span className="pill"><span className="dot" />No credit card required</span>
-              <span>Your first 30 days are on us.</span>
+            <div className="hero-reassure">Free for 30 days. No credit card required.</div>
+          </div>
+
+          <HeroOps />
+        </div>
+
+        <div className="hero-foot">
+          <div className="signal">
+            <div className="v">Every <em>5</em> min</div>
+            <div className="k">The system thinks ahead</div>
+          </div>
+          <div className="signal">
+            <div className="v">2–<em>3</em> calls</div>
+            <div className="k">Per cycle — not 30</div>
+          </div>
+          <div className="signal">
+            <div className="v">One <em>brain</em></div>
+            <div className="k">Across pass, floor, bar, stations</div>
+          </div>
+          <div className="signal">
+            <div className="v">Zero <em>dashboards</em></div>
+            <div className="k">Operational calls only</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ============================ Dinner rush ============================ */
+const SCENARIOS = [
+  {
+    label: 'Saturday · 9:14 PM',
+    pressure: 0.78,
+    signals: [
+      { src: 'Pass',    t: 'Ticket trajectory deteriorating — 14 open, avg fire 9.4 min', lvl: 'hot',  lvlText: 'Hot' },
+      { src: 'Grill',   t: 'Grill saturation 92% — two 6-tops arriving in 4 min',          lvl: 'hot',  lvlText: 'Hot' },
+      { src: 'Garnish', t: 'Garnish overload — chef tapped twice in 90s',                  lvl: 'warm', lvlText: 'Warm' },
+      { src: 'Bar',     t: '11 dockets deep · avg 7 min late',                              lvl: 'warm', lvlText: 'Warm' },
+      { src: 'Floor',   t: 'Two 6-tops + one walk-in 8-top queued for Section B',           lvl: 'hot',  lvlText: 'Hot' }
+    ],
+    interps: [
+      <>Kitchen is <em>21 minutes</em> from equilibrium if no intervention.</>,
+      <>Section B will overrun the pass — three large parties land inside one fire window.</>,
+      <>Bar is the silent bottleneck. Drinks first buys the kitchen its recovery.</>
+    ],
+    calls: [
+      { body: <>Pause seating in Section B for 12 minutes.</>,        meta: 'Floor · until 21:26' },
+      { body: <>Serve drinks first on the new 8-top.</>,              meta: 'Bar · push priority' },
+      { body: <>Hold large-party firing until grill drops below 70%.</>, meta: 'Pass · in-shift hold' }
+    ]
+  },
+  {
+    label: 'Friday · 8:42 PM',
+    pressure: 0.62,
+    signals: [
+      { src: 'Demand',    t: 'Butter Chicken spike — 9 orders in last 11 min',           lvl: 'warm', lvlText: 'Warm' },
+      { src: 'Inventory', t: '6 portions of gravy remaining',                              lvl: 'hot',  lvlText: 'Hot' },
+      { src: 'Floor',     t: 'Two walk-ins eyeing the same dish',                          lvl: 'warm', lvlText: 'Warm' },
+      { src: 'Prep',      t: 'Next batch is 28 minutes out',                               lvl: 'hot',  lvlText: 'Hot' }
+    ],
+    interps: [
+      <>Runway on Butter Chicken is <em>under 12 minutes</em> at current pace.</>,
+      <>Murgh Lababdar uses the same gravy base — cross-sell holds margin without the risk.</>
+    ],
+    calls: [
+      { body: <>Stop orders for Butter Chicken — recommend Murgh Lababdar to the floor.</>, meta: 'Inventory · floor handoff' },
+      { body: <>Pre-fire the gravy batch one ticket early.</>,                              meta: 'Prep · 21:10' }
+    ]
+  },
+  {
+    label: 'Sunday · 1:48 PM',
+    pressure: 0.45,
+    signals: [
+      { src: 'Floor',  t: 'Runners disappearing — three tables waiting on water',      lvl: 'warm', lvlText: 'Warm' },
+      { src: 'Pass',   t: 'Three plates sitting on the pass · 90s+',                    lvl: 'hot',  lvlText: 'Hot' },
+      { src: 'Tables', t: 'Table 7 still unpaid · 41 min since dessert cleared',       lvl: 'warm', lvlText: 'Warm' }
+    ],
+    interps: [
+      <>Runner coverage has collapsed at the pass-to-floor handoff.</>,
+      <>Heat lamp is the next thing to fail. Guest trust drops <em>fast</em> here.</>
+    ],
+    calls: [
+      { body: <>Pull Vikram from runner duty to the pass for 8 minutes.</>, meta: 'Floor · in-shift reroute' },
+      { body: <>Close Table 7. Server is six tickets deep — handoff to Anjali.</>, meta: 'Floor · handoff' }
+    ]
+  }
+];
+
+function DinnerRush() {
+  const [idx, setIdx] = useState(0);
+  const sc = SCENARIOS[idx];
+  return (
+    <section className="scene rush-scene" id="rush">
+      <div className="wrap">
+        <div className="section-head">
+          <div className="left">
+            <span className="eyebrow"><span className="dot" />01 — A live decision</span>
+            <h2>See a dinner rush <em>decide.</em></h2>
+          </div>
+          <div className="right">
+            <p>
+              This is how the system thinks during service.
+              Signals come in from pass, floor, bar and stations.
+              Kurokaa reads pressure, pacing and inventory — and surfaces the operational call before you have to ask.
+            </p>
+          </div>
+        </div>
+
+        <div className="rush-stage">
+          <div className="rush-meta">
+            <div className="when">
+              <span>● {sc.label}</span>
+              <span>· Live shift view</span>
+            </div>
+            <div className="pressure">
+              Kitchen pressure
+              <span className="bar"><i style={{ width: `${Math.round(sc.pressure * 100)}%` }} /></span>
+              <span style={{ fontVariantNumeric: 'tabular-nums', minWidth: 28, textAlign: 'right' }}>{Math.round(sc.pressure * 100)}%</span>
             </div>
           </div>
 
-          <div className="hero-meta">
-            <div className="meta-card">
-              <span className="eyebrow"><span className="dot" />What you'll wake up to</span>
-              <div className="ticker">
-                <span>{tick}</span><span className="cursor" />
+          <div className="rush-cols">
+            <div className="rush-col">
+              <h4><span className="num">01</span> Signals</h4>
+              <div className="signals-list">
+                {sc.signals.map((s, i) => (
+                  <div className="signal-line" key={i}>
+                    <span className="src">{s.src}</span>
+                    <span>{s.t}</span>
+                    <span className={`lvl ${s.lvl}`}>{s.lvlText}</span>
+                  </div>
+                ))}
               </div>
             </div>
-            <div className="meta-card">
-              <span className="eyebrow"><span className="dot" />Five agents · Live now</span>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginTop: 14 }}>
-                {[
-                  { name: 'POS Agent', tag: 'Live · since boot' },
-                  { name: 'Inventory Agent', tag: 'Recipe-aware · per-gram' },
-                  { name: 'Payroll Agent', tag: 'Nightly close' },
-                  { name: 'Waste Prevention', tag: 'Pre-shift signal' },
-                  { name: 'Floor Manager', tag: 'Conversational · in-shift' }
-                ].map(({ name, tag }) => (
-                  <div key={name} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <span style={{ fontFamily: 'var(--sans)', fontSize: 14, color: 'var(--ink)' }}>{name}</span>
-                    <span style={{ fontFamily: 'var(--mono)', fontSize: 10, letterSpacing: '0.12em', color: '#1F5C3B' }}>● LIVE</span>
+            <div className="rush-sep"><Icon name="flow" /></div>
+            <div className="rush-col">
+              <h4><span className="num">02</span> Interpretation</h4>
+              <div className="interp-list">
+                {sc.interps.map((p, i) => (
+                  <div className="interp" key={i}>{p}</div>
+                ))}
+              </div>
+            </div>
+            <div className="rush-sep"><Icon name="flow" /></div>
+            <div className="rush-col">
+              <h4><span className="num">03</span> Operational call</h4>
+              <div className="calls-list">
+                {sc.calls.map((c, i) => (
+                  <div className="call" key={i}>
+                    <span className="arr">→</span>
+                    <div>
+                      <div className="body">{c.body}</div>
+                      <div className="meta">{c.meta}</div>
+                    </div>
                   </div>
                 ))}
               </div>
             </div>
           </div>
-        </div>
 
-        <div className="hero-foot">
-          <div className="stat"><div className="num">5</div><div className="lbl">Specialist agents</div></div>
-          <div className="stat"><div className="num"><em>5</em> min</div><div className="lbl">Decision loop</div></div>
-          <div className="stat"><div className="num">3-tier</div><div className="lbl">Recipe schema</div></div>
-          <div className="stat"><div className="num">↓<em>15</em>%</div><div className="lbl">Avoidable waste</div></div>
-          <div className="stat"><div className="num">1</div><div className="lbl">Owner. Finally free.</div></div>
+          <div className="rush-foot">
+            <span>Predictive operational judgment · not reporting</span>
+            <div className="scenarios" role="tablist" aria-label="Scenarios">
+              {SCENARIOS.map((s, i) => (
+                <button
+                  key={i}
+                  className="sc-dot"
+                  data-on={i === idx}
+                  aria-selected={i === idx}
+                  aria-label={s.label}
+                  onClick={() => setIdx(i)}
+                />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
-    </section>);
-
+    </section>
+  );
 }
 
-/* ============================ Story ============================ */
+/* ============================ Nervous system ============================ */
+const NS = [
+  {
+    n: '01',
+    h: <>Skeleton</>,
+    lede: 'Every order. Every ticket. Every movement.',
+    body: 'Transactional reality from POS, inventory, payroll and service flow — reconciled in one place, every five minutes.',
+    tags: ['POS · live', 'Inventory · per-gram', 'Payroll · nightly close']
+  },
+  {
+    n: '02',
+    h: <>Senses</>,
+    lede: 'Your kitchen speaks in signals.',
+    body: 'One-tap operational pulses from the floor, pass, bar and stations. Your team taps once — the kitchen speaks. The system listens.',
+    tags: ['Pass pulse', 'Floor pulse', 'Bar pulse', 'Station overload']
+  },
+  {
+    n: '03',
+    h: <>Judgment</>,
+    lede: 'One recommendation. Operationally true.',
+    body: 'Kurokaa synthesises pressure, pacing, staffing and inventory into live operational decisions. Not 30 dashboards — 2 to 3 calls worth making, right now.',
+    tags: ['In-shift · live', 'Predictive · 12 min ahead', 'Calm under pressure']
+  }
+];
+
+function NervousSystem() {
+  return (
+    <section className="scene ns-scene" id="nervous">
+      <div className="wrap">
+        <div className="section-head">
+          <div className="left">
+            <span className="eyebrow"><span className="dot" />02 — How it works</span>
+            <h2>Built like a <em>nervous system.</em></h2>
+          </div>
+          <div className="right">
+            <p>
+              Kurokaa combines transactional reality, human operational signals,
+              and AI judgment — into one steady mind that runs alongside your team.
+              This isn't software. It's infrastructure for how a restaurant decides.
+            </p>
+          </div>
+        </div>
+
+        <div className="ns-grid">
+          {NS.map((c) => (
+            <article className="ns-card" key={c.n}>
+              <div className="ns-num">{c.n}</div>
+              <h3 className="ns-h">{c.h}</h3>
+              <p className="ns-lede">{c.lede}</p>
+              <p className="ns-body">{c.body}</p>
+              <div className="ns-tags">
+                {c.tags.map((t) => <span className="ns-tag" key={t}>{t}</span>)}
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <div className="ns-closer">
+          <h3 className="big">The feeling is <em>infrastructure.</em><br/>Not software.</h3>
+          <div className="small">Skeleton, senses, judgment — one continuous loop, every five minutes of service.</div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ============================ Built from real service ============================ */
+const MOMENTS = [
+  { t: '20:41', text: <>Six tickets deep at the bar. The server can't be in two places.</>, pos: 'Bar' },
+  { t: '20:58', text: <>Fryer saturation. The next basket is the one that breaks the pacing.</>, pos: 'Fryer' },
+  { t: '21:03', text: <>Garnish station behind. The chef taps twice without looking up.</>, pos: 'Garnish' },
+  { t: '21:09', text: <>Runners disappear at exactly the wrong second.</>, pos: 'Floor' },
+  { t: '21:14', text: <>Two 6-tops arrive together. The pass goes quiet — that's the bad kind of quiet.</>, pos: 'Pass' },
+  { t: '21:22', text: <>Table 12 is still unpaid, forty-one minutes after dessert cleared.</>, pos: 'Tables' },
+  { t: '21:28', text: <>The grill recovers. Nobody notices. That's how you know it worked.</>, pos: 'Grill' }
+];
+
+function RealService() {
+  return (
+    <section className="scene rs-scene" id="service">
+      <div className="wrap">
+        <div className="section-head">
+          <div className="left">
+            <span className="eyebrow"><span className="dot" />03 — Built from real service</span>
+            <h2>Quiet credibility. <em>From the pass.</em></h2>
+          </div>
+          <div className="right">
+            <p>
+              Kurokaa was built by someone who stood at the pass.
+              Worked the whites. Handled overload. Managed pacing.
+              Survived the rushes. These moments are why the system exists.
+            </p>
+          </div>
+        </div>
+
+        <div className="rs-grid">
+          <div className="rs-copy">
+            <p>
+              The hardest part of service isn't the cooking.
+              It's the <em>continuous, invisible judgment</em> — pacing, sequencing, recovery — that keeps a room from tipping.
+            </p>
+            <p>
+              We built Kurokaa around moments any operator instantly recognises.
+              Not slogans. Not abstractions. The 20-second windows where a service either holds or unravels.
+            </p>
+            <div className="close">
+              Kurokaa makes those moments visible — and the right decision <em>instant.</em>
+            </div>
+          </div>
+
+          <div className="moments" aria-label="Operational moments">
+            {MOMENTS.map((m, i) => (
+              <div className="moment" key={i}>
+                <span className="t">{m.t}</span>
+                <span className="text">{m.text}</span>
+                <span className="pos">{m.pos}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ============================ Story (founder) ============================ */
 function Story() {
   return (
     <section className="scene" id="story">
       <div className="wrap">
         <div className="section-head">
           <div className="left">
-            <span className="eyebrow"><span className="dot" />OUR STORY</span>
+            <span className="eyebrow"><span className="dot" />04 — The founder</span>
             <h2>Born in the heat of a <em>10 PM dinner rush.</em></h2>
           </div>
           <div className="right">
-            <p>Kurokaa wasn't born in a sterile boardroom. It was built in the whites, by a chef who learned to code because the kitchen's brain was still stuck in the 90s.</p>
+            <p>
+              Kurokaa wasn't born in a sterile boardroom.
+              It was built in the whites — by a chef who learned to code because the kitchen's brain was still stuck in the 90s.
+            </p>
           </div>
         </div>
 
         <div className="story-layout">
           <figure className="story-figure" aria-hidden="true">
-            <div className="figure-body" style={{ opacity: "1" }} />
-            <div className="figure-glyph"><span>Kuro</span><span className="acc"></span><span></span><span className="acc"></span></div>
+            <div className="figure-glyph"><span>Kuro</span><span className="acc">·</span><span>kaa</span></div>
             <div className="figure-tag">
-              <span></span>
-              <span></span>
+              <span>Kolkata, IN</span>
+              <span>Est. service</span>
             </div>
             <figcaption className="figure-cap">
-              <b></b> 
+              <b>Abhishek Bose</b> · Chef → full-stack → operational AI
             </figcaption>
           </figure>
 
           <div>
             <div className="story-copy">
               <p className="dropcap">
-                Our founder, <b>Abhishek Bose</b>, spent years in the whites as a professional chef in Pan-Asian kitchens before trading the ladle for the keyboard. As a full-stack developer and AI evaluator, he kept hitting the same wall: while the kitchen equipment had evolved, the <em>brain of the restaurant</em> was still stuck in the 90s.
+                <b>Abhishek Bose</b> spent years in the whites as a professional chef in Pan-Asian kitchens before trading the ladle for the keyboard. As a full-stack developer and AI evaluator, he kept hitting the same wall: while the equipment had evolved, the <em>brain of the restaurant</em> was still stuck in the 90s.
               </p>
               <p>
-                Reports came in three days late. Inventory was a guess. The owner was the integration layer — and the moment they stepped out of the building, the business started to drift.
+                Reports came in three days late. Inventory was a guess. The owner was the integration layer — and the moment they stepped out of the building, the operation started to drift.
               </p>
               <p>
-                Kurokaa is the partner he wishes he had — a system that doesn't just record history, but actually helps you write it. We combine the grit of a 19-hour kitchen shift with the precision of high-tier agentic AI to give Indian restaurateurs <em>a seat at their own table again.</em>
+                Kurokaa is the partner he wishes he had. A system that doesn't record history — it helps you write it.
+                Built with the grit of a 19-hour shift and the precision of agentic AI, so the restaurant <em>keeps thinking</em> when you're not physically there.
               </p>
             </div>
 
@@ -927,342 +1287,83 @@ function Story() {
           </div>
         </div>
       </div>
-    </section>);
-
+    </section>
+  );
 }
 
-/* ============================ Why ============================ */
-const PILLARS = [
-{
-  n: '01',
-  h: <>Owner <em>Freedom.</em></>,
-  p: 'A 3-day vacation shouldn\'t be a business risk. Kurokaa runs the floor when you can\'t — so stepping away stops costing you margin.',
-  cta: 'Reclaim your week'
-},
-{
-  n: '02',
-  h: <>Librarian <em>→</em> Orchestrator.</>,
-  p: 'You stop reading yesterday and start composing tomorrow. We hand you the levers — pricing, prep, staffing — before the shift, not after.',
-  cta: 'Make the pivot'
-},
-{
-  n: '03',
-  h: <>Bandwidth, <em>bought back.</em></>,
-  p: 'Inventory, payroll, floor strategy — automated at the invisible mental layer. Kurokaa doesn\'t just save you money. It buys you back your time.',
-  cta: 'Get your hours back'
-}];
-
-
-function Why() {
+/* ============================ Closing CTA ============================ */
+function ClosingCTA() {
   return (
-    <section className="scene why-scene" id="why">
+    <section className="close-scene" id="enter">
       <div className="wrap">
-        <div className="section-head">
-          <div className="left">
-            <span className="eyebrow"><span className="dot" />WHY US</span>
-            <h2>The books are late. <em>The decisions are early.</em></h2>
+        <div className="close-inner">
+          <span className="eyebrow close-eye"><span className="dot" />Your kitchen, still thinking</span>
+          <h2>Your kitchen has a <em>brain</em> now.</h2>
+          <p className="lede">
+            The restaurant should still make intelligent decisions when you're not physically there.
+            That continuity of operational judgment — <em>that's what Kurokaa builds.</em>
+          </p>
+          <div className="close-ctas">
+            <a className="btn btn-primary" href={SIGNUP_URL}>
+              Start Free Trial <Icon name="arrow" size={14} />
+            </a>
+            <a className="btn btn-ghost-light" href={SIGNIN_URL}>Sign in</a>
           </div>
-          <div className="right">
-            <p>In Indian restaurants, the owner is the integration layer. Step out of the building and everything drifts. Our north star is simple: <em style={{ color: 'var(--gold-2)', fontStyle: 'italic' }}>Owner Freedom.</em></p>
-          </div>
-        </div>
-
-        <div className="pillars">
-          {PILLARS.map((pl) =>
-          <article key={pl.n} className="pillar" tabIndex={0}>
-              <div className="pn">{pl.n}</div>
-              <h3>{pl.h}</h3>
-              <p>{pl.p}</p>
-              <div className="underline"><span className="arr" />{pl.cta}</div>
-            </article>
-          )}
+          <div className="close-reassure">Free for 30 days. No credit card required.</div>
         </div>
       </div>
-    </section>);
-
-}
-
-/* ============================ What ============================ */
-const AGENTS = [
-{ icon: 'pos', n: '01', name: 'POS Agent', blurb: 'Listens to every transaction in real time. Reconciles the till, the kitchen, and the books — so closeout takes ten minutes, not two hours.', span: 's4', tag: 'Live · since boot' },
-{ icon: 'inv', n: '02', name: 'Inventory Agent', blurb: 'A 3-tier recipe schema that tracks every gram of sauce. Knows when the cumin is short before the prep cook does.', span: 's8', tag: 'Recipe-aware · per-gram' },
-{ icon: 'pay', n: '03', name: 'Payroll Agent', blurb: 'Hours, overtime, shift swaps, statutory deductions — closed nightly. Zero spreadsheets, zero surprises on payday.', span: 's6', tag: 'Nightly close · IND compliant' },
-{ icon: 'waste', n: '04', name: 'Waste Prevention', blurb: 'Cross-checks prep against forward demand. Flags the over-production before it becomes Sunday\'s loss.', span: 's6', tag: 'Pre-shift signal' },
-{ icon: 'floor', n: '05', name: 'Floor Manager', blurb: 'Reads the room. Suggests a menu pivot during a demand spike, reroutes covers, calls the next service window before you do.', span: 's8', tag: 'Conversational · in-shift' }];
-
-
-function What() {
-  const [active, setActive] = useState(null);
-  return (
-    <section className="scene" id="what">
-      <div className="wrap">
-        <div className="section-head">
-          <div className="left">
-            <span className="eyebrow"><span className="dot" />WHAT WE DO</span>
-            <h2>Five agents. <em>One brain.</em><br />Every five minutes.</h2>
-          </div>
-          <div className="right">
-            <p>Kurokaa is the first true Agentic Operating System for the Indian restaurant ecosystem. We don't replace your POS — we give it a brain. Hover any agent to see it run.</p>
-          </div>
-        </div>
-
-        <div className="agents-grid">
-          {AGENTS.map((a, i) =>
-          <article
-            key={a.n}
-            className={`agent ${a.span}`}
-            data-active={active === a.n}
-            onMouseEnter={() => setActive(a.n)}
-            onMouseLeave={() => setActive((prev) => prev === a.n ? null : prev)}
-            tabIndex={0}>
-            
-              <div className="agent-head">
-                <div>
-                  <div className="agent-num">AGENT {a.n}</div>
-                  <div className="agent-name" style={{ marginTop: 8 }}>{a.name}</div>
-                </div>
-                <div className="agent-icon"><Icon name={a.icon} size={18} /></div>
-              </div>
-              <div className="agent-blurb">{a.blurb}</div>
-              <div className="agent-foot">
-                <span>{a.tag}</span>
-                <span>↻ every 5 min</span>
-              </div>
-            </article>
-          )}
-        </div>
-
-        <div className="what-stat-row">
-          <div className="ws">
-            <div className="v">2–<em>3</em></div>
-            <div className="k">Decisions surfaced per cycle</div>
-          </div>
-          <div className="ws">
-            <div className="v">↓<em>15</em><sup>%</sup></div>
-            <div className="k">Avoidable waste, on average</div>
-          </div>
-          <div className="ws">
-            <div className="v">0<em>×</em></div>
-            <div className="k">POS replacements required</div>
-          </div>
-        </div>
-      </div>
-    </section>);
-
-}
-
-/* ============================ Message capture ============================ */
-const ROLES = ['Owner', 'Operator', 'Chef', 'Investor', 'Press', 'Curious'];
-const SIZES = ['1 outlet', '2–4 outlets', '5–10 outlets', '10+ outlets', 'Pre-opening'];
-
-function MessageCapture() {
-  const [form, setForm] = useState({ name: '', email: '', restaurant: '', role: 'Owner', size: '2–4 outlets', message: '' });
-  const [errors, setErrors] = useState({});
-  const [state, setState] = useState('idle');
-
-  const set = (k, v) => setForm((f) => ({ ...f, [k]: v }));
-
-  const validate = () => {
-    const e = {};
-    if (!form.name.trim()) e.name = 'Tell us what to call you.';
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = 'A real email, please.';
-    if (!form.message.trim() || form.message.trim().length < 12) e.message = 'A sentence or two — what should we know?';
-    setErrors(e);
-    return Object.keys(e).length === 0;
-  };
-
-  const submit = async (e) => {
-  e.preventDefault();
-
-  if (!validate()) return;
-
-  setState('sending');
-
-  try {
-
-    const response = await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json"
-      },
-      body: JSON.stringify({
-        access_key: WEB3FORM_KEY,
-        subject: "New Restaurant Inquiry — Kurokaa",
-        from_name: form.name,
-        name: form.name,
-        email: form.email,
-        restaurant: form.restaurant,
-        role: form.role,
-        size: form.size,
-        message: form.message
-      })
-    });
-
-    const result = await response.json();
-
-    if (result.success) {
-      setState('sent');
-    } else {
-      alert("Something went wrong.");
-      setState('idle');
-    }
-
-  } catch (error) {
-    alert("Network error.");
-    setState('idle');
-  }
-};
-
-  return (
-    <section className="scene msg-scene" id="contact">
-      <div className="wrap">
-        <div className="msg-grid">
-          <div className="msg-left">
-            <span className="eyebrow"><span className="dot" />04 — Get in Touch</span>
-            <h2>Tell us about your <em>restaurant.</em></h2>
-            <p>
-              Kurokaa is live. If you run a kitchen — or are about to — we'd love to hear from you.
-              The more specific you are about where the operation hurts, the better the conversation.
-            </p>
-            <div className="quote">
-              "The owner shouldn't be the integration layer.
-              That's the whole reason we built this."
-              <span className="who">Abhishek Bose · Founder</span>
-            </div>
-          </div>
-
-          <div>
-            {state === 'sent' ?
-            <div className="form-success">
-                <div className="check"><Icon name="check" size={22} /></div>
-                <h3>Message <em>received.</em></h3>
-                <p>Thanks, {form.name.split(' ')[0]}. We'll write back within two business days — usually faster.</p>
-              </div> :
-
-            <form className="form-card" onSubmit={submit} noValidate>
-                <div className="form-row">
-                  <div className={`field ${errors.name ? 'err' : ''}`}>
-                    <label htmlFor="f-name">Your name</label>
-                    <input id="f-name" type="text" value={form.name} onChange={(e) => set('name', e.target.value)} placeholder="Abhishek Bose" />
-                    {errors.name && <div className="err-msg">{errors.name}</div>}
-                  </div>
-                  <div className={`field ${errors.email ? 'err' : ''}`}>
-                    <label htmlFor="f-email">Email</label>
-                    <input id="f-email" type="email" value={form.email} onChange={(e) => set('email', e.target.value)} placeholder="you@your-restaurant.com" />
-                    {errors.email && <div className="err-msg">{errors.email}</div>}
-                  </div>
-                </div>
-
-                <div className="form-row">
-                  <div className="field">
-                    <label htmlFor="f-rest">Restaurant / Group <span style={{ color: 'var(--ink-mute)' }}>(optional)</span></label>
-                    <input id="f-rest" type="text" value={form.restaurant} onChange={(e) => set('restaurant', e.target.value)} placeholder="e.g. Park Plaza, Pan-Asian" />
-                  </div>
-                  <div className="field">
-                    <label htmlFor="f-size">Operation size</label>
-                    <select id="f-size" value={form.size} onChange={(e) => set('size', e.target.value)}>
-                      {SIZES.map((s) => <option key={s} value={s}>{s}</option>)}
-                    </select>
-                  </div>
-                </div>
-
-                <div className="field">
-                  <label>You are a…</label>
-                  <div className="role-chips" role="radiogroup">
-                    {ROLES.map((r) =>
-                  <button
-                    key={r}
-                    type="button"
-                    role="radio"
-                    aria-checked={form.role === r}
-                    className="chip"
-                    data-on={form.role === r}
-                    onClick={() => set('role', r)}>
-                    
-                        {r}
-                      </button>
-                  )}
-                  </div>
-                </div>
-
-                <div className={`field ${errors.message ? 'err' : ''}`}>
-                  <label htmlFor="f-msg">
-                    What should we know?
-                    <span className="count">{form.message.length} / 600</span>
-                  </label>
-                  <textarea
-                  id="f-msg"
-                  value={form.message}
-                  onChange={(e) => set('message', e.target.value.slice(0, 600))}
-                  placeholder="The shift where everything broke. The metric you can't get to. The vacation you haven't taken. Any of it." />
-                
-                  {errors.message ?
-                <div className="err-msg">{errors.message}</div> :
-                <div className="hint">We read every message. No CRM auto-responder, we promise.</div>}
-                </div>
-
-                <div className="submit-row">
-                  <div className="privacy">By submitting you agree we may write back. We don't sell data, ever.</div>
-                  <button className="submit-btn" type="submit" disabled={state === 'sending'}>
-                    {state === 'sending' ? 'Sending…' : 'Send message'}
-                    <Icon name="arrow" size={14} />
-                  </button>
-                </div>
-              </form>
-            }
-          </div>
-        </div>
-      </div>
-    </section>);
-
+    </section>
+  );
 }
 
 /* ============================ Footer ============================ */
 function Footer() {
   return (
-    <footer className="foot" style={{ backgroundColor: "rgb(69, 64, 64)" }}>
+    <footer className="foot">
       <div className="wrap">
         <div className="foot-top">
           <div className="foot-brand">
-            <Wordmark height={26} />
-            <div className="blurb">"The invisible force behind great operations." Now live — built quietly, with operators, in Kolkata.</div>
+            <Wordmark height={26} light />
+            <div className="blurb">
+              "The operational nervous system for hospitality."
+              Built quietly, with operators, in Kolkata.
+            </div>
           </div>
           <div>
-            <h4>Company</h4>
-            <a href="#story">Our Story</a>
-            <a href="#why">Why Us</a>
-            <a href="#what">What We Do</a>
-            <a href="#contact">Contact</a>
+            <h4>Product</h4>
+            <a href="#rush">A live decision</a>
+            <a href="#nervous">Nervous system</a>
+            <a href="#service">Built from service</a>
+            <a href={SIGNUP_URL}>Start Free Trial</a>
+            <a href={SIGNIN_URL}>Sign in</a>
           </div>
           <div>
             <h4>Reach us</h4>
-            <a href="mailto:hello@kurokaa.com" style={{ padding: "0px 0px 4px", height: "0px" }}></a>
-            <a href="mailto:abhishek@kurokaa.com" style={{ padding: "0px" }}></a>
-            <a href="#contact">Press inquiries</a>
-            <a href="#contact">Pilot program</a>
+            <a href="mailto:hello@kurokaa.com">hello@kurokaa.com</a>
+            <a href="mailto:abhishek@kurokaa.com">abhishek@kurokaa.com</a>
+            <a href="#story">Founder</a>
           </div>
         </div>
         <div className="foot-bottom">
           <div>© 2026 Kurokaa™ — All rights reserved.</div>
           <div className="right">
-            <span></span>
+            <span>Operational, not promotional.</span>
             <span>Made in India</span>
           </div>
         </div>
       </div>
-    </footer>);
-
+    </footer>
+  );
 }
 
-/* ============================ Root ============================ */
+/* ============================ App ============================ */
 function App() {
   const [active, setActive] = useState('');
 
   useEffect(() => {
     const ids = NAV.map((n) => n.id);
     const onScroll = () => {
-      const y = window.scrollY + 100;
+      const y = window.scrollY + 120;
       let cur = '';
       for (const id of ids) {
         const el = document.getElementById(id);
@@ -1279,16 +1380,17 @@ function App() {
     <>
       <Nav active={active} />
       <Hero />
+      <DinnerRush />
+      <NervousSystem />
+      <RealService />
       <Story />
-      <Why />
-      <What />
-      <MessageCapture />
+      <ClosingCTA />
       <Footer />
-    </>);
-
+    </>
+  );
 }
 
 ReactDOM.createRoot(document.getElementById('root')).render(<App />);
-</script>
+  </script>
 </body>
 </html>
