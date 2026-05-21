@@ -707,101 +707,6 @@
   .foot-bottom .right { display: flex; gap: 18px; }
 
   .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
-
-  /* FOUNDATION (operational substrate) */
-  .found-scene { background: var(--paper); }
-  .found-stack { display: flex; flex-direction: column; align-items: stretch; }
-  .found-layer {
-    display: grid;
-    grid-template-columns: 0.95fr 1.4fr;
-    gap: 64px;
-    padding: 36px 38px;
-    background: color-mix(in oklch, var(--paper) 60%, white);
-    border: 1px solid var(--rule-strong);
-    border-radius: 6px;
-    align-items: start;
-    transition: background .25s ease, border-color .25s ease;
-  }
-  .found-layer:hover { background: color-mix(in oklch, var(--paper) 40%, white); border-color: var(--ink); }
-  @media (max-width: 980px) { .found-layer { grid-template-columns: 1fr; gap: 24px; padding: 28px 24px; } }
-  .found-label .num { font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; color: var(--ink-mute); text-transform: uppercase; }
-  .found-label .lbl {
-    font-family: var(--serif); font-weight: 500;
-    font-size: 42px; line-height: 1.0; letter-spacing: -0.02em;
-    margin: 12px 0 16px;
-    color: var(--ink);
-  }
-  .found-label .lbl em { color: var(--gold); font-style: italic; }
-  .found-label .desc {
-    font-family: var(--serif); font-style: italic;
-    font-size: 19px; line-height: 1.35; color: var(--ink-soft);
-    margin: 0;
-  }
-  .found-items { display: flex; flex-wrap: wrap; gap: 10px; }
-  .found-item {
-    font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
-    padding: 11px 14px;
-    background: var(--paper);
-    border: 1px solid var(--rule-strong);
-    border-radius: 4px;
-    color: var(--ink);
-    transition: background .2s ease, border-color .2s ease, transform .2s ease;
-  }
-  .found-item:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); transform: translateY(-1px); }
-
-  .found-arrow {
-    display: flex; flex-direction: column; align-items: center;
-    padding: 18px 0;
-    color: var(--gold);
-  }
-  .found-arrow .line { width: 1px; height: 28px; background: linear-gradient(180deg, transparent, var(--gold-2)); }
-  .found-arrow .line.bot { background: linear-gradient(0deg, transparent, var(--gold-2)); }
-  .found-arrow .chev { font-family: var(--serif); font-style: italic; font-size: 28px; line-height: 1; color: var(--gold); padding: 6px 0; }
-
-  .found-callout {
-    margin-top: 64px;
-    border: 1px solid var(--gold);
-    background: color-mix(in oklch, var(--paper) 50%, white);
-    border-radius: 6px;
-    padding: 44px 46px;
-    display: grid;
-    grid-template-columns: 1.1fr 1.1fr;
-    gap: 60px;
-    align-items: center;
-    position: relative;
-  }
-  .found-callout::before {
-    content: ''; position: absolute; top: 0; left: 0; bottom: 0;
-    width: 4px; background: var(--gold);
-    border-radius: 6px 0 0 6px;
-  }
-  @media (max-width: 980px) { .found-callout { grid-template-columns: 1fr; gap: 28px; padding: 32px 28px; } }
-  .found-callout .eye-row { color: var(--gold); display: block; margin-bottom: 14px; }
-  .found-callout h3 {
-    font-family: var(--serif); font-weight: 500;
-    font-size: clamp(34px, 4vw, 50px); line-height: 1.0; letter-spacing: -0.02em;
-    margin: 0;
-  }
-  .found-callout h3 em { color: var(--gold); font-style: italic; }
-  .found-callout .sub {
-    font-family: var(--serif); font-size: 19px;
-    color: var(--ink-soft); margin: 16px 0 0; line-height: 1.4;
-  }
-  .auto-list {
-    display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px 20px;
-  }
-  .auto-item {
-    font-family: var(--sans); font-size: 14.5px; color: var(--ink);
-    display: flex; align-items: center; gap: 12px;
-    padding: 6px 0;
-    border-bottom: 1px dashed var(--rule);
-  }
-  .auto-item:last-child, .auto-item:nth-last-child(2) { border-bottom: 0; }
-  .auto-item::before {
-    content: '→';
-    font-family: var(--serif); font-style: italic; color: var(--gold);
-    font-size: 18px; line-height: 1;
-  }
 </style>
 </head>
 <body>
@@ -872,10 +777,10 @@ const Wordmark = ({ height = 22, light = false }) => (
 
 /* ============================ Nav ============================ */
 const NAV = [
-  { id: 'nervous',    n: '01', label: 'Nervous system' },
-  { id: 'foundation', n: '02', label: "What's inside" },
-  { id: 'rush',       n: '03', label: 'A live decision' },
-  { id: 'story',      n: '04', label: 'Founder' }
+  { id: 'rush',    n: '01', label: 'A live decision' },
+  { id: 'nervous', n: '02', label: 'Nervous system' },
+  { id: 'service', n: '03', label: 'Built from service' },
+  { id: 'story',   n: '04', label: 'Founder' }
 ];
 
 function Nav({ active }) {
@@ -1042,8 +947,8 @@ function Hero() {
             <div className="k">Across pass, floor, bar, stations</div>
           </div>
           <div className="signal">
-            <div className="v">Calls <em>first</em></div>
-            <div className="k">Dashboards support — they don't decide</div>
+            <div className="v">Zero <em>dashboards</em></div>
+            <div className="k">Operational calls only</div>
           </div>
         </div>
       </div>
@@ -1119,7 +1024,7 @@ function DinnerRush() {
       <div className="wrap">
         <div className="section-head">
           <div className="left">
-            <span className="eyebrow"><span className="dot" />03 — A live decision</span>
+            <span className="eyebrow"><span className="dot" />01 — A live decision</span>
             <h2>See a dinner rush <em>decide.</em></h2>
           </div>
           <div className="right">
@@ -1235,7 +1140,7 @@ function NervousSystem() {
       <div className="wrap">
         <div className="section-head">
           <div className="left">
-            <span className="eyebrow"><span className="dot" />01 — How it thinks</span>
+            <span className="eyebrow"><span className="dot" />02 — How it works</span>
             <h2>Built like a <em>nervous system.</em></h2>
           </div>
           <div className="right">
@@ -1270,85 +1175,6 @@ function NervousSystem() {
   );
 }
 
-/* ============================ Foundation (operational substrate) ============================ */
-const LAYERS = [
-  {
-    n: '01',
-    name: <em>Foundation</em>,
-    desc: 'Transactional reality captured in real time.',
-    items: ['POS Terminal', 'Inventory', 'Payroll', 'Revenue & GST', 'Menu Intelligence']
-  },
-  {
-    n: '02',
-    name: <>Operational <em>context</em></>,
-    desc: 'Kurokaa builds a live operational map of the restaurant.',
-    items: ['Ingredient relationships', 'Prep structure', 'Station mapping', 'Cooking techniques', 'Shift pacing', 'Service flow']
-  },
-  {
-    n: '03',
-    name: <em>Judgment</em>,
-    desc: 'One operational brain across the restaurant.',
-    items: ['Floor Manager', 'Inventory Agent', 'Waste Prevention', 'Payroll Intelligence', 'Service Recovery']
-  }
-];
-
-const AUTO_BUILDS = ['Products', 'Recipes', 'Ingredient structure', 'Prep relationships', 'Cooking techniques', 'Station mapping'];
-
-function Foundation() {
-  return (
-    <section className="scene found-scene" id="foundation">
-      <div className="wrap">
-        <div className="section-head">
-          <div className="left">
-            <span className="eyebrow"><span className="dot" />02 — What's inside</span>
-            <h2>Kurokaa understands service because it <em>runs service.</em></h2>
-          </div>
-          <div className="right">
-            <p>
-              Kurokaa was built end-to-end for restaurant operations — from billing
-              and inventory to payroll, menu intelligence, and live operational judgment.
-              This is not an AI layer added later. <em style={{ color: 'var(--gold)', fontStyle: 'italic' }}>The intelligence is native to the system.</em>
-            </p>
-          </div>
-        </div>
-
-        <div className="found-stack">
-          {LAYERS.map((l, i) => (
-            <React.Fragment key={l.n}>
-              <div className="found-layer">
-                <div className="found-label">
-                  <div className="num">Layer {l.n}</div>
-                  <div className="lbl">{l.name}</div>
-                  <div className="desc">{l.desc}</div>
-                </div>
-                <div className="found-items">
-                  {l.items.map((it) => <span className="found-item" key={it}>{it}</span>)}
-                </div>
-              </div>
-              {i < LAYERS.length - 1 && (
-                <div className="found-arrow" aria-hidden="true">
-                  <span className="line" /><span className="chev">↓</span><span className="line bot" />
-                </div>
-              )}
-            </React.Fragment>
-          ))}
-        </div>
-
-        <div className="found-callout">
-          <div>
-            <span className="eyebrow eye-row"><span className="dot" />Onboarding</span>
-            <h3>Upload your menu <em>once.</em></h3>
-            <p className="sub">Kurokaa ingests it and automatically builds the operational substrate — so intelligence starts working from day one.</p>
-          </div>
-          <div className="auto-list">
-            {AUTO_BUILDS.map((a) => <div className="auto-item" key={a}>{a}</div>)}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 /* ============================ Built from real service ============================ */
 const MOMENTS = [
   { t: '20:41', text: <>Six tickets deep at the bar. The server can't be in two places.</>, pos: 'Bar' },
@@ -1366,7 +1192,7 @@ function RealService() {
       <div className="wrap">
         <div className="section-head">
           <div className="left">
-            <span className="eyebrow"><span className="dot" />04 — Built from real service</span>
+            <span className="eyebrow"><span className="dot" />03 — Built from real service</span>
             <h2>Quiet credibility. <em>From the pass.</em></h2>
           </div>
           <div className="right">
@@ -1415,7 +1241,7 @@ function Story() {
       <div className="wrap">
         <div className="section-head">
           <div className="left">
-            <span className="eyebrow"><span className="dot" />05 — The founder</span>
+            <span className="eyebrow"><span className="dot" />04 — The founder</span>
             <h2>Born in the heat of a <em>10 PM dinner rush.</em></h2>
           </div>
           <div className="right">
@@ -1554,9 +1380,8 @@ function App() {
     <>
       <Nav active={active} />
       <Hero />
-      <NervousSystem />
-      <Foundation />
       <DinnerRush />
+      <NervousSystem />
       <RealService />
       <Story />
       <ClosingCTA />
