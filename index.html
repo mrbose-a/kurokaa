@@ -692,7 +692,7 @@
     position: relative;
     z-index: 2;
   }
-  .foot-top { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 48px; }
+  .foot-top { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 48px; }
   @media (max-width: 720px) { .foot-top { grid-template-columns: 1fr; gap: 32px; } }
   .foot h4 { font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: color-mix(in oklch, var(--paper) 55%, transparent); margin: 0 0 14px; font-weight: 500; }
   .foot a { color: color-mix(in oklch, var(--paper) 90%, transparent); text-decoration: none; font-size: 14px; display: block; padding: 4px 0; transition: color .2s ease; }
@@ -1512,9 +1512,13 @@ function Footer() {
             <a href={SIGNIN_URL}>Sign in</a>
           </div>
           <div>
+            <h4>Legal</h4>
+            <a href="https://app.kurokaa.com/terms" target="_blank">Terms of Service</a>
+            <a href="https://app.kurokaa.com/privacy" target="_blank">Privacy Policy</a>
+          </div>
+          <div>
             <h4>Reach us</h4>
-            <a href="mailto:hello@kurokaa.com">hello@kurokaa.com</a>
-            <a href="mailto:abhishek@kurokaa.com">abhishek@kurokaa.com</a>
+            <a href="mailto:hello.kurokaa@gmail.com">hello.kurokaa@gmail.com</a>
             <a href="#story">Founder</a>
           </div>
         </div>
@@ -1523,9 +1527,6 @@ function Footer() {
           <div className="right">
             <span>Operational, not promotional.</span>
             <span>Made in India</span>
-            <a href="https://app.kurokaa.com/terms" target="_blank">Terms of Service</a>
-            <span>·</span>
-            <a href="https://app.kurokaa.com/privacy" target="_blank">Privacy Policy</a>
           </div>
         </div>
       </div>
