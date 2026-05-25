@@ -1628,7 +1628,7 @@ function Story() {
 const FEATURES = [
   'POS transaction recording',
   'Inventory & purchase tracking',
-  'AI-powered kitchen and floor insights',
+  'AI-assisted operational insights',
   'Staff and service pulse tools',
   'WhatsApp-ready customer receipts',
   'GST-friendly operational records',
@@ -1678,9 +1678,10 @@ function Pricing() {
               <span className="price-value">999</span>
               <span className="price-per">per location<br />every 30 days</span>
             </div>
+            <p className="pricing-footnote" style={{ marginTop: '-8px' }}>Inclusive of applicable taxes</p>
             <p className="pricing-sub">Recharge when your restaurant is active and growing. No auto-debit. No lock-in. No surprises.</p>
             <div className="pricing-badges">
-              <span className="pricing-badge">Up to 3 locations</span>
+              <span className="pricing-badge">Per location · up to 3 locations</span>
               <span className="pricing-badge hi">No auto-renewal</span>
               <span className="pricing-badge">Everything included</span>
             </div>
@@ -1689,7 +1690,7 @@ function Pricing() {
                 Start your trial <Icon name="arrow" size={14} />
               </a>
               <span className="pricing-footnote">
-                Your subscription can expire — your data does not disappear.
+                Your location access may expire — your operational data stays safe and accessible after recharge.
               </span>
             </div>
           </div>
@@ -1768,6 +1769,11 @@ function Footer() {
               "The operational nervous system for hospitality."
               Built quietly, with operators, in Kolkata.
             </div>
+            <div style={{ marginTop: 16, fontFamily: 'var(--mono)', fontSize: 10, letterSpacing: '0.12em', color: 'color-mix(in oklch, var(--paper) 50%, transparent)', lineHeight: 1.8 }}>
+              Operated by Oe Delli Belly<br />
+              GSTIN: 19BAJPB6981R1ZS<br />
+              West Bengal, India
+            </div>
           </div>
           <div>
             <h4>Product</h4>
@@ -1782,6 +1788,7 @@ function Footer() {
             <h4>Legal</h4>
             <a href="https://app.kurokaa.com/terms" target="_blank">Terms of Service</a>
             <a href="https://app.kurokaa.com/privacy" target="_blank">Privacy Policy</a>
+            <a href="/refund.html" target="_blank">Refund &amp; Cancellation Policy</a>
           </div>
           <div>
             <h4>Reach us</h4>
