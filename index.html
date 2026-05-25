@@ -1051,7 +1051,7 @@ function Nav({ active }) {
         <div className="nav-links">
           {NAV.map((n) => (
             <button key={n.id} className="nav-link" data-active={active === n.id} onClick={() => go(n.id)}>
-              <span className="num">{n.n}</span>{n.label}
+              {n.label}
             </button>
           ))}
         </div>
@@ -1278,7 +1278,7 @@ function DinnerRush() {
       <div className="wrap">
         <div className="section-head">
           <div className="left">
-            <span className="eyebrow"><span className="dot" />03 — A live decision</span>
+            <span className="eyebrow"><span className="dot" />A live decision</span>
             <h2>See a dinner rush <em>decide.</em></h2>
           </div>
           <div className="right">
@@ -1394,7 +1394,7 @@ function NervousSystem() {
       <div className="wrap">
         <div className="section-head">
           <div className="left">
-            <span className="eyebrow"><span className="dot" />01 — How it thinks</span>
+            <span className="eyebrow"><span className="dot" />How it thinks</span>
             <h2>Built like a <em>nervous system.</em></h2>
           </div>
           <div className="right">
@@ -1459,7 +1459,7 @@ function Foundation() {
       <div className="wrap">
         <div className="section-head">
           <div className="left">
-            <span className="eyebrow"><span className="dot" />02 — What's inside</span>
+            <span className="eyebrow"><span className="dot" />What's inside</span>
             <h2>Kurokaa understands service because it <em>runs service.</em></h2>
           </div>
           <div className="right">
@@ -1525,7 +1525,7 @@ function RealService() {
       <div className="wrap">
         <div className="section-head">
           <div className="left">
-            <span className="eyebrow"><span className="dot" />04 — Built from real service</span>
+            <span className="eyebrow"><span className="dot" />Built from real service</span>
             <h2>Quiet credibility. <em>From the pass.</em></h2>
           </div>
           <div className="right">
@@ -1574,7 +1574,7 @@ function Story() {
       <div className="wrap">
         <div className="section-head">
           <div className="left">
-            <span className="eyebrow"><span className="dot" />05 — The founder</span>
+            <span className="eyebrow"><span className="dot" />The founder</span>
             <h2>Born in the heat of a <em>10 PM dinner rush.</em></h2>
           </div>
           <div className="right">
@@ -1641,7 +1641,7 @@ function Pricing() {
       <div className="wrap">
         <div className="section-head">
           <div className="left">
-            <span className="eyebrow"><span className="dot" />04 — Pricing</span>
+            <span className="eyebrow"><span className="dot" />Pricing</span>
             <h2>Simple pricing.<br /><em>No lock-ins.</em></h2>
           </div>
           <div className="right">
