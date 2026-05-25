@@ -819,6 +819,148 @@
     font-family: var(--serif); font-style: italic; color: var(--gold);
     font-size: 18px; line-height: 1;
   }
+
+  /* PRICING */
+  .pricing-scene { background: var(--paper-2); }
+  .pricing-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    margin-bottom: 48px;
+  }
+  @media (max-width: 980px) { .pricing-layout { grid-template-columns: 1fr; } }
+
+  .pricing-card {
+    border: 1px solid var(--rule-strong);
+    background: color-mix(in oklch, var(--paper) 60%, white);
+    border-radius: 6px;
+    padding: 36px 32px 40px;
+    display: flex; flex-direction: column; gap: 20px;
+    position: relative;
+  }
+  .pricing-card.featured {
+    border-color: var(--ink);
+    background: color-mix(in oklch, var(--paper) 20%, white);
+  }
+  .pricing-card.featured::before {
+    content: '';
+    position: absolute; top: 0; left: 0; bottom: 0;
+    width: 4px; background: var(--gold);
+    border-radius: 6px 0 0 6px;
+  }
+
+  .pricing-plan-label {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+  .pricing-headline {
+    font-family: var(--serif); font-weight: 500;
+    font-size: clamp(36px, 4vw, 52px);
+    line-height: 1.0; letter-spacing: -0.02em;
+    margin: 0;
+    color: var(--ink);
+  }
+  .pricing-headline em { color: var(--gold); font-style: italic; }
+  .pricing-sub {
+    font-family: var(--serif); font-style: italic;
+    font-size: 18px; line-height: 1.4; color: var(--ink-soft);
+    margin: 0;
+  }
+
+  .pricing-amount {
+    border-top: 1px solid var(--rule);
+    padding-top: 20px;
+    display: flex; align-items: baseline; gap: 6px;
+  }
+  .price-currency {
+    font-family: var(--serif); font-weight: 500;
+    font-size: 28px; line-height: 1; color: var(--ink-soft);
+  }
+  .price-value {
+    font-family: var(--serif); font-weight: 500;
+    font-size: clamp(64px, 7vw, 88px);
+    line-height: 1; letter-spacing: -0.03em; color: var(--ink);
+  }
+  .price-per {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em;
+    color: var(--ink-mute); text-transform: uppercase;
+    line-height: 1.6; align-self: flex-end; padding-bottom: 6px;
+  }
+
+  .pricing-badges { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pricing-badge {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+    padding: 6px 12px;
+    border: 1px solid var(--rule-strong);
+    border-radius: 999px;
+    color: var(--ink-soft);
+  }
+  .pricing-badge.hi {
+    border-color: var(--gold); color: var(--gold);
+    background: var(--gold-soft);
+  }
+
+  .pricing-cta-area { display: flex; flex-direction: column; gap: 10px; margin-top: auto; }
+  .pricing-footnote {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em;
+    color: var(--ink-mute); line-height: 1.5;
+  }
+
+  .features-block {
+    border-top: 1px solid var(--rule-strong);
+    padding-top: 48px; margin-bottom: 48px;
+  }
+  .features-eyebrow {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--ink-mute); margin-bottom: 22px;
+  }
+  .features-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 20px;
+  }
+  @media (max-width: 980px) { .features-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px) { .features-grid { grid-template-columns: 1fr; } }
+  .feat-item {
+    font-family: var(--sans); font-size: 14.5px; color: var(--ink);
+    display: flex; align-items: center; gap: 12px;
+    padding: 14px 0;
+    border-bottom: 1px dashed var(--rule);
+  }
+  .feat-item::before {
+    content: '→';
+    font-family: var(--serif); font-style: italic; color: var(--gold);
+    font-size: 18px; line-height: 1; flex-shrink: 0;
+  }
+
+  .enterprise-callout {
+    border: 1px solid var(--rule-strong);
+    background: color-mix(in oklch, var(--paper) 60%, white);
+    border-radius: 6px;
+    padding: 32px 36px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 32px; margin-bottom: 36px; flex-wrap: wrap;
+  }
+  .enterprise-callout .ec-num {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--ink-mute); margin-bottom: 8px;
+  }
+  .enterprise-callout h4 {
+    font-family: var(--serif); font-weight: 500;
+    font-size: clamp(22px, 2.4vw, 30px); line-height: 1.1;
+    margin: 0 0 8px; color: var(--ink);
+  }
+  .enterprise-callout p {
+    font-family: var(--sans); font-size: 14.5px; line-height: 1.5;
+    color: var(--ink-soft); margin: 0; max-width: 48ch;
+  }
+
+  .trust-strip {
+    display: flex; flex-wrap: wrap; gap: 8px 18px; align-items: center;
+    padding-top: 24px;
+    border-top: 1px solid var(--rule);
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+  .trust-sep { color: var(--rule-strong); user-select: none; }
 </style>
 </head>
 <body>
@@ -892,7 +1034,7 @@ const NAV = [
   { id: 'nervous',    n: '01', label: 'Nervous system' },
   { id: 'foundation', n: '02', label: "What's inside" },
   { id: 'rush',       n: '03', label: 'A live decision' },
-  { id: 'story',      n: '04', label: 'Founder' }
+  { id: 'pricing',    n: '04', label: 'Pricing' }
 ];
 
 function Nav({ active }) {
@@ -1482,6 +1624,113 @@ function Story() {
   );
 }
 
+/* ============================ Pricing ============================ */
+const FEATURES = [
+  'POS transaction recording',
+  'Inventory & purchase tracking',
+  'AI-powered kitchen and floor insights',
+  'Staff and service pulse tools',
+  'WhatsApp-ready customer receipts',
+  'GST-friendly operational records',
+  'Menu intelligence & analytics',
+];
+
+function Pricing() {
+  return (
+    <section className="scene pricing-scene" id="pricing">
+      <div className="wrap">
+        <div className="section-head">
+          <div className="left">
+            <span className="eyebrow"><span className="dot" />04 — Pricing</span>
+            <h2>Simple pricing.<br /><em>No lock-ins.</em></h2>
+          </div>
+          <div className="right">
+            <p>
+              Run Kurokaa free for 30 days with full access to every feature.
+              No credit card. No sales call. No setup fee.
+              After your trial, recharge only when you want to continue —
+              your data stays yours, always.
+            </p>
+          </div>
+        </div>
+
+        <div className="pricing-layout">
+          <div className="pricing-card">
+            <div className="pricing-plan-label">Free Trial · 30 Days</div>
+            <h3 className="pricing-headline"><em>30 days.</em><br />Full access.</h3>
+            <p className="pricing-sub">Everything switched on from day one. No credit card. No sales call. No setup fee.</p>
+            <div className="pricing-badges">
+              <span className="pricing-badge hi">No credit card</span>
+              <span className="pricing-badge">No setup fee</span>
+              <span className="pricing-badge">No sales call</span>
+            </div>
+            <div className="pricing-cta-area">
+              <a className="btn btn-primary" href={SIGNUP_URL} style={{ alignSelf: 'flex-start' }}>
+                Start Free Trial <Icon name="arrow" size={14} />
+              </a>
+            </div>
+          </div>
+
+          <div className="pricing-card featured">
+            <div className="pricing-plan-label">After Trial · Per Location</div>
+            <div className="pricing-amount">
+              <span className="price-currency">₹</span>
+              <span className="price-value">999</span>
+              <span className="price-per">per location<br />every 30 days</span>
+            </div>
+            <p className="pricing-sub">Recharge when your restaurant is active and growing. No auto-debit. No lock-in. No surprises.</p>
+            <div className="pricing-badges">
+              <span className="pricing-badge">Up to 3 locations</span>
+              <span className="pricing-badge hi">No auto-renewal</span>
+              <span className="pricing-badge">Everything included</span>
+            </div>
+            <div className="pricing-cta-area">
+              <a className="btn btn-ghost" href={SIGNUP_URL} style={{ alignSelf: 'flex-start' }}>
+                Start your trial <Icon name="arrow" size={14} />
+              </a>
+              <span className="pricing-footnote">
+                Your subscription can expire — your data does not disappear.
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div className="features-block">
+          <div className="features-eyebrow">Everything included · No feature gating</div>
+          <div className="features-grid">
+            {FEATURES.map((f) => (
+              <div className="feat-item" key={f}>{f}</div>
+            ))}
+          </div>
+        </div>
+
+        <div className="enterprise-callout">
+          <div>
+            <div className="ec-num">Enterprise · More than 3 Locations</div>
+            <h4>Restaurant groups &amp; multi-location operators</h4>
+            <p>Custom enterprise workflows, integrations, and operational deployments. Special rates apply — let's scope your project first.</p>
+          </div>
+          <a className="btn btn-ghost" href="mailto:hello.kurokaa@gmail.com">
+            hello.kurokaa@gmail.com <Icon name="arrow" size={14} />
+          </a>
+        </div>
+
+        <div className="trust-strip">
+          <span>Secure payments via Razorpay</span>
+          <span className="trust-sep">·</span>
+          <span>No auto-renewal</span>
+          <span className="trust-sep">·</span>
+          <span>GST-ready</span>
+          <span className="trust-sep">·</span>
+          <span>Built in India for Indian restaurants</span>
+          <span className="trust-sep">·</span>
+          <span>GSTIN: 19BAJPB6981R1ZS</span>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ============================ Closing CTA ============================ */
 function ClosingCTA() {
   return (
@@ -1525,6 +1774,7 @@ function Footer() {
             <a href="#rush">A live decision</a>
             <a href="#nervous">Nervous system</a>
             <a href="#service">Built from service</a>
+            <a href="#pricing">Pricing</a>
             <a href={SIGNUP_URL}>Start Free Trial</a>
             <a href={SIGNIN_URL}>Sign in</a>
           </div>
@@ -1580,6 +1830,7 @@ function App() {
       <DinnerRush />
       <RealService />
       <Story />
+      <Pricing />
       <ClosingCTA />
       <Footer />
     </>
