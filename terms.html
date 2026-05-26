@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Terms of Service — Kurokaa</title>
+<meta name="description" content="Kurokaa Terms of Service. Operated by Abhishek Bose trading as Oe Delli Belly, West Bengal, India.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F6F1E6;
+    --paper-2: #EFE9DA;
+    --ink: #0A0F22;
+    --ink-2: #1B2038;
+    --ink-soft: #4B4E63;
+    --ink-mute: #7D7C87;
+    --rule: #2E2A1F1A;
+    --rule-strong: #2E2A1F33;
+    --gold: #B07A22;
+    --gold-2: #C99659;
+    --serif: 'Cormorant Garamond', 'Times New Roman', serif;
+    --sans: 'Manrope', system-ui, -apple-system, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: var(--sans);
+    color: var(--ink);
+    background: var(--paper);
+    -webkit-font-smoothing: antialiased;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  .wrap { max-width: 780px; margin: 0 auto; padding: 0 48px; }
+  @media (max-width: 720px) { .wrap { padding: 0 24px; } }
+
+  header {
+    border-bottom: 1px solid var(--rule);
+    padding: 20px 0;
+  }
+  header .inner {
+    max-width: 780px; margin: 0 auto; padding: 0 48px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  @media (max-width: 720px) { header .inner { padding: 0 24px; } }
+  header a.back {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--ink-soft); text-decoration: none;
+  }
+  header a.back:hover { color: var(--gold); }
+
+  .print-btn {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--ink-soft);
+    background: none; border: 1px solid var(--rule-strong);
+    padding: 6px 14px; border-radius: 3px; cursor: pointer;
+    display: flex; align-items: center; gap: 7px;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .print-btn:hover { color: var(--gold); border-color: var(--gold); }
+  .print-btn svg { flex-shrink: 0; }
+
+  main { padding: 64px 0 96px; }
+
+  .eyebrow {
+    font-family: var(--mono); font-size: 11px; font-weight: 500;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-mute);
+    display: block; margin-bottom: 14px;
+  }
+  .eyebrow .dot {
+    display: inline-block; width: 6px; height: 6px;
+    background: var(--gold); border-radius: 50%;
+    margin-right: 10px; transform: translateY(-1px);
+  }
+
+  h1 {
+    font-family: var(--serif); font-weight: 500;
+    font-size: clamp(42px, 6vw, 72px);
+    line-height: 1.0; letter-spacing: -0.02em;
+    margin: 0 0 12px;
+  }
+  h1 em { font-style: italic; color: var(--gold); }
+
+  .updated {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em;
+    color: var(--ink-mute); margin-bottom: 56px;
+  }
+
+  h2 {
+    font-family: var(--serif); font-weight: 500;
+    font-size: 28px; line-height: 1.1; letter-spacing: -0.01em;
+    margin: 48px 0 12px; color: var(--ink);
+    padding-top: 36px;
+    border-top: 1px solid var(--rule);
+  }
+  h2:first-of-type { border-top: 0; padding-top: 0; margin-top: 0; }
+
+  h3 {
+    font-family: var(--sans); font-weight: 600;
+    font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--ink); margin: 24px 0 8px;
+  }
+
+  p { margin: 0 0 16px; color: var(--ink-soft); font-size: 15.5px; line-height: 1.65; }
+  p strong { color: var(--ink); font-weight: 600; }
+
+  ul {
+    margin: 0 0 20px; padding-left: 0; list-style: none;
+  }
+  ul li {
+    position: relative; padding-left: 20px;
+    color: var(--ink-soft); font-size: 15.5px; line-height: 1.65;
+    margin-bottom: 8px;
+  }
+  ul li::before {
+    content: '—'; position: absolute; left: 0;
+    color: var(--gold); font-weight: 600;
+  }
+
+  .callout {
+    background: var(--paper-2);
+    border-left: 3px solid var(--gold);
+    padding: 18px 22px;
+    border-radius: 0 4px 4px 0;
+    margin: 24px 0;
+  }
+  .callout p { margin: 0; font-family: var(--serif); font-size: 17px; color: var(--ink); line-height: 1.5; }
+
+  footer.foot-legal {
+    background: #0A0F22;
+    color: color-mix(in oklch, var(--paper) 55%, transparent);
+    padding: 28px 0;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em;
+  }
+  footer.foot-legal .inner {
+    max-width: 780px; margin: 0 auto; padding: 0 48px;
+    display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+  }
+  @media (max-width: 720px) { footer.foot-legal .inner { padding: 0 24px; } }
+  footer.foot-legal a { color: color-mix(in oklch, var(--paper) 75%, transparent); text-decoration: none; }
+  footer.foot-legal a:hover { color: var(--gold-2); }
+
+  @media print {
+    body { background: #fff; color: #000; font-size: 12pt; }
+    header, footer.foot-legal, .print-btn { display: none !important; }
+    main { padding: 0; }
+    .wrap { padding: 0; max-width: 100%; }
+    h1 { font-size: 28pt; }
+    h2 { font-size: 16pt; page-break-after: avoid; }
+    h3 { font-size: 11pt; page-break-after: avoid; }
+    p, ul li { font-size: 11pt; color: #222; }
+    .callout { border-left: 3px solid #999; background: #f5f5f5; }
+    .callout p { color: #000; }
+    .eyebrow { color: #666; }
+    .updated { color: #666; }
+    a { color: #000; text-decoration: none; }
+    @page { margin: 2cm; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="inner">
+    <a href="/" class="back">← Kurokaa</a>
+    <button class="print-btn" onclick="window.print()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 6 2 18 2 18 9"></polyline>
+        <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+        <rect x="6" y="14" width="12" height="8"></rect>
+      </svg>
+      Print
+    </button>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <span class="eyebrow"><span class="dot"></span>Legal</span>
+    <h1>Terms of <em>Service</em></h1>
+    <div class="updated">Effective Date: 25 May 2026 &nbsp;·&nbsp; Version: 1.0</div>
+
+    <p>These Terms of Service ("Terms") govern your use of Kurokaa ("Service"), operated by Abhishek Bose trading as Oe Delli Belly (GSTIN: 19BAJPB6981R1ZS), West Bengal, India ("we", "us", "our").</p>
+    <p>By creating an account, you agree to these Terms.</p>
+
+    <h2>1. The Service</h2>
+    <p>Kurokaa is a restaurant operational intelligence platform that provides:</p>
+    <ul>
+      <li>Point-of-sale transaction recording</li>
+      <li>Inventory and purchase tracking</li>
+      <li>AI-powered operational recommendations</li>
+      <li>Service pulse and floor management tools</li>
+      <li>WhatsApp-shareable customer receipts</li>
+    </ul>
+
+    <h2>2. Eligibility</h2>
+    <p>You must be at least 18 years old and operating a legitimate food business in India to use Kurokaa. By using the Service, you confirm you have the legal authority to bind your business to these Terms.</p>
+
+    <h2>3. Free Trial</h2>
+    <p>New accounts receive a <strong>30-day free trial</strong> with full access to all features. No credit card is required during the trial period.</p>
+
+    <h2>4. Subscription and Payment</h2>
+
+    <h3>4.1 Plans</h3>
+    <p>After the free trial, continued use requires an active subscription at <strong>₹999 per month</strong> (inclusive of applicable taxes).</p>
+
+    <h3>4.2 Billing Cycle</h3>
+    <p>Each subscription covers 30 days from the date of payment. Your subscription does not auto-renew — you must actively recharge to continue access.</p>
+
+    <h3>4.3 Payment Processing</h3>
+    <p>Payments are processed by Razorpay Software Pvt Ltd. Your payment details are handled directly by Razorpay and are not stored on Kurokaa's servers.</p>
+
+    <h3>4.4 No Refunds</h3>
+    <p>All subscription payments are non-refundable. We do not offer pro-rata refunds for unused days.</p>
+
+    <h2>5. Data and Access After Subscription Ends</h2>
+    <p>Your data (transactions, products, inventory) remains accessible during your active subscription period. After your subscription expires, your data is retained but access is restricted until you recharge. If your account remains inactive and you choose to delete your account, all associated data is permanently deleted within 90 days of the deletion request.</p>
+
+    <h2>6. Your Data</h2>
+
+    <h3>6.1 Ownership</h3>
+    <p>You retain full ownership of all data you enter into Kurokaa, including transaction records, menu items, inventory data, and customer receipts.</p>
+
+    <h3>6.2 License to Operate</h3>
+    <p>By using the Service, you grant us a limited license to process your data solely to provide the Service to you. We do not sell your data.</p>
+
+    <h3>6.3 AI Processing</h3>
+    <p>Kurokaa uses Anthropic's Claude AI to generate operational recommendations. Your restaurant's operational context (order volumes, inventory levels, staffing patterns) is sent to Anthropic's API for processing. Anthropic's privacy policy governs their handling of this data. No personally identifiable customer information is sent to Anthropic.</p>
+
+    <h2>7. Acceptable Use</h2>
+    <p>You agree not to:</p>
+    <ul>
+      <li>Use Kurokaa for any unlawful purpose</li>
+      <li>Attempt to reverse-engineer or copy the Service</li>
+      <li>Share your account credentials with others outside your restaurant team</li>
+      <li>Enter false or fraudulent transaction data</li>
+    </ul>
+
+    <h2>8. Service Availability</h2>
+    <p>We aim for high availability but do not guarantee uninterrupted service. Scheduled maintenance will be communicated via email where possible. We are not liable for losses arising from service downtime.</p>
+
+    <h2>9. Limitation of Liability</h2>
+    <p>To the maximum extent permitted by applicable law, Kurokaa and Abhishek Bose shall not be liable for any indirect, incidental, or consequential damages arising from your use of the Service. Our total liability shall not exceed the amount you paid for the Service in the 30 days preceding the claim.</p>
+
+    <h2>10. GST Compliance</h2>
+    <p>Kurokaa provides tools to assist with GST record-keeping. These tools are not a substitute for professional tax advice. You are responsible for ensuring your GST filings are accurate and timely. We recommend consulting a chartered accountant for GST compliance guidance.</p>
+
+    <h2>11. Termination</h2>
+    <p>You may delete your account at any time by contacting <a href="mailto:hello.kurokaa@gmail.com" style="color: var(--gold); text-decoration: none;">hello.kurokaa@gmail.com</a>. We reserve the right to suspend accounts that violate these Terms.</p>
+
+    <h2>12. Changes to Terms</h2>
+    <p>We may update these Terms from time to time. When we do, we will update the version number and effective date at the top of this page and notify you by email. Continued use of the Service after the effective date constitutes acceptance of the updated Terms.</p>
+
+    <h2>13. Governing Law</h2>
+    <p>These Terms are governed by the laws of India. Any disputes shall be subject to the exclusive jurisdiction of courts in Kolkata, West Bengal.</p>
+
+    <h2>14. Contact</h2>
+    <p>For questions about these Terms:</p>
+    <p>
+      <strong>Email:</strong> <a href="mailto:hello.kurokaa@gmail.com" style="color: var(--gold); text-decoration: none;">hello.kurokaa@gmail.com</a><br />
+      <strong>Operated by:</strong> Oe Delli Belly<br />
+      <strong>GSTIN:</strong> 19BAJPB6981R1ZS<br />
+      <strong>Address:</strong> P22 Amrapali, Garia Station Road, Kolkata, South 24 Parganas, West Bengal, Pin 700084
+    </p>
+  </div>
+</main>
+
+<footer class="foot-legal">
+  <div class="inner">
+    <div>© 2026 Kurokaa™ — Operated by Oe Delli Belly · GSTIN: 19BAJPB6981R1ZS</div>
+    <div>
+      <a href="/">Home</a> ·
+      <a href="/terms.html">Terms</a> ·
+      <a href="/privacy.html">Privacy Policy</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
