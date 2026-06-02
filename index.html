@@ -1012,27 +1012,12 @@ const Icon = ({ name, size = 18 }) => {
 
 /* ============================ Wordmark ============================ */
 const Wordmark = ({ height = 22, light = false }) => (
-  <svg height={height} viewBox="0 0 240 44" xmlns="http://www.w3.org/2000/svg" aria-label="Kurokaa">
-    <g fill="none" stroke={light ? "#F6F1E6" : "#0A0F22"} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M6 6 V38" />
-      <path d="M6 22 L22 6" />
-      <path d="M6 22 L22 38" />
-      <path d="M32 6 V28 a8 8 0 0 0 16 0 V6" />
-      <path d="M58 38 V6 h10 a7 7 0 0 1 0 14 H58" />
-      <path d="M64 20 L74 38" />
-      <circle cx="92" cy="22" r="14" />
-      <path d="M114 6 V38" />
-      <path d="M114 22 L130 6" />
-      <path d="M114 22 L130 38" />
-      <path d="M140 38 L152 6 L164 38" />
-      <path d="M145 28 H159" />
-      <path d="M172 38 L184 6 L196 38" />
-      <path d="M177 28 H191" />
-    </g>
-    <circle cx="152" cy="32" r="2.2" fill="#B07A22" />
-    <circle cx="184" cy="32" r="2.2" fill="#B07A22" />
-    <text x="206" y="14" fontFamily="JetBrains Mono, monospace" fontSize="8" fill={light ? "#C99659" : "#7D7C87"}>TM</text>
-  </svg>
+  <img
+    src={light ? "assets/kurokaa_logo_white.png" : "assets/kurokaa_logo_black.png"}
+    height={height}
+    alt="Kurokaa"
+    style={{ display: 'block', width: 'auto' }}
+  />
 );
 
 /* ============================ Nav ============================ */
