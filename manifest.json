@@ -1,0 +1,23 @@
+{
+  "name": "Kurokaa",
+  "short_name": "Kurokaa",
+  "description": "The agentic operating system for Indian restaurants",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0A0F22",
+  "theme_color": "#0A0F22",
+  "icons": [
+    {
+      "src": "android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
