@@ -1089,7 +1089,17 @@ const ROLES = ['Owner', 'Operator', 'Chef', 'Investor', 'Press', 'Curious'];
 const SIZES = ['1 outlet', '2–4 outlets', '5–10 outlets', '10+ outlets', 'Pre-opening'];
 
 function MessageCapture() {
-  const [form, setForm] = useState({ name: '', email: '', restaurant: '', role: 'Owner', size: '2–4 outlets', message: '' });
+  const [form, setForm] = useState(() => {
+    const p = new URLSearchParams(window.location.search);
+    return {
+      name: p.get('name') || '',
+      email: p.get('email') || '',
+      restaurant: p.get('business') || '',
+      role: 'Owner',
+      size: SIZES.includes(p.get('locations')) ? p.get('locations') : '2–4 outlets',
+      message: ''
+    };
+  });
   const [errors, setErrors] = useState({});
   const [state, setState] = useState('idle');
 

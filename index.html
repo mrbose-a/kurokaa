@@ -1002,7 +1002,7 @@
   <script type="text/babel" data-presets="react">
 const { useState, useEffect, useRef, useCallback, useMemo } = React;
 
-const SIGNUP_URL = "https://app.kurokaa.com/signup";
+const REQUEST_ACCESS_URL = "index%20v1%20(waitlist).html#contact";
 const SIGNIN_URL = "https://app.kurokaa.com/signin";
 
 /* ============================ Icons ============================ */
@@ -1054,7 +1054,7 @@ function Nav({ active }) {
         </div>
         <div className="nav-actions">
           <a className="nav-signin" href={SIGNIN_URL}>Sign in</a>
-          <a className="nav-cta" href={SIGNUP_URL}>Start Free Trial<Icon name="arrow" size={12} /></a>
+          <a className="nav-cta" href={REQUEST_ACCESS_URL}>Request Access<Icon name="arrow" size={12} /></a>
         </div>
       </div>
     </nav>
@@ -1171,8 +1171,8 @@ function Hero() {
             </p>
 
             <div className="hero-ctas">
-              <a className="btn btn-primary" href={SIGNUP_URL}>
-                Start Free Trial <Icon name="arrow" size={14} />
+              <a className="btn btn-primary" href={REQUEST_ACCESS_URL}>
+                Request Access <Icon name="arrow" size={14} />
               </a>
               <button type="button" className="btn btn-ghost" onClick={() => scrollTo('rush')}>
                 See a dinner rush decision <Icon name="arrowDown" size={14} />
@@ -1662,8 +1662,8 @@ function Pricing() {
               <span className="pricing-badge">No sales call</span>
             </div>
             <div className="pricing-cta-area">
-              <a className="btn btn-primary" href={SIGNUP_URL} style={{ alignSelf: 'flex-start' }}>
-                Start Free Trial <Icon name="arrow" size={14} />
+              <a className="btn btn-primary" href={REQUEST_ACCESS_URL} style={{ alignSelf: 'flex-start' }}>
+                Request Access <Icon name="arrow" size={14} />
               </a>
             </div>
           </div>
@@ -1683,8 +1683,8 @@ function Pricing() {
               <span className="pricing-badge">Everything included</span>
             </div>
             <div className="pricing-cta-area">
-              <a className="btn btn-ghost" href={SIGNUP_URL} style={{ alignSelf: 'flex-start' }}>
-                Start your trial <Icon name="arrow" size={14} />
+              <a className="btn btn-ghost" href={REQUEST_ACCESS_URL} style={{ alignSelf: 'flex-start' }}>
+                Request Access <Icon name="arrow" size={14} />
               </a>
               <span className="pricing-footnote">
                 Your location access may expire — your operational data stays safe and accessible after recharge.
@@ -1742,8 +1742,8 @@ function ClosingCTA() {
             That continuity of operational judgment — <em>that's what Kurokaa builds.</em>
           </p>
           <div className="close-ctas">
-            <a className="btn btn-primary" href={SIGNUP_URL}>
-              Start Free Trial <Icon name="arrow" size={14} />
+            <a className="btn btn-primary" href={REQUEST_ACCESS_URL}>
+              Request Access <Icon name="arrow" size={14} />
             </a>
             <a className="btn btn-ghost-light" href={SIGNIN_URL}>Sign in</a>
           </div>
@@ -1780,7 +1780,7 @@ function Footer() {
             <a href="#nervous">Nervous system</a>
             <a href="#service">Built from service</a>
             <a href="#pricing">Pricing</a>
-            <a href={SIGNUP_URL}>Start Free Trial</a>
+            <a href={REQUEST_ACCESS_URL}>Request Access</a>
             <a href={SIGNIN_URL}>Sign in</a>
           </div>
           <div>
