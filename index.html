@@ -1849,10 +1849,10 @@ function Footer() {
 
 /* ============================ Request Access (message capture) ============================ */
 const ROLES = ['Owner', 'Operator', 'Chef', 'Investor', 'Press', 'Curious'];
-const SIZES = ['1 outlet', '2â€“4 outlets', '5â€“10 outlets', '10+ outlets', 'Pre-opening'];
+const SIZES = ['1 outlet', '2–4 outlets', '5–10 outlets', '10+ outlets', 'Pre-opening'];
 
 function MessageCapture() {
-  const [form, setForm] = useState({ name: '', email: '', restaurant: '', role: 'Owner', size: '2â€“4 outlets', message: '' });
+  const [form, setForm] = useState({ name: '', email: '', restaurant: '', role: 'Owner', size: '2–4 outlets', message: '' });
   const [errors, setErrors] = useState({});
   const [state, setState] = useState('idle');
 
@@ -1862,7 +1862,7 @@ function MessageCapture() {
     const e = {};
     if (!form.name.trim()) e.name = 'Tell us what to call you.';
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = 'A real email, please.';
-    if (!form.message.trim() || form.message.trim().length < 12) e.message = 'A sentence or two â€” what should we know?';
+    if (!form.message.trim() || form.message.trim().length < 12) e.message = 'A sentence or two — what should we know?';
     setErrors(e);
     return Object.keys(e).length === 0;
   };
@@ -1908,13 +1908,13 @@ function MessageCapture() {
             <span className="eyebrow"><span className="dot" />Request Access</span>
             <h2>Tell us about your <em>restaurant.</em></h2>
             <p>
-              We're hand-picking the first cohort. If you run a kitchen â€” or are about to â€” we'd like to hear from you.
+              We're hand-picking the first cohort. If you run a kitchen &mdash; or are about to &mdash; we'd like to hear from you.
               The more specific you are about where the operation hurts, the better the conversation.
             </p>
             <div className="quote">
               "The owner shouldn't be the integration layer.
               That's the whole reason we built this."
-              <span className="who">Abhishek Bose Â· Founder</span>
+              <span className="who">Abhishek Bose &middot; Founder</span>
             </div>
           </div>
 
@@ -1923,7 +1923,7 @@ function MessageCapture() {
               <div className="form-success">
                 <div className="check"><Icon name="check" size={22} /></div>
                 <h3>Message <em>received.</em></h3>
-                <p>Thanks, {form.name.split(' ')[0]}. We'll write back within two business days â€” usually faster.</p>
+                <p>Thanks, {form.name.split(' ')[0]}. We'll write back within two business days &mdash; usually faster.</p>
               </div>
             ) : (
               <form className="form-card" onSubmit={submit} noValidate>
@@ -1954,7 +1954,7 @@ function MessageCapture() {
                 </div>
 
                 <div className="field">
-                  <label>You are aâ€¦</label>
+                  <label>You are a&hellip;</label>
                   <div className="role-chips" role="radiogroup">
                     {ROLES.map((r) => (
                       <button
@@ -1989,7 +1989,7 @@ function MessageCapture() {
                 <div className="submit-row">
                   <div className="privacy">By submitting you agree we may write back. We don't sell data, ever.</div>
                   <button className="submit-btn" type="submit" disabled={state === 'sending'}>
-                    {state === 'sending' ? 'Sendingâ€¦' : 'Send message'}
+                    {state === 'sending' ? 'Sending…' : 'Send message'}
                     <Icon name="arrow" size={14} />
                   </button>
                 </div>
