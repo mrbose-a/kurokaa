@@ -1114,11 +1114,37 @@ function MessageCapture() {
     return Object.keys(e).length === 0;
   };
 
-  const submit = (e) => {
+  const submit = async (e) => {
     e.preventDefault();
     if (!validate()) return;
     setState('sending');
-    setTimeout(() => setState('sent'), 1200);
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: "fc588208-fc66-4999-a89e-817bbad05e1e",
+          subject: "New Restaurant Inquiry — Kurokaa",
+          from_name: form.name,
+          name: form.name,
+          email: form.email,
+          restaurant: form.restaurant,
+          role: form.role,
+          size: form.size,
+          message: form.message
+        })
+      });
+      const result = await response.json();
+      if (result.success) {
+        setState('sent');
+      } else {
+        setState('idle');
+        alert("Something went wrong. Please try again.");
+      }
+    } catch {
+      setState('idle');
+      alert("Network error. Please try again.");
+    }
   };
 
   return (
