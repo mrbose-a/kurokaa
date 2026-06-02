@@ -52,6 +52,7 @@
   }
 
   *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
   html, body { margin: 0; padding: 0; }
   body {
     font-family: var(--sans);
@@ -973,6 +974,43 @@
     color: var(--ink-mute);
   }
   .trust-sep { color: var(--rule-strong); user-select: none; }
+
+  /* REQUEST ACCESS — message capture */
+  .msg-scene { background: var(--paper-2); }
+  .msg-grid { display: grid; grid-template-columns: 0.9fr 1.2fr; gap: 80px; align-items: start; }
+  @media (max-width: 980px) { .msg-grid { grid-template-columns: 1fr; gap: 48px; } }
+  .msg-left h2 { font-family: var(--serif); font-weight: 500; font-size: clamp(40px, 5vw, 72px); line-height: 0.98; margin: 12px 0 0; letter-spacing: -0.02em; }
+  .msg-left h2 em { font-style: italic; color: var(--gold); }
+  .msg-left p { font-family: var(--serif); font-size: 20px; line-height: 1.45; color: var(--ink-soft); margin-top: 18px; }
+  .msg-left .quote { margin-top: 32px; padding: 22px 24px; border-left: 3px solid var(--gold); background: color-mix(in oklch, var(--paper) 60%, white); font-family: var(--serif); font-style: italic; color: var(--ink); font-size: 18px; line-height: 1.5; }
+  .msg-left .quote .who { display: block; margin-top: 12px; font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-mute); font-style: normal; }
+  .form-card { background: color-mix(in oklch, var(--paper) 50%, white); border: 1px solid var(--rule-strong); padding: 32px 32px 28px; border-radius: 6px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  @media (max-width: 640px) { .form-row { grid-template-columns: 1fr; } }
+  .field { display: flex; flex-direction: column; gap: 8px; margin-bottom: 18px; }
+  .field label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); display: flex; justify-content: space-between; align-items: center; }
+  .field label .count { color: var(--ink-mute); }
+  .field input, .field textarea, .field select { font-family: var(--sans); font-size: 15px; color: var(--ink); background: var(--paper); border: 1px solid var(--rule-strong); border-radius: 4px; padding: 12px 14px; outline: 0; transition: border-color .2s ease, box-shadow .2s ease; resize: vertical; }
+  .field input:focus, .field textarea:focus, .field select:focus { border-color: var(--gold); box-shadow: 0 0 0 4px var(--gold-soft); }
+  .field textarea { min-height: 130px; line-height: 1.5; }
+  .field.err input, .field.err textarea, .field.err select { border-color: #8B2A2A; }
+  .field .hint { font-family: var(--mono); font-size: 11px; color: var(--ink-mute); }
+  .field .err-msg { font-family: var(--mono); font-size: 11px; color: #8B2A2A; }
+  .role-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; padding: 8px 14px; border-radius: 999px; border: 1px solid var(--rule-strong); background: transparent; color: var(--ink-soft); cursor: pointer; transition: all .2s ease; }
+  .chip:hover { color: var(--ink); border-color: var(--ink); }
+  .chip[data-on="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .submit-row { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-top: 14px; }
+  .submit-row .privacy { font-family: var(--mono); font-size: 11px; color: var(--ink-mute); max-width: 280px; }
+  .submit-btn { background: var(--ink); color: var(--paper); border: 0; cursor: pointer; padding: 16px 28px; border-radius: 999px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; display: inline-flex; align-items: center; gap: 10px; transition: background .2s ease, transform .2s ease; }
+  .submit-btn:hover:not(:disabled) { background: var(--gold); }
+  .submit-btn:disabled { opacity: .75; cursor: progress; }
+  .submit-btn svg { width: 14px; height: 14px; }
+  .form-success { border: 1px solid var(--gold); background: color-mix(in oklch, var(--paper) 50%, white); padding: 32px; border-radius: 6px; text-align: center; }
+  .form-success h3 { font-family: var(--serif); font-weight: 500; font-size: 36px; margin: 8px 0 6px; letter-spacing: -0.01em; }
+  .form-success h3 em { color: var(--gold); font-style: italic; }
+  .form-success p { color: var(--ink-soft); font-family: var(--serif); font-size: 18px; margin: 0; }
+  .form-success .check { width: 48px; height: 48px; border-radius: 50%; background: var(--gold-soft); color: var(--gold); display: inline-grid; place-items: center; margin-bottom: 12px; }
 </style>
 </head>
 <body>
@@ -1002,7 +1040,6 @@
   <script type="text/babel" data-presets="react">
 const { useState, useEffect, useRef, useCallback, useMemo } = React;
 
-const REQUEST_ACCESS_URL = "index%20v1%20(waitlist).html#contact";
 const SIGNIN_URL = "https://app.kurokaa.com/signin";
 
 /* ============================ Icons ============================ */
@@ -1012,6 +1049,7 @@ const Icon = ({ name, size = 18 }) => {
     case 'arrow': return <svg {...p}><path d="M5 12h14" /><path d="m13 6 6 6-6 6" /></svg>;
     case 'arrowDown': return <svg {...p}><path d="M12 5v14" /><path d="m6 13 6 6 6-6" /></svg>;
     case 'flow': return <svg {...p}><path d="M4 12h16" /><path d="m14 6 6 6-6 6" /></svg>;
+    case 'check': return <svg {...p} strokeWidth="1.8"><path d="m5 12 5 5 9-11" /></svg>;
     default: return null;
   }
 };
@@ -1054,7 +1092,7 @@ function Nav({ active }) {
         </div>
         <div className="nav-actions">
           <a className="nav-signin" href={SIGNIN_URL}>Sign in</a>
-          <a className="nav-cta" href={REQUEST_ACCESS_URL}>Request Access<Icon name="arrow" size={12} /></a>
+          <a className="nav-cta" href="#contact">Request Access<Icon name="arrow" size={12} /></a>
         </div>
       </div>
     </nav>
@@ -1171,7 +1209,7 @@ function Hero() {
             </p>
 
             <div className="hero-ctas">
-              <a className="btn btn-primary" href={REQUEST_ACCESS_URL}>
+              <a className="btn btn-primary" href="#contact">
                 Request Access <Icon name="arrow" size={14} />
               </a>
               <button type="button" className="btn btn-ghost" onClick={() => scrollTo('rush')}>
@@ -1662,7 +1700,7 @@ function Pricing() {
               <span className="pricing-badge">No sales call</span>
             </div>
             <div className="pricing-cta-area">
-              <a className="btn btn-primary" href={REQUEST_ACCESS_URL} style={{ alignSelf: 'flex-start' }}>
+              <a className="btn btn-primary" href="#contact" style={{ alignSelf: 'flex-start' }}>
                 Request Access <Icon name="arrow" size={14} />
               </a>
             </div>
@@ -1683,7 +1721,7 @@ function Pricing() {
               <span className="pricing-badge">Everything included</span>
             </div>
             <div className="pricing-cta-area">
-              <a className="btn btn-ghost" href={REQUEST_ACCESS_URL} style={{ alignSelf: 'flex-start' }}>
+              <a className="btn btn-ghost" href="#contact" style={{ alignSelf: 'flex-start' }}>
                 Request Access <Icon name="arrow" size={14} />
               </a>
               <span className="pricing-footnote">
@@ -1742,7 +1780,7 @@ function ClosingCTA() {
             That continuity of operational judgment — <em>that's what Kurokaa builds.</em>
           </p>
           <div className="close-ctas">
-            <a className="btn btn-primary" href={REQUEST_ACCESS_URL}>
+            <a className="btn btn-primary" href="#contact">
               Request Access <Icon name="arrow" size={14} />
             </a>
             <a className="btn btn-ghost-light" href={SIGNIN_URL}>Sign in</a>
@@ -1780,7 +1818,7 @@ function Footer() {
             <a href="#nervous">Nervous system</a>
             <a href="#service">Built from service</a>
             <a href="#pricing">Pricing</a>
-            <a href={REQUEST_ACCESS_URL}>Request Access</a>
+            <a href="#contact">Request Access</a>
             <a href={SIGNIN_URL}>Sign in</a>
           </div>
           <div>
@@ -1805,6 +1843,135 @@ function Footer() {
         </div>
       </div>
     </footer>
+  );
+}
+
+/* ============================ Request Access (message capture) ============================ */
+const ROLES = ['Owner', 'Operator', 'Chef', 'Investor', 'Press', 'Curious'];
+const SIZES = ['1 outlet', '2–4 outlets', '5–10 outlets', '10+ outlets', 'Pre-opening'];
+
+function MessageCapture() {
+  const [form, setForm] = useState({ name: '', email: '', restaurant: '', role: 'Owner', size: '2–4 outlets', message: '' });
+  const [errors, setErrors] = useState({});
+  const [state, setState] = useState('idle');
+
+  const set = (k, v) => setForm((f) => ({ ...f, [k]: v }));
+
+  const validate = () => {
+    const e = {};
+    if (!form.name.trim()) e.name = 'Tell us what to call you.';
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = 'A real email, please.';
+    if (!form.message.trim() || form.message.trim().length < 12) e.message = 'A sentence or two — what should we know?';
+    setErrors(e);
+    return Object.keys(e).length === 0;
+  };
+
+  const submit = (e) => {
+    e.preventDefault();
+    if (!validate()) return;
+    setState('sending');
+    setTimeout(() => setState('sent'), 1200);
+  };
+
+  return (
+    <section className="scene msg-scene" id="contact">
+      <div className="wrap">
+        <div className="msg-grid">
+          <div className="msg-left">
+            <span className="eyebrow"><span className="dot" />Request Access</span>
+            <h2>Tell us about your <em>restaurant.</em></h2>
+            <p>
+              We're hand-picking the first cohort. If you run a kitchen — or are about to — we'd like to hear from you.
+              The more specific you are about where the operation hurts, the better the conversation.
+            </p>
+            <div className="quote">
+              "The owner shouldn't be the integration layer.
+              That's the whole reason we built this."
+              <span className="who">Abhishek Bose · Founder</span>
+            </div>
+          </div>
+
+          <div>
+            {state === 'sent' ? (
+              <div className="form-success">
+                <div className="check"><Icon name="check" size={22} /></div>
+                <h3>Message <em>received.</em></h3>
+                <p>Thanks, {form.name.split(' ')[0]}. We'll write back within two business days — usually faster.</p>
+              </div>
+            ) : (
+              <form className="form-card" onSubmit={submit} noValidate>
+                <div className="form-row">
+                  <div className={`field ${errors.name ? 'err' : ''}`}>
+                    <label htmlFor="f-name">Your name</label>
+                    <input id="f-name" type="text" value={form.name} onChange={(e) => set('name', e.target.value)} placeholder="Abhishek Bose" />
+                    {errors.name && <div className="err-msg">{errors.name}</div>}
+                  </div>
+                  <div className={`field ${errors.email ? 'err' : ''}`}>
+                    <label htmlFor="f-email">Email</label>
+                    <input id="f-email" type="email" value={form.email} onChange={(e) => set('email', e.target.value)} placeholder="you@your-restaurant.com" />
+                    {errors.email && <div className="err-msg">{errors.email}</div>}
+                  </div>
+                </div>
+
+                <div className="form-row">
+                  <div className="field">
+                    <label htmlFor="f-rest">Restaurant / Group <span style={{ color: 'var(--ink-mute)' }}>(optional)</span></label>
+                    <input id="f-rest" type="text" value={form.restaurant} onChange={(e) => set('restaurant', e.target.value)} placeholder="e.g. Park Plaza, Pan-Asian" />
+                  </div>
+                  <div className="field">
+                    <label htmlFor="f-size">Operation size</label>
+                    <select id="f-size" value={form.size} onChange={(e) => set('size', e.target.value)}>
+                      {SIZES.map((s) => <option key={s} value={s}>{s}</option>)}
+                    </select>
+                  </div>
+                </div>
+
+                <div className="field">
+                  <label>You are a…</label>
+                  <div className="role-chips" role="radiogroup">
+                    {ROLES.map((r) => (
+                      <button
+                        key={r}
+                        type="button"
+                        role="radio"
+                        aria-checked={form.role === r}
+                        className="chip"
+                        data-on={form.role === r}
+                        onClick={() => set('role', r)}>
+                        {r}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div className={`field ${errors.message ? 'err' : ''}`}>
+                  <label htmlFor="f-msg">
+                    What should we know?
+                    <span className="count">{form.message.length} / 600</span>
+                  </label>
+                  <textarea
+                    id="f-msg"
+                    value={form.message}
+                    onChange={(e) => set('message', e.target.value.slice(0, 600))}
+                    placeholder="The shift where everything broke. The metric you can't get to. The vacation you haven't taken. Any of it." />
+                  {errors.message
+                    ? <div className="err-msg">{errors.message}</div>
+                    : <div className="hint">We read every message. No CRM auto-responder, we promise.</div>}
+                </div>
+
+                <div className="submit-row">
+                  <div className="privacy">By submitting you agree we may write back. We don't sell data, ever.</div>
+                  <button className="submit-btn" type="submit" disabled={state === 'sending'}>
+                    {state === 'sending' ? 'Sending…' : 'Send message'}
+                    <Icon name="arrow" size={14} />
+                  </button>
+                </div>
+              </form>
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -1838,6 +2005,7 @@ function App() {
       <RealService />
       <Story />
       <Pricing />
+      <MessageCapture />
       <ClosingCTA />
       <Footer />
     </>
