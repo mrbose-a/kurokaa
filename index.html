@@ -1,24 +1,24 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Kurokaa — The agentic operating system for Indian restaurants</title>
-<meta name="description" content="Kurokaa is the agentic operating system built for Indian restaurants — automating operations, orders, and growth.">
+<title>Kurokaa â€” The agentic operating system for Indian restaurants</title>
+<meta name="description" content="Kurokaa is the agentic operating system built for Indian restaurants â€” automating operations, orders, and growth.">
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://kurokaa.com/">
-<meta property="og:title" content="Kurokaa — The agentic operating system for Indian restaurants">
-<meta property="og:description" content="Kurokaa is the agentic operating system built for Indian restaurants — automating operations, orders, and growth.">
+<meta property="og:title" content="Kurokaa â€” The agentic operating system for Indian restaurants">
+<meta property="og:description" content="Kurokaa is the agentic operating system built for Indian restaurants â€” automating operations, orders, and growth.">
 <meta property="og:image" content="https://kurokaa.com/assets/kurokaa-logo.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 
 <!-- Twitter / X -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Kurokaa — The agentic operating system for Indian restaurants">
-<meta name="twitter:description" content="Kurokaa is the agentic operating system built for Indian restaurants — automating operations, orders, and growth.">
+<meta name="twitter:title" content="Kurokaa â€” The agentic operating system for Indian restaurants">
+<meta name="twitter:description" content="Kurokaa is the agentic operating system built for Indian restaurants â€” automating operations, orders, and growth.">
 <meta name="twitter:image" content="https://kurokaa.com/assets/kurokaa-logo.png">
 
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -828,7 +828,7 @@
   }
   .auto-item:last-child, .auto-item:nth-last-child(2) { border-bottom: 0; }
   .auto-item::before {
-    content: '→';
+    content: 'â†’';
     font-family: var(--serif); font-style: italic; color: var(--gold);
     font-size: 18px; line-height: 1;
   }
@@ -939,7 +939,7 @@
     border-bottom: 1px dashed var(--rule);
   }
   .feat-item::before {
-    content: '→';
+    content: 'â†’';
     font-family: var(--serif); font-style: italic; color: var(--gold);
     font-size: 18px; line-height: 1; flex-shrink: 0;
   }
@@ -975,7 +975,7 @@
   }
   .trust-sep { color: var(--rule-strong); user-select: none; }
 
-  /* REQUEST ACCESS — message capture */
+  /* REQUEST ACCESS â€” message capture */
   .msg-scene { background: var(--paper-2); }
   .msg-grid { display: grid; grid-template-columns: 0.9fr 1.2fr; gap: 80px; align-items: start; }
   @media (max-width: 980px) { .msg-grid { grid-template-columns: 1fr; gap: 48px; } }
@@ -1027,7 +1027,7 @@
       </g>
       <circle cx="760" cy="490" r="14" fill="#B07A22" />
       <text x="600" y="600" text-anchor="middle" font-family="Cormorant Garamond, Times New Roman, serif" font-size="44" font-style="italic" fill="#0A0F22">Kurokaa</text>
-      <text x="600" y="650" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="14" letter-spacing="3" fill="#7D7C87">OPERATIONAL · NERVOUS · SYSTEM</text>
+      <text x="600" y="650" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="14" letter-spacing="3" fill="#7D7C87">OPERATIONAL Â· NERVOUS Â· SYSTEM</text>
     </svg>
   </template>
 
@@ -1099,37 +1099,37 @@ function Nav({ active }) {
   );
 }
 
-/* ============================ Hero — operational recommendations ============================ */
+/* ============================ Hero â€” operational recommendations ============================ */
 const OPS_STREAM = [
   {
     t: '21:14',
     text: <><b>Pause seating in Section B.</b> Kitchen needs 12 minutes to stabilise.</>,
-    why: 'Pass · 14 open tickets · pacing slipping'
+    why: 'Pass Â· 14 open tickets Â· pacing slipping'
   },
   {
     t: '21:11',
-    text: <><b>Stop orders for Butter Chicken</b> — stock running low. Suggest Murgh Lababdar to the floor.</>,
-    why: 'Inventory · 6 portions of gravy left'
+    text: <><b>Stop orders for Butter Chicken</b> â€” stock running low. Suggest Murgh Lababdar to the floor.</>,
+    why: 'Inventory Â· 6 portions of gravy left'
   },
   {
     t: '21:08',
     text: <><b>Bar backlog building.</b> Push non-cocktail tables first.</>,
-    why: 'Bar · 11 dockets · avg 7 min late'
+    why: 'Bar Â· 11 dockets Â· avg 7 min late'
   },
   {
     t: '21:05',
     text: <><b>Hold large-party firing.</b> Run two 2-tops first to clear the grill.</>,
-    why: 'Grill saturation 92% · 6-top arriving 21:18'
+    why: 'Grill saturation 92% Â· 6-top arriving 21:18'
   },
   {
     t: '21:02',
     text: <><b>Garnish station behind.</b> Pull Vikram from runner duty for 8 minutes.</>,
-    why: 'Floor pulse · garnish overload reported'
+    why: 'Floor pulse Â· garnish overload reported'
   },
   {
     t: '20:58',
-    text: <><b>Reroute covers from Table 12.</b> Server is six tickets deep — handoff to Anjali.</>,
-    why: 'Floor · table still unpaid · 41 min'
+    text: <><b>Reroute covers from Table 12.</b> Server is six tickets deep â€” handoff to Anjali.</>,
+    why: 'Floor Â· table still unpaid Â· 41 min'
   }
 ];
 
@@ -1155,14 +1155,14 @@ function HeroOps() {
       <div className="ops-head">
         <div className="left">
           <span className="live-dot" />
-          Live · Saturday dinner service
+          Live Â· Saturday dinner service
         </div>
         <div className="time">{clock} IST</div>
       </div>
       <div className="ops-list">
         {items.map((it, idx) => (
           <div key={it.t + idx} className="ops-item" data-fresh={idx === 0}>
-            <div className="ops-arr">→</div>
+            <div className="ops-arr">â†’</div>
             <div className="ops-body">
               {it.text}
               <span className="why">{it.why}</span>
@@ -1171,8 +1171,8 @@ function HeroOps() {
         ))}
       </div>
       <div className="ops-foot">
-        <span className="since">Operational calls only · not analytics</span>
-        <span>Cycle ↻ 5 min</span>
+        <span className="since">Operational calls only Â· not analytics</span>
+        <span>Cycle â†» 5 min</span>
       </div>
     </div>
   );
@@ -1196,7 +1196,7 @@ function Hero() {
       <div className="wrap">
         <div className="hero-grid">
           <div>
-            <span className="eyebrow"><span className="dot" />Operational nervous system · for restaurants</span>
+            <span className="eyebrow"><span className="dot" />Operational nervous system Â· for restaurants</span>
             <h1>
               The agentic<br />
               <em>operating system</em><br />
@@ -1228,8 +1228,8 @@ function Hero() {
             <div className="k">The system thinks ahead</div>
           </div>
           <div className="signal">
-            <div className="v">2–<em>3</em> calls</div>
-            <div className="k">Per cycle — not 30</div>
+            <div className="v">2â€“<em>3</em> calls</div>
+            <div className="k">Per cycle â€” not 30</div>
           </div>
           <div className="signal">
             <div className="v">One <em>brain</em></div>
@@ -1237,7 +1237,7 @@ function Hero() {
           </div>
           <div className="signal">
             <div className="v">Calls <em>first</em></div>
-            <div className="k">Dashboards support — they don't decide</div>
+            <div className="k">Dashboards support â€” they don't decide</div>
           </div>
         </div>
       </div>
@@ -1248,59 +1248,59 @@ function Hero() {
 /* ============================ Dinner rush ============================ */
 const SCENARIOS = [
   {
-    label: 'Saturday · 9:14 PM',
+    label: 'Saturday Â· 9:14 PM',
     pressure: 0.78,
     signals: [
-      { src: 'Pass',    t: 'Ticket trajectory deteriorating — 14 open, avg fire 9.4 min', lvl: 'hot',  lvlText: 'Hot' },
-      { src: 'Grill',   t: 'Grill saturation 92% — two 6-tops arriving in 4 min',          lvl: 'hot',  lvlText: 'Hot' },
-      { src: 'Garnish', t: 'Garnish overload — chef tapped twice in 90s',                  lvl: 'warm', lvlText: 'Warm' },
-      { src: 'Bar',     t: '11 dockets deep · avg 7 min late',                              lvl: 'warm', lvlText: 'Warm' },
+      { src: 'Pass',    t: 'Ticket trajectory deteriorating â€” 14 open, avg fire 9.4 min', lvl: 'hot',  lvlText: 'Hot' },
+      { src: 'Grill',   t: 'Grill saturation 92% â€” two 6-tops arriving in 4 min',          lvl: 'hot',  lvlText: 'Hot' },
+      { src: 'Garnish', t: 'Garnish overload â€” chef tapped twice in 90s',                  lvl: 'warm', lvlText: 'Warm' },
+      { src: 'Bar',     t: '11 dockets deep Â· avg 7 min late',                              lvl: 'warm', lvlText: 'Warm' },
       { src: 'Floor',   t: 'Two 6-tops + one walk-in 8-top queued for Section B',           lvl: 'hot',  lvlText: 'Hot' }
     ],
     interps: [
       <>Kitchen is <em>21 minutes</em> from equilibrium if no intervention.</>,
-      <>Section B will overrun the pass — three large parties land inside one fire window.</>,
+      <>Section B will overrun the pass â€” three large parties land inside one fire window.</>,
       <>Bar is the silent bottleneck. Drinks first buys the kitchen its recovery.</>
     ],
     calls: [
-      { body: <>Pause seating in Section B for 12 minutes.</>,        meta: 'Floor · until 21:26' },
-      { body: <>Serve drinks first on the new 8-top.</>,              meta: 'Bar · push priority' },
-      { body: <>Hold large-party firing until grill drops below 70%.</>, meta: 'Pass · in-shift hold' }
+      { body: <>Pause seating in Section B for 12 minutes.</>,        meta: 'Floor Â· until 21:26' },
+      { body: <>Serve drinks first on the new 8-top.</>,              meta: 'Bar Â· push priority' },
+      { body: <>Hold large-party firing until grill drops below 70%.</>, meta: 'Pass Â· in-shift hold' }
     ]
   },
   {
-    label: 'Friday · 8:42 PM',
+    label: 'Friday Â· 8:42 PM',
     pressure: 0.62,
     signals: [
-      { src: 'Demand',    t: 'Butter Chicken spike — 9 orders in last 11 min',           lvl: 'warm', lvlText: 'Warm' },
+      { src: 'Demand',    t: 'Butter Chicken spike â€” 9 orders in last 11 min',           lvl: 'warm', lvlText: 'Warm' },
       { src: 'Inventory', t: '6 portions of gravy remaining',                              lvl: 'hot',  lvlText: 'Hot' },
       { src: 'Floor',     t: 'Two walk-ins eyeing the same dish',                          lvl: 'warm', lvlText: 'Warm' },
       { src: 'Prep',      t: 'Next batch is 28 minutes out',                               lvl: 'hot',  lvlText: 'Hot' }
     ],
     interps: [
       <>Runway on Butter Chicken is <em>under 12 minutes</em> at current pace.</>,
-      <>Murgh Lababdar uses the same gravy base — cross-sell holds margin without the risk.</>
+      <>Murgh Lababdar uses the same gravy base â€” cross-sell holds margin without the risk.</>
     ],
     calls: [
-      { body: <>Stop orders for Butter Chicken — recommend Murgh Lababdar to the floor.</>, meta: 'Inventory · floor handoff' },
-      { body: <>Pre-fire the gravy batch one ticket early.</>,                              meta: 'Prep · 21:10' }
+      { body: <>Stop orders for Butter Chicken â€” recommend Murgh Lababdar to the floor.</>, meta: 'Inventory Â· floor handoff' },
+      { body: <>Pre-fire the gravy batch one ticket early.</>,                              meta: 'Prep Â· 21:10' }
     ]
   },
   {
-    label: 'Sunday · 1:48 PM',
+    label: 'Sunday Â· 1:48 PM',
     pressure: 0.45,
     signals: [
-      { src: 'Floor',  t: 'Runners disappearing — three tables waiting on water',      lvl: 'warm', lvlText: 'Warm' },
-      { src: 'Pass',   t: 'Three plates sitting on the pass · 90s+',                    lvl: 'hot',  lvlText: 'Hot' },
-      { src: 'Tables', t: 'Table 7 still unpaid · 41 min since dessert cleared',       lvl: 'warm', lvlText: 'Warm' }
+      { src: 'Floor',  t: 'Runners disappearing â€” three tables waiting on water',      lvl: 'warm', lvlText: 'Warm' },
+      { src: 'Pass',   t: 'Three plates sitting on the pass Â· 90s+',                    lvl: 'hot',  lvlText: 'Hot' },
+      { src: 'Tables', t: 'Table 7 still unpaid Â· 41 min since dessert cleared',       lvl: 'warm', lvlText: 'Warm' }
     ],
     interps: [
       <>Runner coverage has collapsed at the pass-to-floor handoff.</>,
       <>Heat lamp is the next thing to fail. Guest trust drops <em>fast</em> here.</>
     ],
     calls: [
-      { body: <>Pull Vikram from runner duty to the pass for 8 minutes.</>, meta: 'Floor · in-shift reroute' },
-      { body: <>Close Table 7. Server is six tickets deep — handoff to Anjali.</>, meta: 'Floor · handoff' }
+      { body: <>Pull Vikram from runner duty to the pass for 8 minutes.</>, meta: 'Floor Â· in-shift reroute' },
+      { body: <>Close Table 7. Server is six tickets deep â€” handoff to Anjali.</>, meta: 'Floor Â· handoff' }
     ]
   }
 ];
@@ -1320,7 +1320,7 @@ function DinnerRush() {
             <p>
               This is how the system thinks during service.
               Signals come in from pass, floor, bar and stations.
-              Kurokaa reads pressure, pacing and inventory — and surfaces the operational call before you have to ask.
+              Kurokaa reads pressure, pacing and inventory â€” and surfaces the operational call before you have to ask.
             </p>
           </div>
         </div>
@@ -1328,8 +1328,8 @@ function DinnerRush() {
         <div className="rush-stage">
           <div className="rush-meta">
             <div className="when">
-              <span>● {sc.label}</span>
-              <span>· Live shift view</span>
+              <span>â— {sc.label}</span>
+              <span>Â· Live shift view</span>
             </div>
             <div className="pressure">
               Kitchen pressure
@@ -1366,7 +1366,7 @@ function DinnerRush() {
               <div className="calls-list">
                 {sc.calls.map((c, i) => (
                   <div className="call" key={i}>
-                    <span className="arr">→</span>
+                    <span className="arr">â†’</span>
                     <div>
                       <div className="body">{c.body}</div>
                       <div className="meta">{c.meta}</div>
@@ -1378,7 +1378,7 @@ function DinnerRush() {
           </div>
 
           <div className="rush-foot">
-            <span>Predictive operational judgment · not reporting</span>
+            <span>Predictive operational judgment Â· not reporting</span>
             <div className="scenarios" role="tablist" aria-label="Scenarios">
               {SCENARIOS.map((s, i) => (
                 <button
@@ -1404,22 +1404,22 @@ const NS = [
     n: '01',
     h: <>Skeleton</>,
     lede: 'Every order. Every ticket. Every movement.',
-    body: 'Transactional reality from POS, inventory, payroll and service flow — reconciled in one place, every five minutes.',
-    tags: ['POS · live', 'Inventory · per-gram', 'Payroll · nightly close']
+    body: 'Transactional reality from POS, inventory, payroll and service flow â€” reconciled in one place, every five minutes.',
+    tags: ['POS Â· live', 'Inventory Â· per-gram', 'Payroll Â· nightly close']
   },
   {
     n: '02',
     h: <>Senses</>,
     lede: 'Your kitchen speaks in signals.',
-    body: 'One-tap operational pulses from the floor, pass, bar and stations. Your team taps once — the kitchen speaks. The system listens.',
+    body: 'One-tap operational pulses from the floor, pass, bar and stations. Your team taps once â€” the kitchen speaks. The system listens.',
     tags: ['Pass pulse', 'Floor pulse', 'Bar pulse', 'Station overload']
   },
   {
     n: '03',
     h: <>Judgment</>,
     lede: 'One recommendation. Operationally true.',
-    body: 'Kurokaa synthesises pressure, pacing, staffing and inventory into live operational decisions. Not 30 dashboards — 2 to 3 calls worth making, right now.',
-    tags: ['In-shift · live', 'Predictive · 12 min ahead', 'Calm under pressure']
+    body: 'Kurokaa synthesises pressure, pacing, staffing and inventory into live operational decisions. Not 30 dashboards â€” 2 to 3 calls worth making, right now.',
+    tags: ['In-shift Â· live', 'Predictive Â· 12 min ahead', 'Calm under pressure']
   }
 ];
 
@@ -1435,7 +1435,7 @@ function NervousSystem() {
           <div className="right">
             <p>
               Kurokaa combines transactional reality, human operational signals,
-              and AI judgment — into one steady mind that runs alongside your team.
+              and AI judgment â€” into one steady mind that runs alongside your team.
               This isn't software. It's infrastructure for how a restaurant decides.
             </p>
           </div>
@@ -1457,7 +1457,7 @@ function NervousSystem() {
 
         <div className="ns-closer">
           <h3 className="big">The feeling is <em>infrastructure.</em><br/>Not software.</h3>
-          <div className="small">Skeleton, senses, judgment — one continuous loop, every five minutes of service.</div>
+          <div className="small">Skeleton, senses, judgment â€” one continuous loop, every five minutes of service.</div>
         </div>
       </div>
     </section>
@@ -1499,7 +1499,7 @@ function Foundation() {
           </div>
           <div className="right">
             <p>
-              Kurokaa was built end-to-end for restaurant operations — from billing
+              Kurokaa was built end-to-end for restaurant operations â€” from billing
               and inventory to payroll, menu intelligence, and live operational judgment.
               This is not an AI layer added later. <em style={{ color: 'var(--gold)', fontStyle: 'italic' }}>The intelligence is native to the system.</em>
             </p>
@@ -1521,7 +1521,7 @@ function Foundation() {
               </div>
               {i < LAYERS.length - 1 && (
                 <div className="found-arrow" aria-hidden="true">
-                  <span className="line" /><span className="chev">↓</span><span className="line bot" />
+                  <span className="line" /><span className="chev">â†“</span><span className="line bot" />
                 </div>
               )}
             </React.Fragment>
@@ -1532,7 +1532,7 @@ function Foundation() {
           <div>
             <span className="eyebrow eye-row"><span className="dot" />Onboarding</span>
             <h3>Upload your menu <em>once.</em></h3>
-            <p className="sub">Kurokaa ingests it and automatically builds the operational substrate — so intelligence starts working from day one.</p>
+            <p className="sub">Kurokaa ingests it and automatically builds the operational substrate â€” so intelligence starts working from day one.</p>
           </div>
           <div className="auto-list">
             {AUTO_BUILDS.map((a) => <div className="auto-item" key={a}>{a}</div>)}
@@ -1549,7 +1549,7 @@ const MOMENTS = [
   { t: '20:58', text: <>Fryer saturation. The next basket is the one that breaks the pacing.</>, pos: 'Fryer' },
   { t: '21:03', text: <>Garnish station behind. The chef taps twice without looking up.</>, pos: 'Garnish' },
   { t: '21:09', text: <>Runners disappear at exactly the wrong second.</>, pos: 'Floor' },
-  { t: '21:14', text: <>Two 6-tops arrive together. The pass goes quiet — that's the bad kind of quiet.</>, pos: 'Pass' },
+  { t: '21:14', text: <>Two 6-tops arrive together. The pass goes quiet â€” that's the bad kind of quiet.</>, pos: 'Pass' },
   { t: '21:22', text: <>Table 12 is still unpaid, forty-one minutes after dessert cleared.</>, pos: 'Tables' },
   { t: '21:28', text: <>The grill recovers. Nobody notices. That's how you know it worked.</>, pos: 'Grill' }
 ];
@@ -1576,14 +1576,14 @@ function RealService() {
           <div className="rs-copy">
             <p>
               The hardest part of service isn't the cooking.
-              It's the <em>continuous, invisible judgment</em> — pacing, sequencing, recovery — that keeps a room from tipping.
+              It's the <em>continuous, invisible judgment</em> â€” pacing, sequencing, recovery â€” that keeps a room from tipping.
             </p>
             <p>
               We built Kurokaa around moments any operator instantly recognises.
               Not slogans. Not abstractions. The 20-second windows where a service either holds or unravels.
             </p>
             <div className="close">
-              Kurokaa makes those moments visible — and the right decision <em>instant.</em>
+              Kurokaa makes those moments visible â€” and the right decision <em>instant.</em>
             </div>
           </div>
 
@@ -1615,20 +1615,20 @@ function Story() {
           <div className="right">
             <p>
               Kurokaa wasn't born in a sterile boardroom.
-              It was built in the whites — by a chef who learned to code because the kitchen's brain was still stuck in the 90s.
+              It was built in the whites â€” by a chef who learned to code because the kitchen's brain was still stuck in the 90s.
             </p>
           </div>
         </div>
 
         <div className="story-layout">
           <figure className="story-figure" aria-hidden="true">
-            <div className="figure-glyph"><span>Kuro</span><span className="acc">·</span><span>kaa</span></div>
+            <div className="figure-glyph"><span>Kuro</span><span className="acc">Â·</span><span>kaa</span></div>
             <div className="figure-tag">
               <span>Kolkata, IN</span>
               <span>Est. service</span>
             </div>
             <figcaption className="figure-cap">
-              <b>Abhishek Bose</b> · Chef → full-stack → operational AI
+              <b>Abhishek Bose</b> Â· Chef â†’ full-stack â†’ operational AI
             </figcaption>
           </figure>
 
@@ -1638,17 +1638,17 @@ function Story() {
                 <b>Abhishek Bose</b> spent years in the whites as a professional chef in Pan-Asian kitchens before trading the ladle for the keyboard. As a full-stack developer and AI evaluator, he kept hitting the same wall: while the equipment had evolved, the <em>brain of the restaurant</em> was still stuck in the 90s.
               </p>
               <p>
-                Reports came in three days late. Inventory was a guess. The owner was the integration layer — and the moment they stepped out of the building, the operation started to drift.
+                Reports came in three days late. Inventory was a guess. The owner was the integration layer â€” and the moment they stepped out of the building, the operation started to drift.
               </p>
               <p>
-                Kurokaa is the partner he wishes he had. A system that doesn't record history — it helps you write it.
+                Kurokaa is the partner he wishes he had. A system that doesn't record history â€” it helps you write it.
                 Built with the grit of a 19-hour shift and the precision of agentic AI, so the restaurant <em>keeps thinking</em> when you're not physically there.
               </p>
             </div>
 
             <div className="story-meta">
               <div className="kv"><div className="k">Founder</div><div className="v">Abhishek Bose</div></div>
-              <div className="kv"><div className="k">Background</div><div className="v">Chef · Full-stack dev</div></div>
+              <div className="kv"><div className="k">Background</div><div className="v">Chef Â· Full-stack dev</div></div>
               <div className="kv"><div className="k">Home base</div><div className="v">Kolkata, India</div></div>
               <div className="kv"><div className="k">Built since</div><div className="v">2026</div></div>
             </div>
@@ -1683,7 +1683,7 @@ function Pricing() {
             <p>
               Run Kurokaa free for 30 days with full access to every feature.
               No credit card. No sales call. No setup fee.
-              After your trial, recharge only when you want to continue —
+              After your trial, recharge only when you want to continue â€”
               your data stays yours, always.
             </p>
           </div>
@@ -1691,7 +1691,7 @@ function Pricing() {
 
         <div className="pricing-layout">
           <div className="pricing-card">
-            <div className="pricing-plan-label">Free Trial · 30 Days</div>
+            <div className="pricing-plan-label">Free Trial Â· 30 Days</div>
             <h3 className="pricing-headline"><em>30 days.</em><br />Full access.</h3>
             <p className="pricing-sub">Everything switched on from day one. No credit card. No sales call. No setup fee.</p>
             <div className="pricing-badges">
@@ -1707,16 +1707,16 @@ function Pricing() {
           </div>
 
           <div className="pricing-card featured">
-            <div className="pricing-plan-label">After Trial · Per Location</div>
+            <div className="pricing-plan-label">After Trial Â· Per Location</div>
             <div className="pricing-amount">
-              <span className="price-currency">₹</span>
+              <span className="price-currency">â‚¹</span>
               <span className="price-value">999</span>
               <span className="price-per">per location<br />every 30 days</span>
             </div>
             <p className="pricing-footnote" style={{ marginTop: '-8px' }}>Inclusive of applicable taxes</p>
             <p className="pricing-sub">Recharge when your restaurant is active and growing. No auto-debit. No lock-in. No surprises.</p>
             <div className="pricing-badges">
-              <span className="pricing-badge">Per location · up to 3 locations</span>
+              <span className="pricing-badge">Per location Â· up to 3 locations</span>
               <span className="pricing-badge hi">No auto-renewal</span>
               <span className="pricing-badge">Everything included</span>
             </div>
@@ -1725,14 +1725,14 @@ function Pricing() {
                 Request Access <Icon name="arrow" size={14} />
               </a>
               <span className="pricing-footnote">
-                Your location access may expire — your operational data stays safe and accessible after recharge.
+                Your location access may expire â€” your operational data stays safe and accessible after recharge.
               </span>
             </div>
           </div>
         </div>
 
         <div className="features-block">
-          <div className="features-eyebrow">Everything included · No feature gating</div>
+          <div className="features-eyebrow">Everything included Â· No feature gating</div>
           <div className="features-grid">
             {FEATURES.map((f) => (
               <div className="feat-item" key={f}>{f}</div>
@@ -1742,24 +1742,24 @@ function Pricing() {
 
         <div className="enterprise-callout">
           <div>
-            <div className="ec-num">Enterprise · More than 3 Locations</div>
+            <div className="ec-num">Enterprise Â· More than 3 Locations</div>
             <h4>Restaurant groups &amp; multi-location operators</h4>
-            <p>Custom enterprise workflows, integrations, and operational deployments. Special rates apply — let's scope your project first.</p>
+            <p>Custom enterprise workflows, integrations, and operational deployments. Special rates apply â€” let's scope your project first.</p>
           </div>
-          <a className="btn btn-ghost" href="mailto:hello.kurokaa@gmail.com">
-            hello.kurokaa@gmail.com <Icon name="arrow" size={14} />
+          <a className="btn btn-ghost" href="mailto:hello@kurokaa.com">
+            hello@kurokaa.com <Icon name="arrow" size={14} />
           </a>
         </div>
 
         <div className="trust-strip">
           <span>Secure payments via Razorpay</span>
-          <span className="trust-sep">·</span>
+          <span className="trust-sep">Â·</span>
           <span>No auto-renewal</span>
-          <span className="trust-sep">·</span>
+          <span className="trust-sep">Â·</span>
           <span>GST-ready</span>
-          <span className="trust-sep">·</span>
+          <span className="trust-sep">Â·</span>
           <span>Built in India for Indian restaurants</span>
-          <span className="trust-sep">·</span>
+          <span className="trust-sep">Â·</span>
           <span>GSTIN: 19BAJPB6981R1ZS</span>
         </div>
       </div>
@@ -1777,7 +1777,7 @@ function ClosingCTA() {
           <h2>Your kitchen has a <em>brain</em> now.</h2>
           <p className="lede">
             The restaurant should still make intelligent decisions when you're not physically there.
-            That continuity of operational judgment — <em>that's what Kurokaa builds.</em>
+            That continuity of operational judgment â€” <em>that's what Kurokaa builds.</em>
           </p>
           <div className="close-ctas">
             <a className="btn btn-primary" href="#contact">
@@ -1830,12 +1830,12 @@ function Footer() {
           </div>
           <div>
             <h4>Reach us</h4>
-            <a href="mailto:hello.kurokaa@gmail.com">hello.kurokaa@gmail.com</a>
+            <a href="mailto:hello@kurokaa.com">hello@kurokaa.com</a>
             <a href="#story">Founder</a>
           </div>
         </div>
         <div className="foot-bottom">
-          <div>© 2026 Kurokaa™ — All rights reserved.</div>
+          <div>Â© 2026 Kurokaaâ„¢ â€” All rights reserved.</div>
           <div className="right">
             <span>Operational, not promotional.</span>
             <span>Made in India</span>
@@ -1848,10 +1848,10 @@ function Footer() {
 
 /* ============================ Request Access (message capture) ============================ */
 const ROLES = ['Owner', 'Operator', 'Chef', 'Investor', 'Press', 'Curious'];
-const SIZES = ['1 outlet', '2–4 outlets', '5–10 outlets', '10+ outlets', 'Pre-opening'];
+const SIZES = ['1 outlet', '2â€“4 outlets', '5â€“10 outlets', '10+ outlets', 'Pre-opening'];
 
 function MessageCapture() {
-  const [form, setForm] = useState({ name: '', email: '', restaurant: '', role: 'Owner', size: '2–4 outlets', message: '' });
+  const [form, setForm] = useState({ name: '', email: '', restaurant: '', role: 'Owner', size: '2â€“4 outlets', message: '' });
   const [errors, setErrors] = useState({});
   const [state, setState] = useState('idle');
 
@@ -1861,7 +1861,7 @@ function MessageCapture() {
     const e = {};
     if (!form.name.trim()) e.name = 'Tell us what to call you.';
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = 'A real email, please.';
-    if (!form.message.trim() || form.message.trim().length < 12) e.message = 'A sentence or two — what should we know?';
+    if (!form.message.trim() || form.message.trim().length < 12) e.message = 'A sentence or two â€” what should we know?';
     setErrors(e);
     return Object.keys(e).length === 0;
   };
@@ -1881,13 +1881,13 @@ function MessageCapture() {
             <span className="eyebrow"><span className="dot" />Request Access</span>
             <h2>Tell us about your <em>restaurant.</em></h2>
             <p>
-              We're hand-picking the first cohort. If you run a kitchen — or are about to — we'd like to hear from you.
+              We're hand-picking the first cohort. If you run a kitchen â€” or are about to â€” we'd like to hear from you.
               The more specific you are about where the operation hurts, the better the conversation.
             </p>
             <div className="quote">
               "The owner shouldn't be the integration layer.
               That's the whole reason we built this."
-              <span className="who">Abhishek Bose · Founder</span>
+              <span className="who">Abhishek Bose Â· Founder</span>
             </div>
           </div>
 
@@ -1896,7 +1896,7 @@ function MessageCapture() {
               <div className="form-success">
                 <div className="check"><Icon name="check" size={22} /></div>
                 <h3>Message <em>received.</em></h3>
-                <p>Thanks, {form.name.split(' ')[0]}. We'll write back within two business days — usually faster.</p>
+                <p>Thanks, {form.name.split(' ')[0]}. We'll write back within two business days â€” usually faster.</p>
               </div>
             ) : (
               <form className="form-card" onSubmit={submit} noValidate>
@@ -1927,7 +1927,7 @@ function MessageCapture() {
                 </div>
 
                 <div className="field">
-                  <label>You are a…</label>
+                  <label>You are aâ€¦</label>
                   <div className="role-chips" role="radiogroup">
                     {ROLES.map((r) => (
                       <button
@@ -1962,7 +1962,7 @@ function MessageCapture() {
                 <div className="submit-row">
                   <div className="privacy">By submitting you agree we may write back. We don't sell data, ever.</div>
                   <button className="submit-btn" type="submit" disabled={state === 'sending'}>
-                    {state === 'sending' ? 'Sending…' : 'Send message'}
+                    {state === 'sending' ? 'Sendingâ€¦' : 'Send message'}
                     <Icon name="arrow" size={14} />
                   </button>
                 </div>
