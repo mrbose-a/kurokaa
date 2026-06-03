@@ -1,0 +1,14 @@
+/favicon.ico
+  Cache-Control: public, max-age=3600, must-revalidate
+
+/favicon-*.png
+  Cache-Control: public, max-age=3600, must-revalidate
+
+/apple-touch-icon.png
+  Cache-Control: public, max-age=3600, must-revalidate
+
+/android-chrome-*.png
+  Cache-Control: public, max-age=3600, must-revalidate
+
+/manifest.json
+  Cache-Control: public, max-age=3600, must-revalidate
