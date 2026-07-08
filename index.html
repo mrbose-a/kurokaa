@@ -160,7 +160,6 @@
     color: var(--ink);
     text-decoration: none;
     transition: color .2s ease;
-    display: none; /* temporarily hidden */
   }
   .nav-signin:hover { color: var(--gold); }
   .nav-cta {
@@ -373,16 +372,20 @@
   .shots-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
   @media (max-width: 980px) { .shots-grid { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 640px) { .shots-grid { grid-template-columns: 1fr; } }
-  .shot-placeholder {
-    aspect-ratio: 16 / 10;
-    border: 1px dashed var(--rule-strong);
+  .shot-card { display: flex; flex-direction: column; gap: 12px; }
+  .shot-frame {
+    aspect-ratio: 16 / 9;
+    border: 1px solid var(--rule-strong);
     border-radius: 12px;
     background: var(--color-raised);
-    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
-    text-align: center; padding: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.35);
   }
-  .shot-placeholder .name { font-family: var(--serif); font-style: italic; font-size: 20px; color: var(--ink); }
-  .shot-placeholder .tag { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-mute); }
+  .shot-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .shot-label {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-soft); text-align: center;
+  }
 
   /* DINNER RUSH */
   .rush-scene { background: var(--color-surface); color: var(--color-ink); overflow: hidden; }
@@ -984,7 +987,8 @@
   <script type="text/babel" data-presets="react">
 const { useState, useEffect, useRef, useCallback, useMemo } = React;
 
-const SIGNIN_URL = "https://app.kurokaa.com/signin";
+const SIGNIN_URL = "https://app.kurokaa.com/login";
+const SIGNUP_URL = "https://app.kurokaa.com/signup";
 const WEB3FORM_KEY = "fc588208-fc66-4999-a89e-817bbad05e1e";
 
 /* ============================ Icons ============================ */
@@ -1037,7 +1041,7 @@ function Nav({ active }) {
         </div>
         <div className="nav-actions">
           <a className="nav-signin" href={SIGNIN_URL}>Sign in</a>
-          <a className="nav-cta" href="#contact">Request Access<Icon name="arrow" size={12} /></a>
+          <a className="nav-cta" href={SIGNUP_URL}>Sign up<Icon name="arrow" size={12} /></a>
         </div>
       </div>
     </nav>
@@ -1153,7 +1157,7 @@ function Hero() {
             </p>
 
             <div className="hero-ctas">
-              <a className="btn btn-primary" href="#contact">
+              <a className="btn btn-primary" href={SIGNUP_URL}>
                 Start Free for 30 Days <Icon name="arrow" size={14} />
               </a>
               <button type="button" className="btn btn-ghost" onClick={() => scrollTo('rush')}>
@@ -1621,8 +1625,8 @@ function Pricing() {
               <span className="pricing-badge">No sales call</span>
             </div>
             <div className="pricing-cta-area">
-              <a className="btn btn-primary" href="#contact" style={{ alignSelf: 'flex-start' }}>
-                Request Access <Icon name="arrow" size={14} />
+              <a className="btn btn-primary" href={SIGNUP_URL} style={{ alignSelf: 'flex-start' }}>
+                Start Free for 30 Days <Icon name="arrow" size={14} />
               </a>
             </div>
           </div>
@@ -1642,8 +1646,8 @@ function Pricing() {
               <span className="pricing-badge">Everything included</span>
             </div>
             <div className="pricing-cta-area">
-              <a className="btn btn-ghost" href="#contact" style={{ alignSelf: 'flex-start' }}>
-                Request Access <Icon name="arrow" size={14} />
+              <a className="btn btn-ghost" href={SIGNUP_URL} style={{ alignSelf: 'flex-start' }}>
+                Start Free for 30 Days <Icon name="arrow" size={14} />
               </a>
               <span className="pricing-footnote">
                 Your location access may expire — your operational data stays safe and accessible after recharge.
@@ -1692,7 +1696,14 @@ function Pricing() {
 }
 
 /* ============================ Screenshots (product previews) ============================ */
-const SHOTS = ['Dashboard', 'POS Billing', 'Kitchen Display', 'Inventory', 'Purchases', 'Reports'];
+const SHOTS = [
+  { file: 'dashboard', label: 'Dashboard' },
+  { file: 'pos', label: 'POS Billing' },
+  { file: 'kitchen-display', label: 'Kitchen Display' },
+  { file: 'inventory', label: 'Inventory' },
+  { file: 'purchases', label: 'Purchases' },
+  { file: 'reports', label: 'Reports' }
+];
 
 function Screenshots() {
   return (
@@ -1709,10 +1720,12 @@ function Screenshots() {
         </div>
         <div className="shots-grid">
           {SHOTS.map((s) => (
-            <div className="shot-placeholder" key={s}>
-              <span className="name">{s}</span>
-              <span className="tag">Screenshot pending</span>
-            </div>
+            <figure className="shot-card" key={s.file}>
+              <div className="shot-frame">
+                <img src={`assets/screenshots/${s.file}.png`} alt={`Kurokaa ${s.label} screen`} loading="lazy" />
+              </div>
+              <figcaption className="shot-label">{s.label}</figcaption>
+            </figure>
           ))}
         </div>
       </div>
@@ -1733,8 +1746,8 @@ function ClosingCTA() {
             That continuity of operational judgment — <em>that's what Kurokaa builds.</em>
           </p>
           <div className="close-ctas">
-            <a className="btn btn-primary" href="#contact">
-              Request Access <Icon name="arrow" size={14} />
+            <a className="btn btn-primary" href={SIGNUP_URL}>
+              Start Free for 30 Days <Icon name="arrow" size={14} />
             </a>
             <a className="btn btn-ghost-light" href={SIGNIN_URL} style={{display:'none'}}>Sign in</a>
           </div>
