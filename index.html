@@ -380,12 +380,59 @@
     background: var(--color-raised);
     overflow: hidden;
     box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+    display: block;
+    width: 100%;
+    padding: 0;
+    appearance: none;
+    cursor: pointer;
+    transition: border-color 0.15s ease;
   }
-  .shot-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .shot-frame:hover, .shot-frame:focus-visible { border-color: var(--gold); }
+  .shot-frame img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.2s ease; }
+  .shot-frame:hover img { transform: scale(1.03); }
   .shot-label {
     font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
     color: var(--ink-soft); text-align: center;
   }
+
+  /* SCREENSHOT LIGHTBOX */
+  .shot-lightbox {
+    position: fixed; inset: 0; z-index: 200;
+    background: rgba(6,11,18,0.92);
+    backdrop-filter: blur(4px);
+    display: flex; align-items: center; justify-content: center; flex-direction: column;
+    padding: 72px 24px 40px;
+    cursor: zoom-out;
+    animation: shotFadeIn 0.15s ease;
+  }
+  @keyframes shotFadeIn { from { opacity: 0; } to { opacity: 1; } }
+  .shot-lightbox-img {
+    max-width: min(1100px, 92vw);
+    max-height: 78vh;
+    width: auto; height: auto;
+    border-radius: 12px;
+    border: 1px solid var(--rule-strong);
+    box-shadow: 0 24px 64px rgba(0,0,0,0.55);
+    cursor: default;
+  }
+  .shot-lightbox-label {
+    margin-top: 18px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-soft); cursor: default;
+  }
+  .shot-lightbox-close {
+    position: fixed; top: 24px; right: 24px;
+    width: 44px; height: 44px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 50%;
+    border: 1px solid var(--rule-strong);
+    background: var(--paper-3);
+    color: var(--ink);
+    cursor: pointer;
+    appearance: none;
+    transition: background 0.15s ease, border-color 0.15s ease;
+  }
+  .shot-lightbox-close:hover, .shot-lightbox-close:focus-visible { background: var(--paper-2); border-color: var(--gold); }
 
   /* DINNER RUSH */
   .rush-scene { background: var(--color-surface); color: var(--color-ink); overflow: hidden; }
@@ -999,6 +1046,7 @@ const Icon = ({ name, size = 18 }) => {
     case 'arrowDown': return <svg {...p}><path d="M12 5v14" /><path d="m6 13 6 6 6-6" /></svg>;
     case 'flow': return <svg {...p}><path d="M4 12h16" /><path d="m14 6 6 6-6 6" /></svg>;
     case 'check': return <svg {...p} strokeWidth="1.8"><path d="m5 12 5 5 9-11" /></svg>;
+    case 'close': return <svg {...p} strokeWidth="1.8"><path d="M6 6l12 12" /><path d="M18 6 6 18" /></svg>;
     default: return null;
   }
 };
@@ -1152,7 +1200,7 @@ function Hero() {
               <em>after everyone.</em>
             </h1>
             <p className="lede">
-              Billing, inventory, kitchen, purchases, staff, and daily operations &mdash;
+              Billing, inventory, kitchen, purchases, staff, guests, and daily operations &mdash;
               all in one system built for Indian restaurants.
             </p>
 
@@ -1199,7 +1247,8 @@ const PROBLEMS = [
   { q: 'Owner stuck at the restaurant every day?', a: "See what's happening from anywhere." },
   { q: 'Kitchen and floor blaming each other?', a: 'Everyone works from the same live information.' },
   { q: 'Food cost keeps increasing?', a: 'Recipes, purchases, and inventory stay connected automatically.' },
-  { q: 'End-of-day reports never match?', a: 'Daily reconciliation happens in one place.' }
+  { q: 'End-of-day reports never match?', a: 'Daily reconciliation happens in one place.' },
+  { q: "Your best server quits — and takes every regular's order history with them?", a: "Kurokaa remembers every guest's visits, favourites, and allergies. The restaurant never forgets." }
 ];
 
 function Problems() {
@@ -1416,6 +1465,7 @@ function NervousSystem() {
 /* ============================ Foundation (what's inside) ============================ */
 const INSIDE_FEATURES = [
   'POS Billing',
+  'Guest Management',
   'Kitchen Display',
   'Inventory',
   'Purchase Management',
@@ -1698,6 +1748,7 @@ function Pricing() {
 /* ============================ Screenshots (product previews) ============================ */
 const SHOTS = [
   { file: 'dashboard', label: 'Dashboard' },
+  { file: 'guest-profile', label: 'Guests' },
   { file: 'pos', label: 'POS Billing' },
   { file: 'kitchen-display', label: 'Kitchen Display' },
   { file: 'inventory', label: 'Inventory' },
@@ -1706,6 +1757,22 @@ const SHOTS = [
 ];
 
 function Screenshots() {
+  const [openIdx, setOpenIdx] = useState(null);
+
+  useEffect(() => {
+    if (openIdx === null) return;
+    const onKey = (e) => { if (e.key === 'Escape') setOpenIdx(null); };
+    document.addEventListener('keydown', onKey);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [openIdx]);
+
+  const active = openIdx !== null ? SHOTS[openIdx] : null;
+
   return (
     <section className="scene" id="product">
       <div className="wrap">
@@ -1719,16 +1786,31 @@ function Screenshots() {
           </div>
         </div>
         <div className="shots-grid">
-          {SHOTS.map((s) => (
+          {SHOTS.map((s, i) => (
             <figure className="shot-card" key={s.file}>
-              <div className="shot-frame">
+              <button type="button" className="shot-frame" onClick={() => setOpenIdx(i)} aria-label={`Expand ${s.label} screenshot`}>
                 <img src={`assets/screenshots/${s.file}.png`} alt={`Kurokaa ${s.label} screen`} loading="lazy" />
-              </div>
+              </button>
               <figcaption className="shot-label">{s.label}</figcaption>
             </figure>
           ))}
         </div>
       </div>
+
+      {active && (
+        <div className="shot-lightbox" onClick={() => setOpenIdx(null)}>
+          <button type="button" className="shot-lightbox-close" onClick={() => setOpenIdx(null)} aria-label="Close">
+            <Icon name="close" size={18} />
+          </button>
+          <img
+            className="shot-lightbox-img"
+            src={`assets/screenshots/${active.file}.png`}
+            alt={`Kurokaa ${active.label} screen`}
+            onClick={(e) => e.stopPropagation()}
+          />
+          <div className="shot-lightbox-label" onClick={(e) => e.stopPropagation()}>{active.label}</div>
+        </div>
+      )}
     </section>
   );
 }
