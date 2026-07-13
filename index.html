@@ -1100,7 +1100,7 @@ function Nav({ active }) {
 const OPS_STREAM = [
   {
     t: '21:14',
-    text: <><b>Pause seating in Section B.</b> Kitchen needs 12 minutes to stabilise.</>,
+    text: <><b>Slow new walk-ins at the door.</b> Kitchen needs a few minutes to stabilise.</>,
     why: 'Pass · 14 open tickets · pacing slipping'
   },
   {
@@ -1115,13 +1115,13 @@ const OPS_STREAM = [
   },
   {
     t: '21:05',
-    text: <><b>Hold large-party firing.</b> Run two 2-tops first to clear the grill.</>,
-    why: 'Grill saturation 92% · 6-top arriving 21:18'
+    text: <><b>Hold large-party firing until pressure eases.</b> Run two 2-tops first.</>,
+    why: 'Kitchen pressure tapped High by the pass · 6-top arriving 21:18'
   },
   {
     t: '21:02',
     text: <><b>Garnish station behind.</b> Pull Vikram from runner duty for 8 minutes.</>,
-    why: 'Floor pulse · garnish overload reported'
+    why: 'Station pulse · garnish overload reported'
   },
   {
     t: '20:58',
@@ -1148,11 +1148,11 @@ function HeroOps() {
   }, []);
 
   return (
-    <div className="ops-card" aria-label="Live operational recommendations">
+    <div className="ops-card" aria-label="Example operational recommendations">
       <div className="ops-head">
         <div className="left">
           <span className="live-dot" />
-          Live · Saturday dinner service
+          How Kurokaa reads a rush · Saturday dinner service
         </div>
         <div className="time">{clock} IST</div>
       </div>
@@ -1168,7 +1168,7 @@ function HeroOps() {
         ))}
       </div>
       <div className="ops-foot">
-        <span className="since">Operational calls only · not analytics</span>
+        <span className="since">Operational calls only · not analytics · read by Kurokaa, confirmed by your team</span>
         <span>Cycle ↻ 5 min</span>
       </div>
     </div>
@@ -1284,20 +1284,20 @@ const SCENARIOS = [
     pressure: 0.78,
     signals: [
       { src: 'Pass',    t: 'Ticket trajectory deteriorating — 14 open, avg fire 9.4 min', lvl: 'hot',  lvlText: 'Hot' },
-      { src: 'Grill',   t: 'Grill saturation 92% — two 6-tops arriving in 4 min',          lvl: 'hot',  lvlText: 'Hot' },
+      { src: 'Grill',   t: 'Pressure tapped High · two 6-tops arriving in 4 min',      lvl: 'hot',  lvlText: 'Hot' },
       { src: 'Garnish', t: 'Garnish overload — chef tapped twice in 90s',                  lvl: 'warm', lvlText: 'Warm' },
       { src: 'Bar',     t: '11 dockets deep · avg 7 min late',                              lvl: 'warm', lvlText: 'Warm' },
-      { src: 'Floor',   t: 'Two 6-tops + one walk-in 8-top queued for Section B',           lvl: 'hot',  lvlText: 'Hot' }
+      { src: 'FOH',     t: 'FOH pulse: guest queue building at the door',                   lvl: 'hot',  lvlText: 'Hot' }
     ],
     interps: [
-      <>Kitchen is <em>21 minutes</em> from equilibrium if no intervention.</>,
-      <>Section B will overrun the pass — three large parties land inside one fire window.</>,
+      <>Kitchen won't recover on its own &mdash; the bar has to clear first.</>,
+      <>Guests are queuing faster than tables are turning.</>,
       <>Bar is the silent bottleneck. Drinks first buys the kitchen its recovery.</>
     ],
     calls: [
-      { body: <>Pause seating in Section B for 12 minutes.</>,        meta: 'Floor · until 21:26' },
-      { body: <>Serve drinks first on the new 8-top.</>,              meta: 'Bar · push priority' },
-      { body: <>Hold large-party firing until grill drops below 70%.</>, meta: 'Pass · in-shift hold' }
+      { body: <>Slow new walk-ins at the door for a few minutes.</>,  meta: 'FOH · flagged' },
+      { body: <>Serve drinks first on the new 8-top.</>,              meta: 'Bar · flagged priority' },
+      { body: <>Hold large-party firing until pressure eases.</>,     meta: 'Pass · flagged, in-shift' }
     ]
   },
   {
@@ -1360,7 +1360,7 @@ function DinnerRush() {
           <div className="rush-meta">
             <div className="when">
               <span>&bull; {sc.label}</span>
-              <span>· Live shift view</span>
+              <span>· Built from real service pulses</span>
             </div>
             <div className="pressure">
               Kitchen pressure
@@ -1638,6 +1638,7 @@ function Story() {
 const FEATURES = [
   'POS transaction recording',
   'Inventory & purchase tracking',
+  'Guest management & history',
   'AI-assisted operational insights',
   'Staff and service pulse tools',
   'WhatsApp-ready customer receipts',
