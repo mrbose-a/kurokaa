@@ -357,8 +357,8 @@
   .demo-scene .wrap { display: flex; flex-direction: column; align-items: center; gap: 56px; }
   .btn-sm { padding: 10px 20px; }
 
-  /* reuse the site's shared .section-head (see PROBLEMS/SCREENSHOTS) instead of a
-     one-off centered intro, so this section's header matches every other scene
+  /* reuse the site's shared .section-head (see PROBLEMS) instead of a one-off
+     centered intro, so this section's header matches every other scene
      exactly — same width, same left edge, same type treatment. */
   .demo-scene .section-head { width: 100%; margin-bottom: 0; }
 
@@ -492,72 +492,6 @@
   .problem-q { font-family: var(--serif); font-style: italic; font-size: 22px; line-height: 1.3; color: var(--ink-soft); }
   .problem-a { font-family: var(--serif); font-size: 22px; line-height: 1.3; color: var(--ink); display: flex; gap: 12px; align-items: baseline; }
   .problem-a .arr { color: var(--gold); font-style: italic; font-size: 22px; flex-shrink: 0; }
-
-  /* SCREENSHOTS */
-  .shots-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-  @media (max-width: 980px) { .shots-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 640px) { .shots-grid { grid-template-columns: 1fr; } }
-  .shot-card { display: flex; flex-direction: column; gap: 12px; }
-  .shot-frame {
-    aspect-ratio: 16 / 9;
-    border: 1px solid var(--rule-strong);
-    border-radius: 12px;
-    background: var(--color-raised);
-    overflow: hidden;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.35);
-    display: block;
-    width: 100%;
-    padding: 0;
-    appearance: none;
-    cursor: pointer;
-    transition: border-color 0.15s ease;
-  }
-  .shot-frame:hover, .shot-frame:focus-visible { border-color: var(--gold); }
-  .shot-frame img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.2s ease; }
-  .shot-frame:hover img { transform: scale(1.03); }
-  .shot-label {
-    font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
-    color: var(--ink-soft); text-align: center;
-  }
-
-  /* SCREENSHOT LIGHTBOX */
-  .shot-lightbox {
-    position: fixed; inset: 0; z-index: 200;
-    background: rgba(6,11,18,0.92);
-    backdrop-filter: blur(4px);
-    display: flex; align-items: center; justify-content: center; flex-direction: column;
-    padding: 72px 24px 40px;
-    cursor: zoom-out;
-    animation: shotFadeIn 0.15s ease;
-  }
-  @keyframes shotFadeIn { from { opacity: 0; } to { opacity: 1; } }
-  .shot-lightbox-img {
-    max-width: min(1100px, 92vw);
-    max-height: 78vh;
-    width: auto; height: auto;
-    border-radius: 12px;
-    border: 1px solid var(--rule-strong);
-    box-shadow: 0 24px 64px rgba(0,0,0,0.55);
-    cursor: default;
-  }
-  .shot-lightbox-label {
-    margin-top: 18px;
-    font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
-    color: var(--ink-soft); cursor: default;
-  }
-  .shot-lightbox-close {
-    position: fixed; top: 24px; right: 24px;
-    width: 44px; height: 44px;
-    display: flex; align-items: center; justify-content: center;
-    border-radius: 50%;
-    border: 1px solid var(--rule-strong);
-    background: var(--paper-3);
-    color: var(--ink);
-    cursor: pointer;
-    appearance: none;
-    transition: background 0.15s ease, border-color 0.15s ease;
-  }
-  .shot-lightbox-close:hover, .shot-lightbox-close:focus-visible { background: var(--paper-2); border-color: var(--gold); }
 
   /* DINNER RUSH */
   .rush-scene { background: var(--color-surface); color: var(--color-ink); overflow: hidden; }
@@ -2213,76 +2147,6 @@ function Pricing() {
   );
 }
 
-/* ============================ Screenshots (product previews) ============================ */
-const SHOTS = [
-  { file: 'dashboard', label: 'Dashboard' },
-  { file: 'guest-profile', label: 'Guests' },
-  { file: 'pos', label: 'POS Billing' },
-  { file: 'kitchen-display', label: 'Kitchen Display' },
-  { file: 'inventory', label: 'Inventory' },
-  { file: 'purchases', label: 'Purchases' },
-  { file: 'reports', label: 'Reports' }
-];
-
-function Screenshots() {
-  const [openIdx, setOpenIdx] = useState(null);
-
-  useEffect(() => {
-    if (openIdx === null) return;
-    const onKey = (e) => { if (e.key === 'Escape') setOpenIdx(null); };
-    document.addEventListener('keydown', onKey);
-    const prevOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
-    return () => {
-      document.removeEventListener('keydown', onKey);
-      document.body.style.overflow = prevOverflow;
-    };
-  }, [openIdx]);
-
-  const active = openIdx !== null ? SHOTS[openIdx] : null;
-
-  return (
-    <section className="scene" id="product">
-      <div className="wrap">
-        <div className="section-head">
-          <div className="left">
-            <span className="eyebrow"><span className="dot" />See it running</span>
-            <h2>What it looks like <em>day to day.</em></h2>
-          </div>
-          <div className="right">
-            <p>Real screens from the product &mdash; not mockups.</p>
-          </div>
-        </div>
-        <div className="shots-grid">
-          {SHOTS.map((s, i) => (
-            <figure className="shot-card" key={s.file}>
-              <button type="button" className="shot-frame" onClick={() => setOpenIdx(i)} aria-label={`Expand ${s.label} screenshot`}>
-                <img src={`assets/screenshots/${s.file}.png`} alt={`Kurokaa ${s.label} screen`} loading="lazy" />
-              </button>
-              <figcaption className="shot-label">{s.label}</figcaption>
-            </figure>
-          ))}
-        </div>
-      </div>
-
-      {active && (
-        <div className="shot-lightbox" onClick={() => setOpenIdx(null)}>
-          <button type="button" className="shot-lightbox-close" onClick={() => setOpenIdx(null)} aria-label="Close">
-            <Icon name="close" size={18} />
-          </button>
-          <img
-            className="shot-lightbox-img"
-            src={`assets/screenshots/${active.file}.png`}
-            alt={`Kurokaa ${active.label} screen`}
-            onClick={(e) => e.stopPropagation()}
-          />
-          <div className="shot-lightbox-label" onClick={(e) => e.stopPropagation()}>{active.label}</div>
-        </div>
-      )}
-    </section>
-  );
-}
-
 /* ============================ Closing CTA ============================ */
 function ClosingCTA() {
   return (
@@ -2549,7 +2413,6 @@ function App() {
       <RealService />
       <Story />
       <Pricing />
-      <Screenshots />
       <MessageCapture />
       <ClosingCTA />
       <Footer />
