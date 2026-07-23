@@ -1524,11 +1524,21 @@ function DemoSection() {
     }
   };
 
+  // No-op on desktop (sliderRef only mounts in the mobile track) — safe to
+  // call unconditionally from both manual navigation and the auto-advance timer.
+  const scrollSliderTo = (i) => {
+    if (sliderRef.current) {
+      sliderRef.current.scrollTo({ left: i * sliderRef.current.clientWidth, behavior: 'smooth' });
+    }
+  };
+
   const scheduleTimer = (ms) => {
     clearTimeout(timerRef.current);
     timerRef.current = setTimeout(() => {
       elapsedRef.current = 0;
-      setActiveBeat((activeBeatRef.current + 1) % DEMO_BEATS.length);
+      const next = (activeBeatRef.current + 1) % DEMO_BEATS.length;
+      setActiveBeat(next);
+      scrollSliderTo(next);
       scheduleTimer(DEMO_BEAT_MS);
     }, ms);
   };
@@ -1550,9 +1560,7 @@ function DemoSection() {
     pausedAtRef.current = null;
     setActiveBeat(i);
     if (!paused) scheduleTimer(DEMO_BEAT_MS);
-    if (sliderRef.current) {
-      sliderRef.current.scrollTo({ left: i * sliderRef.current.clientWidth, behavior: 'smooth' });
-    }
+    scrollSliderTo(i);
   };
 
   const onPause = () => {
