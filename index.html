@@ -352,6 +352,135 @@
     margin: 0;
   }
 
+  /* DEMO SECTION — one business day walkthrough, directly below the hero */
+  .demo-scene { background: var(--paper); border-top: 1px solid var(--rule); padding: 96px 0 112px; }
+  .demo-scene .wrap { display: flex; flex-direction: column; align-items: center; gap: 56px; }
+  .btn-sm { padding: 10px 20px; }
+
+  .demo-intro { max-width: 680px; text-align: center; display: flex; flex-direction: column; gap: 16px; align-items: center; }
+  .demo-intro h2 {
+    margin: 0; font-family: var(--serif); font-weight: 500;
+    font-size: clamp(30px, 3.4vw, 44px); line-height: 1.08; letter-spacing: -0.01em; color: var(--ink);
+  }
+  .demo-intro h2 em { font-style: italic; color: var(--gold); }
+  .demo-intro p { margin: 0; font-size: 15px; color: var(--ink-soft); line-height: 1.5; font-family: var(--sans); }
+
+  /* desktop: rail + crossfading frame */
+  .demo-layout { width: 100%; max-width: 1100px; display: flex; gap: 32px; align-items: flex-start; }
+  .demo-rail { width: 300px; flex-shrink: 0; display: flex; flex-direction: column; gap: 4px; }
+  .demo-rail-item {
+    position: relative; display: block; width: 100%; text-align: left;
+    background: none; border: 0; border-left: 3px solid transparent; font: inherit; color: inherit;
+    cursor: pointer; padding: 16px 18px 20px; border-radius: 12px; transition: background 150ms ease;
+  }
+  .demo-rail-item[data-active="true"] { border-left-color: var(--gold); background: var(--paper-3); }
+  .demo-rail-item .row { display: flex; align-items: baseline; gap: 10px; }
+  .demo-rail-num { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-mute); }
+  .demo-rail-item[data-active="true"] .demo-rail-num { color: var(--gold); }
+  .demo-rail-title { font-family: var(--sans); font-size: 15px; font-weight: 500; color: var(--ink-soft); }
+  .demo-rail-item[data-active="true"] .demo-rail-title { color: var(--ink); }
+  .demo-rail-caption { margin: 6px 0 0; font-family: var(--sans); font-size: 13px; line-height: 1.5; color: var(--ink-mute); }
+  .demo-rail-item[data-active="true"] .demo-rail-caption { color: var(--ink-soft); }
+  .demo-rail-progress-track {
+    position: absolute; left: 0; bottom: 0; width: 100%; height: 2px;
+    background: var(--rule); border-radius: 0 0 12px 12px; overflow: hidden;
+  }
+  .demo-rail-progress-fill { height: 100%; background: var(--gold); width: 0%; animation: railProgress 4000ms linear forwards; }
+  @keyframes railProgress { from { width: 0%; } to { width: 100%; } }
+
+  .demo-frame-col { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 14px; }
+  .demo-frame-viewport {
+    background: var(--paper-3); border: 1px solid var(--rule-strong); border-radius: 12px; overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.35); height: 600px; position: relative; min-height: 0;
+  }
+  .demo-frame {
+    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    padding: 20px; opacity: 0; pointer-events: none; transition: opacity 220ms ease;
+  }
+  .demo-frame[data-active="true"] { opacity: 1; pointer-events: auto; }
+  .demo-frame-caption {
+    margin: 0; text-align: center; font-family: var(--mono); font-size: 11px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft);
+  }
+
+  /* iPad-style bezel around real product screenshots */
+  .demo-ipad {
+    position: relative; width: min(92%, 640px); aspect-ratio: 4 / 3; background: #000;
+    border-radius: 22px; padding: 14px 14px 14px 24px; margin: auto;
+    box-shadow: 0 16px 44px rgba(0,0,0,0.5), inset 0 0 0 1px #2a2a2a;
+  }
+  .demo-ipad-sm {
+    width: min(96%, 420px); border-radius: 18px; padding: 10px 10px 10px 18px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 0 1px #2a2a2a;
+  }
+  .demo-ipad-cam { position: absolute; left: 8px; top: 50%; transform: translateY(-50%); width: 6px; height: 6px; border-radius: 50%; background: #222; }
+  .demo-ipad-sm .demo-ipad-cam { left: 6px; width: 5px; height: 5px; }
+  .demo-ipad-img {
+    width: 100%; height: 100%; background: #000; background-size: contain;
+    background-position: center; background-repeat: no-repeat; border-radius: 8px;
+  }
+
+  /* intelligence beat card — reuses .ops-card / .ops-item / .ops-foot from the hero */
+  .demo-intel-wrap { display: flex; flex-direction: column; align-items: center; gap: 16px; max-height: 100%; overflow: auto; padding: 8px; }
+  .demo-intel-card { width: 460px; max-width: 100%; }
+  .demo-intel-body { padding: 20px 22px 4px; }
+  .demo-badge {
+    display: inline-flex; align-items: center; padding: 3px 9px; border-radius: 4px;
+    font-family: var(--mono); font-size: 10px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
+    background: rgba(239,68,68,0.1); color: var(--color-danger); border: 1px solid rgba(239,68,68,0.25);
+  }
+  .demo-intel-title { margin: 10px 0 6px; font-family: var(--serif); font-weight: 500; font-size: 20px; color: var(--ink); }
+  .demo-intel-desc { margin: 0 0 14px; font-family: var(--sans); font-size: 12.5px; line-height: 1.55; color: var(--ink-soft); }
+  .demo-intel-rec { padding: 16px 22px; background: rgba(201,168,76,0.15); }
+  .demo-intel-card .ops-arr { font-size: 22px; }
+  .demo-intel-card .ops-body { font-size: 17px; }
+  .demo-intel-card .ops-foot { padding: 12px 22px; }
+
+  .demo-intel-card-sm { width: 320px; max-width: 100%; }
+  .demo-intel-card-sm .demo-intel-body { padding: 14px 16px 2px; }
+  .demo-intel-card-sm .demo-badge { font-size: 9px; padding: 3px 8px; }
+  .demo-intel-card-sm .demo-intel-title { font-size: 16px; margin: 8px 0 5px; }
+  .demo-intel-card-sm .demo-intel-desc { font-size: 11px; margin: 0 0 12px; }
+  .demo-intel-card-sm .demo-intel-rec { grid-template-columns: 20px 1fr; gap: 10px; padding: 12px 16px; }
+  .demo-intel-card-sm .ops-arr { font-size: 16px; }
+  .demo-intel-card-sm .ops-body { font-size: 13px; }
+  .demo-intel-card-sm .ops-body .why { font-size: 8px; }
+  .demo-intel-card-sm .ops-foot { padding: 10px 16px; font-size: 9px; }
+
+  .demo-intel-controls { display: flex; gap: 12px; align-items: center; flex-shrink: 0; }
+  .demo-intel-controls-sm { gap: 8px; }
+  .demo-approve-btn { transition: transform 150ms ease, filter 150ms ease; }
+  .demo-approve-btn[data-stage="pressed"], .demo-approve-btn[data-stage="approved"] { transform: scale(0.96); filter: brightness(0.92); }
+  .demo-approved-badge {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--color-success); background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.25);
+    border-radius: 6px; padding: 5px 12px; animation: fadeUp 300ms ease;
+  }
+  .demo-approved-badge-sm { font-size: 10px; padding: 4px 10px; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* mobile: scroll-snap slider */
+  .demo-mobile { width: 100%; max-width: 520px; display: flex; flex-direction: column; gap: 20px; }
+  .demo-mobile-track {
+    display: flex; overflow-x: auto; scroll-snap-type: x mandatory; border-radius: 12px;
+    border: 1px solid var(--rule-strong); background: var(--paper-3); box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+  }
+  .demo-mobile-slide { flex: 0 0 100%; scroll-snap-align: center; height: 360px; display: flex; flex-direction: column; }
+  .demo-mobile-slide-inner {
+    flex: 1; min-height: 0; position: relative; display: flex; align-items: center; justify-content: center;
+    padding: 14px; overflow: hidden;
+  }
+  .demo-mobile-dots { display: flex; justify-content: center; gap: 8px; }
+  .demo-mobile-dot { width: 8px; height: 8px; border-radius: 50%; border: none; padding: 0; cursor: pointer; background: var(--rule); }
+  .demo-mobile-dot[data-active="true"] { background: var(--gold); }
+  .demo-mobile-caption { text-align: center; }
+  .demo-mobile-caption .title { margin: 0 0 4px; font-family: var(--sans); font-weight: 500; font-size: 14px; color: var(--ink); }
+  .demo-mobile-caption p { margin: 0; font-family: var(--sans); font-size: 13px; color: var(--ink-soft); line-height: 1.5; }
+
+  .demo-cta { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 20px; }
+  .demo-cta-note { margin: 0; font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-mute); }
+  .demo-cta-row { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+
   /* PROBLEMS */
   .problems-scene { background: var(--paper-2); }
   .problems-list { display: flex; flex-direction: column; }
@@ -1037,6 +1166,38 @@ const SIGNIN_URL = "https://app.kurokaa.com/login";
 const SIGNUP_URL = "https://app.kurokaa.com/signup";
 const WEB3FORM_KEY = "fc588208-fc66-4999-a89e-817bbad05e1e";
 
+/* ============================ Supademo product tour ============================ */
+// Same guided tour used inside app.kurokaa (Dashboard's "Watch product tour" and
+// the onboarding completion step) — team access, purchases, stock adjustment,
+// POS sale, kitchen display, 86 board, dashboard. Loads Supademo's embed script
+// on demand; the popup is a self-contained overlay appended to document.body.
+const SUPADEMO_SRC = 'https://script.supademo.com/supademo.js';
+const PRODUCT_TOUR_ID = 'cmrf2zt6g03xxqmb22tkn85bq';
+
+function loadSupademoScript() {
+  return new Promise((resolve, reject) => {
+    if (document.querySelector(`script[src="${SUPADEMO_SRC}"]`)) {
+      resolve();
+      return;
+    }
+    const script = document.createElement('script');
+    script.src = SUPADEMO_SRC;
+    script.async = true;
+    script.onload = () => resolve();
+    script.onerror = () => reject(new Error('Failed to load Supademo script'));
+    document.body.appendChild(script);
+  });
+}
+
+async function openProductTour() {
+  try {
+    await loadSupademoScript();
+    window.Supademo && window.Supademo.open(PRODUCT_TOUR_ID);
+  } catch {
+    // Non-critical — the rest of the page is still fully usable without the tour
+  }
+}
+
 /* ============================ Icons ============================ */
 const Icon = ({ name, size = 18 }) => {
   const p = { width: size, height: size, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 1.4, strokeLinecap: 'round', strokeLinejoin: 'round' };
@@ -1235,6 +1396,304 @@ function Hero() {
             <div className="k">More control</div>
           </div>
         </div>
+      </div>
+    </section>
+  );
+}
+
+/* ============================ Demo section: one business day ============================ */
+const DEMO_BEATS = [
+  {
+    title: 'Open the day',
+    caption: "One tap opens the till. The opening float goes straight into the ledger — not into a notebook.",
+    image: 'assets/demo/demo-01-open-day.png',
+  },
+  {
+    title: 'Ring sales like any POS',
+    caption: "Dine-in, held orders, KOT printing, GST — the billing layer is table stakes. This is the least interesting screen in the product.",
+    image: 'assets/demo/demo-02-pos-sale.png',
+  },
+  {
+    title: 'Every sale is counted in ingredients',
+    caption: 'One Paneer Tikka is 180g paneer, 40g butter, 30g yogurt. Stock burns down at recipe level, automatically, on every order.',
+    image: 'assets/demo/demo-03-recipe-stock.png',
+  },
+  {
+    title: "Kuro catches what you'd miss",
+    caption: "Food cost on paneer dishes crept from 32% to 38% this week. Kuro saw it, found the cause, and priced the fix — before it cost you the month.",
+    image: null,
+  },
+  {
+    title: 'Close clean. Every rupee accounted.',
+    caption: "Expected vs counted cash with zero mystery — and what Zomato actually paid you, not what they billed.",
+    image: 'assets/demo/demo-05-close-day.png',
+  },
+];
+const DEMO_BEAT_MS = 4000;
+
+function DemoIntelligenceCard({ small, approveStage }) {
+  return (
+    <div className={`ops-card demo-intel-card${small ? ' demo-intel-card-sm' : ''}`} aria-label="Example Kuro recommendation">
+      <div className="demo-intel-body">
+        <span className="demo-badge">Critical</span>
+        <p className="demo-intel-title">Margin Deterioration &mdash; Paneer Dishes</p>
+        <p className="demo-intel-desc">
+          Food cost on paneer-based dishes rose to 38% this week, up from 32% last week.
+          Paneer procurement cost increased &#8377;18/kg on Tuesday&rsquo;s delivery.
+        </p>
+      </div>
+      <div className="ops-item demo-intel-rec">
+        <div className="ops-arr">&rarr;</div>
+        <div className="ops-body">
+          Reduce paneer portion on Paneer Tikka by 8% or renegotiate Tuesday&rsquo;s delivery price before the next order.
+          <span className="why">Target: food cost below 34%</span>
+        </div>
+      </div>
+      <div className="ops-foot">
+        <span>Inventory Agent &bull; 87% confidence</span>
+        <span>3 min ago</span>
+      </div>
+    </div>
+  );
+}
+
+function DemoApproveControls({ small, approveStage, badgeInline }) {
+  const approved = approveStage === 'approved';
+  const badge = approved && (
+    <span className={`demo-approved-badge${small ? ' demo-approved-badge-sm' : ''}`}>
+      Approved &mdash; portion updated
+    </span>
+  );
+  return (
+    <>
+      <div className={`demo-intel-controls${small ? ' demo-intel-controls-sm' : ''}`}>
+        <button type="button" className="btn btn-primary btn-sm demo-approve-btn" data-stage={approveStage} tabIndex={-1}>
+          Approve
+        </button>
+        <button type="button" className="btn btn-ghost btn-sm" tabIndex={-1}>
+          Dismiss
+        </button>
+        {badgeInline && badge}
+      </div>
+      {!badgeInline && badge}
+    </>
+  );
+}
+
+function DemoIpadFrame({ small, image, title }) {
+  return (
+    <div className={`demo-ipad${small ? ' demo-ipad-sm' : ''}`}>
+      <div className="demo-ipad-cam" />
+      <div
+        className="demo-ipad-img"
+        role="img"
+        aria-label={title}
+        style={{ backgroundImage: `url(${image})` }}
+      />
+    </div>
+  );
+}
+
+function DemoSection() {
+  const [activeBeat, setActiveBeatState] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const [approveStage, setApproveStage] = useState('idle');
+  const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth < 768);
+
+  const activeBeatRef = useRef(0);
+  const elapsedRef = useRef(0);
+  const pausedAtRef = useRef(null);
+  const timerRef = useRef(null);
+  const approveTimer1Ref = useRef(null);
+  const approveTimer2Ref = useRef(null);
+  const sliderRef = useRef(null);
+
+  const setActiveBeat = (i) => {
+    const enteringIntel = i === 3 && activeBeatRef.current !== 3;
+    const leavingIntel = activeBeatRef.current === 3 && i !== 3;
+    clearTimeout(approveTimer1Ref.current);
+    clearTimeout(approveTimer2Ref.current);
+    activeBeatRef.current = i;
+    setActiveBeatState(i);
+    if (enteringIntel || leavingIntel) setApproveStage('idle');
+    if (enteringIntel) {
+      approveTimer1Ref.current = setTimeout(() => {
+        setApproveStage('pressed');
+        approveTimer2Ref.current = setTimeout(() => setApproveStage('approved'), 350);
+      }, 1500);
+    }
+  };
+
+  const scheduleTimer = (ms) => {
+    clearTimeout(timerRef.current);
+    timerRef.current = setTimeout(() => {
+      elapsedRef.current = 0;
+      setActiveBeat((activeBeatRef.current + 1) % DEMO_BEATS.length);
+      scheduleTimer(DEMO_BEAT_MS);
+    }, ms);
+  };
+
+  useEffect(() => {
+    scheduleTimer(DEMO_BEAT_MS);
+    const onResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', onResize);
+    return () => {
+      clearTimeout(timerRef.current);
+      clearTimeout(approveTimer1Ref.current);
+      clearTimeout(approveTimer2Ref.current);
+      window.removeEventListener('resize', onResize);
+    };
+  }, []);
+
+  const goToBeat = (i) => {
+    elapsedRef.current = 0;
+    pausedAtRef.current = null;
+    setActiveBeat(i);
+    if (!paused) scheduleTimer(DEMO_BEAT_MS);
+    if (sliderRef.current) {
+      sliderRef.current.scrollTo({ left: i * sliderRef.current.clientWidth, behavior: 'smooth' });
+    }
+  };
+
+  const onPause = () => {
+    if (pausedAtRef.current !== null) return;
+    pausedAtRef.current = Date.now();
+    clearTimeout(timerRef.current);
+    setPaused(true);
+  };
+
+  const onResume = () => {
+    if (pausedAtRef.current === null) return;
+    elapsedRef.current += Date.now() - pausedAtRef.current;
+    pausedAtRef.current = null;
+    setPaused(false);
+    scheduleTimer(Math.max(DEMO_BEAT_MS - elapsedRef.current, 0));
+  };
+
+  const onSliderScroll = (e) => {
+    const el = e.target;
+    const idx = Math.round(el.scrollLeft / Math.max(el.clientWidth, 1));
+    if (idx !== activeBeatRef.current && idx >= 0 && idx < DEMO_BEATS.length) {
+      setActiveBeat(idx);
+    }
+  };
+
+  const active = DEMO_BEATS[activeBeat];
+
+  return (
+    <section className="scene demo-scene" id="demo">
+      <div className="wrap">
+
+        <div className="demo-intro">
+          <span className="eyebrow"><span className="dot" />One Business Day With Kurokaa</span>
+          <h2>From first sale to <em>clean close</em> &mdash; with a brain in the loop</h2>
+          <p>Kurokaa rings your sales like any POS. Then it does everything a POS can&rsquo;t.</p>
+        </div>
+
+        {isMobile ? (
+          <div className="demo-mobile">
+            <div ref={sliderRef} onScroll={onSliderScroll} className="demo-mobile-track">
+              {DEMO_BEATS.map((beat, i) => (
+                <div className="demo-mobile-slide" key={beat.title}>
+                  <div className="demo-mobile-slide-inner">
+                    {beat.image ? (
+                      <DemoIpadFrame small image={beat.image} title={beat.title} />
+                    ) : (
+                      <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 12 }}>
+                        <DemoIntelligenceCard small approveStage={approveStage} />
+                        <DemoApproveControls small approveStage={approveStage} badgeInline={false} />
+                      </div>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="demo-mobile-dots">
+              {DEMO_BEATS.map((beat, i) => (
+                <button
+                  key={beat.title}
+                  type="button"
+                  className="demo-mobile-dot"
+                  data-active={i === activeBeat}
+                  aria-label={`Go to beat ${i + 1}: ${beat.title}`}
+                  onClick={() => goToBeat(i)}
+                />
+              ))}
+            </div>
+            <div className="demo-mobile-caption">
+              <p className="title">{active.title}</p>
+              <p>{active.caption}</p>
+            </div>
+          </div>
+        ) : (
+          <div
+            className="demo-layout"
+            onMouseEnter={onPause}
+            onMouseLeave={onResume}
+            onFocus={onPause}
+            onBlur={onResume}
+          >
+            <div className="demo-rail">
+              {DEMO_BEATS.map((beat, i) => {
+                const isActive = i === activeBeat;
+                return (
+                  <button
+                    key={beat.title}
+                    type="button"
+                    className="demo-rail-item"
+                    data-active={isActive}
+                    onClick={() => goToBeat(i)}
+                  >
+                    <div className="row">
+                      <span className="demo-rail-num">{String(i + 1).padStart(2, '0')}</span>
+                      <span className="demo-rail-title">{beat.title}</span>
+                    </div>
+                    <p className="demo-rail-caption">{beat.caption}</p>
+                    {isActive && (
+                      <div className="demo-rail-progress-track">
+                        <div
+                          className="demo-rail-progress-fill"
+                          style={{ animationPlayState: paused ? 'paused' : 'running' }}
+                        />
+                      </div>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+
+            <div className="demo-frame-col">
+              <div className="demo-frame-viewport">
+                {DEMO_BEATS.map((beat, i) => (
+                  <div className="demo-frame" data-active={i === activeBeat} key={beat.title}>
+                    {beat.image ? (
+                      <DemoIpadFrame image={beat.image} title={beat.title} />
+                    ) : (
+                      <div className="demo-intel-wrap">
+                        <DemoIntelligenceCard approveStage={approveStage} />
+                        <DemoApproveControls approveStage={approveStage} badgeInline />
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+              <p className="demo-frame-caption">{active.title}</p>
+            </div>
+          </div>
+        )}
+
+        <div className="demo-cta">
+          <p className="demo-cta-note">Set up in an afternoon &bull; From &#8377;999 a month</p>
+          <div className="demo-cta-row">
+            <a className="btn btn-primary" href={SIGNUP_URL}>
+              Start Free for 30 Days <Icon name="arrow" size={14} />
+            </a>
+            <button type="button" className="btn btn-ghost" onClick={() => openProductTour()}>
+              Watch the demo
+            </button>
+          </div>
+        </div>
+
       </div>
     </section>
   );
@@ -2073,6 +2532,7 @@ function App() {
     <>
       <Nav active={active} />
       <Hero />
+      <DemoSection />
       <Problems />
       <Foundation />
       <DinnerRush />
