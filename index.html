@@ -357,13 +357,10 @@
   .demo-scene .wrap { display: flex; flex-direction: column; align-items: center; gap: 56px; }
   .btn-sm { padding: 10px 20px; }
 
-  .demo-intro { max-width: 680px; text-align: center; display: flex; flex-direction: column; gap: 16px; align-items: center; }
-  .demo-intro h2 {
-    margin: 0; font-family: var(--serif); font-weight: 500;
-    font-size: clamp(30px, 3.4vw, 44px); line-height: 1.08; letter-spacing: -0.01em; color: var(--ink);
-  }
-  .demo-intro h2 em { font-style: italic; color: var(--gold); }
-  .demo-intro p { margin: 0; font-size: 15px; color: var(--ink-soft); line-height: 1.5; font-family: var(--sans); }
+  /* reuse the site's shared .section-head (see PROBLEMS/SCREENSHOTS) instead of a
+     one-off centered intro, so this section's header matches every other scene
+     exactly — same width, same left edge, same type treatment. */
+  .demo-scene .section-head { width: 100%; margin-bottom: 0; }
 
   /* desktop: rail + crossfading frame */
   .demo-layout { width: 100%; max-width: 1100px; display: flex; gap: 32px; align-items: flex-start; }
@@ -1592,10 +1589,14 @@ function DemoSection() {
     <section className="scene demo-scene" id="demo">
       <div className="wrap">
 
-        <div className="demo-intro">
-          <span className="eyebrow"><span className="dot" />One Business Day With Kurokaa</span>
-          <h2>From first sale to <em>clean close</em> &mdash; with a brain in the loop</h2>
-          <p>Kurokaa rings your sales like any POS. Then it does everything a POS can&rsquo;t.</p>
+        <div className="section-head">
+          <div className="left">
+            <span className="eyebrow"><span className="dot" />One Business Day With Kurokaa</span>
+            <h2>From first sale to <em>clean close</em> &mdash; with a brain in the loop</h2>
+          </div>
+          <div className="right">
+            <p>Kurokaa rings your sales like any POS. Then it does everything a POS can&rsquo;t.</p>
+          </div>
         </div>
 
         {isMobile ? (
