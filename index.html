@@ -604,26 +604,6 @@
   }
   .cap-ico svg { width: 15px; height: 15px; display: block; }
 
-  /* Shared checklist (pricing "what's included") */
-  .checklist-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 28px;
-    margin-bottom: 64px;
-  }
-  @media (max-width: 980px) { .checklist-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 640px) { .checklist-grid { grid-template-columns: 1fr; } }
-  .checklist-item {
-    display: flex; align-items: center; gap: 14px;
-    padding: 16px 2px;
-    border-bottom: 1px dashed var(--rule);
-    font-family: var(--sans); font-size: 15.5px; color: var(--ink);
-  }
-  .check-badge {
-    display: inline-flex; align-items: center; justify-content: center;
-    width: 26px; height: 26px; flex-shrink: 0;
-    border-radius: 50%;
-    background: var(--gold-soft); color: var(--gold);
-  }
-
   .cap-note {
     margin-top: 40px; padding-top: 20px;
     border-top: 1px solid var(--rule);
@@ -771,6 +751,32 @@
     font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
     color: var(--ink-mute); margin-bottom: 22px;
   }
+  /* "What's included" recap. Names the six capability groups from #foundation
+     rather than restating individual features — a second feature list in its own
+     vocabulary drifts out of sync with the grid the moment either one changes. */
+  .pricing-included {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 28px;
+  }
+  @media (max-width: 980px) { .pricing-included { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px) { .pricing-included { grid-template-columns: 1fr; } }
+  .pricing-included-item {
+    display: flex; align-items: center; gap: 14px;
+    padding: 16px 2px;
+    border-bottom: 1px dashed var(--rule);
+    font-family: var(--sans); font-size: 15.5px; color: var(--ink);
+  }
+  .pricing-included-check {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 26px; height: 26px; flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--gold-soft); color: var(--gold);
+  }
+  .pricing-included-note {
+    font-family: var(--sans); font-size: 14px; color: var(--ink-soft);
+    margin: 26px 0 0;
+  }
+  .pricing-included-note a { color: var(--gold); text-decoration: none; border-bottom: 1px solid var(--gold-soft); }
+  .pricing-included-note a:hover { border-bottom-color: var(--gold); }
 
   .enterprise-callout {
     border: 1px solid var(--rule-strong);
@@ -1448,16 +1454,18 @@
 
       <div class="features-block">
         <div class="features-eyebrow">Everything included &middot; No feature gating</div>
-        <div class="checklist-grid">
-          <div class="checklist-item"><span class="check-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg></span>POS transaction recording</div>
-          <div class="checklist-item"><span class="check-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg></span>Inventory &amp; purchase tracking</div>
-          <div class="checklist-item"><span class="check-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg></span>Guest management &amp; history</div>
-          <div class="checklist-item"><span class="check-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg></span>Recipe &amp; food cost analysis</div>
-          <div class="checklist-item"><span class="check-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg></span>Staff, roster, attendance &amp; payroll</div>
-          <div class="checklist-item"><span class="check-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg></span>WhatsApp-ready customer receipts</div>
-          <div class="checklist-item"><span class="check-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg></span>GST billing &amp; return preparation</div>
-          <div class="checklist-item"><span class="check-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg></span>Daily operational insights</div>
+        <div class="pricing-included">
+          <div class="pricing-included-item"><span class="pricing-included-check"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg></span>Service floor</div>
+          <div class="pricing-included-item"><span class="pricing-included-check"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg></span>Inventory</div>
+          <div class="pricing-included-item"><span class="pricing-included-check"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg></span>Team</div>
+          <div class="pricing-included-item"><span class="pricing-included-check"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg></span>Intelligence</div>
+          <div class="pricing-included-item"><span class="pricing-included-check"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg></span>Cash &amp; books</div>
+          <div class="pricing-included-item"><span class="pricing-included-check"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-11"/></svg></span>Compliance</div>
         </div>
+        <p class="pricing-included-note">
+          Not a starter tier &mdash; every capability in <a href="#foundation">what Kurokaa runs</a>,
+          on one price, from day one.
+        </p>
       </div>
 
       <div class="enterprise-callout">
