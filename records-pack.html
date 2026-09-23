@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The Records Pack &mdash; The Pass, Kolkata</title>
+<meta name="description" content="Fifteen printable kitchen log sheets and a how-to guide, free from The Pass. The records a kitchen standards review looks for, and how to keep them honestly.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://kurokaa.com/records-pack">
+<meta property="og:title" content="The Records Pack &mdash; 15 kitchen log sheets + how-to guide">
+<meta property="og:description" content="Free from The Pass: the records a kitchen standards review looks for, and how to keep them.">
+<meta property="og:image" content="https://kurokaa.com/assets/the-pass-line-wide.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Records Pack &mdash; 15 kitchen log sheets + how-to guide">
+<meta name="twitter:description" content="Free from The Pass: the records a kitchen standards review looks for, and how to keep them.">
+<meta name="twitter:image" content="https://kurokaa.com/assets/the-pass-line-wide.jpg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png?v=2">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png?v=2">
+<link rel="shortcut icon" href="favicon.ico?v=2">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=2">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    /* dark ground */
+    --d-paper:    #0b1420;
+    --d-paper-2:  #0f1923;
+    --d-paper-3:  #162130;
+    --d-ink:      #f3f7fb;
+    --d-ink-soft: #b9c6d6;
+    --d-ink-mute: #8496aa;
+    --d-rule:     #253345;
+    --d-gold:     #d4b45c;
+
+    /* light ground */
+    --l-paper:    #f7f4ee;
+    --l-paper-2:  #fffdf9;
+    --l-paper-3:  #efeadf;
+    --l-ink:      #131a24;
+    --l-ink-soft: #454f5d;
+    --l-ink-mute: #6a7686;
+    --l-rule:     #ded7c9;
+    --l-gold:     #8a6b16;
+
+    /* active tokens -- dark by default */
+    --paper: var(--d-paper);
+    --paper-2: var(--d-paper-2);
+    --paper-3: var(--d-paper-3);
+    --ink: var(--d-ink);
+    --ink-soft: var(--d-ink-soft);
+    --ink-mute: var(--d-ink-mute);
+    --rule: var(--d-rule);
+    --gold: var(--d-gold);
+
+    --serif: 'Cormorant Garamond', 'Times New Roman', serif;
+    --sans: 'Manrope', system-ui, -apple-system, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
+
+  /* A section carrying .lite re-maps the tokens, so every component below
+     inherits the light ground without needing a second set of rules. */
+  .lite {
+    --paper: var(--l-paper);
+    --paper-2: var(--l-paper-2);
+    --paper-3: var(--l-paper-3);
+    --ink: var(--l-ink);
+    --ink-soft: var(--l-ink-soft);
+    --ink-mute: var(--l-ink-mute);
+    --rule: var(--l-rule);
+    --gold: var(--l-gold);
+    background: var(--paper);
+    color: var(--ink);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: var(--sans);
+    color: var(--ink);
+    background: var(--paper);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    font-size: 16px;
+    line-height: 1.55;
+    overflow-x: hidden;
+  }
+  body::before {
+    content: "";
+    position: fixed; inset: 0; pointer-events: none;
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScyMjAnIGhlaWdodD0nMjIwJz48ZmlsdGVyIGlkPSduJz48ZmVUdXJidWxlbmNlIHR5cGU9J2ZyYWN0YWxOb2lzZScgYmFzZUZyZXF1ZW5jeT0nMC45JyBudW1PY3RhdmVzPScyJyBzdGl0Y2hUaWxlcz0nc3RpdGNoJy8+PGZlQ29sb3JNYXRyaXggdmFsdWVzPScwIDAgMCAwIDAuMTggIDAgMCAwIDAgMC4xMiAgMCAwIDAgMCAwLjA1ICAwIDAgMCAwLjA2IDAnLz48L2ZpbHRlcj48cmVjdCB3aWR0aD0nMTAwJScgaGVpZ2h0PScxMDAlJyBmaWx0ZXI9J3VybCgjbiknLz48L3N2Zz4=");
+    opacity: 0.28; mix-blend-mode: overlay; z-index: 1;
+  }
+
+  .wrap { max-width: 1320px; margin: 0 auto; padding: 0 48px; position: relative; z-index: 2; }
+  @media (max-width: 720px) { .wrap { padding: 0 20px; } }
+
+  a { color: var(--gold); }
+
+  .eyebrow {
+    font-family: var(--mono); font-size: 11px; font-weight: 500;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-soft);
+  }
+  .eyebrow .dot {
+    display: inline-block; width: 6px; height: 6px; background: var(--gold);
+    border-radius: 50%; margin-right: 10px; transform: translateY(-1px);
+  }
+
+  /* ---------- nav ---------- */
+  .nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(11,20,32,0.92);
+    backdrop-filter: saturate(120%) blur(8px);
+    -webkit-backdrop-filter: saturate(120%) blur(8px);
+    border-bottom: 1px solid var(--d-rule);
+    color: var(--d-ink);
+  }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 16px; }
+  .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--d-ink); flex-shrink: 0; }
+  .brand .div { width: 1px; height: 18px; background: var(--d-rule); }
+  .brand .pass {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--d-gold);
+  }
+  .nav-links { display: flex; gap: 26px; }
+  .nav-link {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--d-ink-soft); text-decoration: none;
+    transition: color .2s ease; white-space: nowrap;
+  }
+  .nav-link:hover { color: var(--d-ink); }
+  @media (max-width: 1000px) { .nav-links { display: none; } }
+  .nav-cta {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em;
+    text-transform: uppercase; color: #0b1420; background: var(--d-gold);
+    border: 0; padding: 10px 16px; border-radius: 8px; text-decoration: none;
+    white-space: nowrap; display: inline-flex; align-items: center; gap: 8px;
+    transition: transform .2s ease, filter .2s ease;
+  }
+  .nav-cta:hover { filter: brightness(1.08); transform: translateY(-1px); }
+  @media (max-width: 520px) {
+    .brand img { height: 15px !important; }
+    .brand .pass { font-size: 10px; letter-spacing: 0.14em; }
+    .nav-cta { padding: 12px 13px; font-size: 10px; letter-spacing: 0.1em; }
+  }
+
+  /* ---------- buttons ---------- */
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+    padding: 16px 26px; border-radius: 8px; text-decoration: none;
+    border: 1px solid transparent; cursor: pointer;
+    transition: background .2s ease, color .2s ease, border-color .2s ease, transform .2s ease, filter .2s ease;
+  }
+  .btn-primary { background: var(--gold); color: #0b1420; }
+  .lite .btn-primary { background: #7a5f12; color: #fffdf9; }
+  .btn-primary:hover { filter: brightness(1.08); transform: translateY(-1px); }
+  .btn-ghost { background: transparent; color: var(--ink); border-color: color-mix(in srgb, var(--ink) 38%, transparent); }
+  .btn-ghost:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+  @media (max-width: 420px) { .btn { padding: 15px 18px; font-size: 11px; letter-spacing: 0.12em; } }
+
+  
+  /* ---------- records pack ---------- */
+  .rp-hero { position: relative; overflow: hidden; padding: 72px 0 64px; }
+  .rp-hero .spot { position:absolute; inset:0; pointer-events:none; background: radial-gradient(560px 380px at 20% 30%, rgba(212,180,92,0.12), transparent 70%); }
+  .rp-grid { display:grid; grid-template-columns: 1.1fr 0.9fr; gap: 56px; align-items: center; }
+  @media (max-width: 900px) { .rp-grid { grid-template-columns: 1fr; gap: 40px; } .rp-hero { padding: 48px 0 44px; } }
+  .rp-hero h1 { font-family: var(--serif); font-weight: 500; font-size: clamp(44px, 6vw, 84px); line-height: .98; letter-spacing: -0.02em; margin: 18px 0 0; }
+  .rp-hero h1 em { font-style: italic; color: var(--gold); }
+  .rp-hero .lede { font-size: clamp(17px,1.35vw,20px); color: var(--ink-soft); max-width: 44ch; margin: 22px 0 0; }
+  .rp-hero .lede strong { color: var(--ink); font-weight: 600; }
+  .rp-actions { display:flex; gap: 14px; margin-top: 30px; flex-wrap: wrap; }
+  .rp-note { margin-top: 16px; font-family: var(--mono); font-size: 10.5px; letter-spacing: .06em; color: var(--ink-mute); }
+  .stack { position: relative; height: 380px; max-width: 420px; margin: 0 auto; width: 100%; }
+  .stack .pg { position:absolute; width: 62%; aspect-ratio: 210/297; background: #fffdf9; border-radius: 6px; box-shadow: 0 24px 60px rgba(0,0,0,.45); padding: 7% 7%; }
+  .stack .pg:nth-child(1) { left: 4%; top: 30px; transform: rotate(-7deg); }
+  .stack .pg:nth-child(2) { left: 20%; top: 12px; transform: rotate(-1deg); }
+  .stack .pg:nth-child(3) { left: 36%; top: 0; transform: rotate(5deg); }
+  .pg .k { font-family: var(--mono); font-size: 7px; letter-spacing: .16em; color: #8a6b16; }
+  .pg .h { font-family: var(--serif); font-size: 17px; color: #131a24; margin-top: 4px; line-height: 1.05; }
+  .pg .bx { margin-top: 9px; height: 22px; background: #efeadf; border-radius: 3px; }
+  .pg .ln { height: 1px; background: #ded7c9; margin-top: 11px; }
+  .section { padding: 80px 0; }
+  @media (max-width: 720px) { .section { padding: 56px 0; } }
+  .sec-h { font-family: var(--serif); font-weight: 500; font-size: clamp(32px, 3.6vw, 50px); line-height: 1.02; letter-spacing: -0.01em; margin: 12px 0 0; }
+  .sec-h em { font-style: italic; color: var(--gold); }
+  .sec-p { color: var(--ink-soft); max-width: 60ch; margin: 16px 0 36px; font-size: 17px; }
+  .sheets { border-top: 1px solid var(--rule); }
+  .sheet { display: grid; grid-template-columns: 56px 1.4fr 1fr 64px 72px; gap: 16px; align-items: center; padding: 16px 6px; border-bottom: 1px solid var(--rule); color: var(--ink); text-decoration: none; transition: background .15s ease; }
+  .sheet:hover { background: var(--paper-3); }
+  .sheet .n { font-family: var(--mono); color: var(--gold); font-size: 13px; }
+  .sheet .t { font-family: var(--serif); font-size: 22px; font-weight: 600; line-height: 1.15; }
+  .sheet .f { color: var(--ink-soft); font-size: 14.5px; }
+  .sheet .tag { font-family: var(--mono); font-size: 10px; letter-spacing: .12em; justify-self: start; padding: 3px 7px; border-radius: 3px; background: #e3e9f1; color: #34506e; }
+  .sheet .dl { font-family: var(--mono); font-size: 11px; letter-spacing: .1em; color: var(--gold); justify-self: end; }
+  @media (max-width: 720px) {
+    .sheet { grid-template-columns: 38px 1fr auto; row-gap: 4px; padding: 14px 2px; }
+    .sheet .t { font-size: 19px; }
+    .sheet .f { grid-column: 2; font-size: 13.5px; }
+    .sheet .tag { grid-column: 3; grid-row: 1; }
+    .sheet .dl { grid-column: 3; grid-row: 2; }
+  }
+  .legend { margin-top: 22px; font-size: 14.5px; color: var(--ink-soft); max-width: 80ch; }
+  .legend b { color: var(--ink); }
+  .three { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 8px; }
+  @media (max-width: 900px) { .three { grid-template-columns: 1fr; } }
+  .step { border: 1px solid var(--rule); border-radius: 12px; padding: 26px 24px; background: var(--paper-2); }
+  .step .num { font-family: var(--mono); color: var(--gold); font-size: 12px; letter-spacing: .14em; }
+  .step h3 { font-family: var(--serif); font-weight: 600; font-size: 26px; margin: 10px 0 8px; line-height: 1.1; }
+  .step p { margin: 0; color: var(--ink-soft); font-size: 15.5px; }
+  .four { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 40px; border-top: 1px solid var(--rule); }
+  @media (max-width: 720px) { .four { grid-template-columns: 1fr; } }
+  .four div { padding: 18px 0; border-bottom: 1px solid var(--rule); }
+  .four b { display: block; font-family: var(--serif); font-size: 22px; font-weight: 600; }
+  .four span { color: var(--ink-soft); font-size: 15px; }
+  .cta-band { border: 1px solid var(--rule); border-radius: 14px; padding: 40px; display: grid; grid-template-columns: 1.3fr auto; gap: 32px; align-items: center; background: var(--paper-2); }
+  @media (max-width: 820px) { .cta-band { grid-template-columns: 1fr; padding: 28px 22px; } }
+  .cta-band h2 { font-family: var(--serif); font-weight: 500; font-size: clamp(30px,3.2vw,44px); margin: 10px 0 10px; line-height: 1.05; }
+  .cta-band h2 em { font-style: italic; color: var(--gold); }
+  .cta-band p { margin: 0; color: var(--ink-soft); max-width: 58ch; }
+  .fine { margin-top: 26px; font-family: var(--mono); font-size: 10.5px; letter-spacing: .06em; color: var(--ink-mute); line-height: 1.8; max-width: 110ch; }
+/* ---------- footer ---------- */
+  .foot { border-top: 1px solid var(--rule); padding: 52px 0 36px; background: var(--paper); }
+  .foot-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 44px; }
+  @media (max-width: 820px) { .foot-grid { grid-template-columns: 1fr; gap: 28px; } }
+  .foot h4 { font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-mute); margin: 0 0 14px; font-weight: 500; }
+  .foot a { display: block; color: var(--ink-soft); text-decoration: none; font-size: 14.5px; margin-bottom: 9px; }
+  .foot a:hover { color: var(--gold); }
+  .foot .addr { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; color: var(--ink-mute); line-height: 1.9; margin-top: 16px; }
+  .foot-bottom { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--rule); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; color: var(--ink-mute); }
+
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+  a:focus-visible, .btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <div class="nav-inner">
+      <a href="/the-pass" class="brand" aria-label="The Pass by Kurokaa">
+        <img src="/assets/kurokaa_logo_white.png" height="18" alt="Kurokaa" style="display:block;width:auto" />
+        <span class="div"></span>
+        <span class="pass">The Pass</span>
+      </a>
+      <div class="nav-links">
+        <a class="nav-link" href="#sheets">The 15 sheets</a>
+        <a class="nav-link" href="#start">Getting started</a>
+        <a class="nav-link" href="/the-pass">About The Pass</a>
+      </div>
+      <a class="nav-cta" href="https://cal.com/kurokaa/30min" target="_blank" rel="noopener">Book a review</a>
+    </div>
+  </div>
+</nav>
+
+<header class="rp-hero">
+  <div class="spot"></div>
+  <div class="wrap rp-grid">
+    <div>
+      <span class="eyebrow"><span class="dot"></span>Free · The Pass Records Pack</span>
+      <h1>The records an inspector <em>asks for first.</em></h1>
+      <p class="lede">Fifteen printable log sheets, and a guide to keeping them <strong>honestly</strong>: what to do, who does it, what not to do, and why. Written by a chef from England, for Indian kitchens.</p>
+      <div class="rp-actions">
+        <a class="btn btn-primary" href="/assets/records-pack/the-pass-records-pack-with-guide.pdf" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M6 11l6 6 6-6M4 21h16"/></svg>Download the full pack</a>
+        <a class="btn btn-ghost" href="/assets/records-pack/the-pass-how-to-guide.pdf" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M6 11l6 6 6-6M4 21h16"/></svg>How-to guide only</a>
+      </div>
+      <div class="rp-note">One PDF · 24 A4 pages · 2.5 MB · print as many as you need</div>
+    </div>
+    <div class="stack" aria-hidden="true">
+      <div class="pg"><div class="k">RECORDS PACK · 06</div><div class="h">Goods Receiving Log</div><div class="bx"></div><div class="ln"></div><div class="ln"></div><div class="ln"></div><div class="ln"></div><div class="ln"></div></div>
+      <div class="pg"><div class="k">RECORDS PACK · 01</div><div class="h">Cold Storage Temperature Log</div><div class="bx"></div><div class="ln"></div><div class="ln"></div><div class="ln"></div><div class="ln"></div><div class="ln"></div></div>
+      <div class="pg"><div class="k">HOW-TO GUIDE</div><div class="h">How to keep the records</div><div class="bx" style="height:10px;width:40%;background:#d4b45c"></div><div class="ln"></div><div class="ln"></div><div class="ln"></div><div class="ln"></div><div class="ln"></div></div>
+    </div>
+  </div>
+</header>
+
+<section class="section lite" id="sheets">
+  <div class="wrap">
+    <span class="eyebrow"><span class="dot"></span>What's in the pack</span>
+    <h2 class="sec-h">Fifteen sheets. <em>Each one answers a control.</em></h2>
+    <p class="sec-p">They’re all in the full pack. If you only need one, download it on its own below.</p>
+    <div class="sheets">
+<a class="sheet" href="/assets/records-pack/01-cold-storage-temperature-log.pdf" download>
+  <span class="n">01</span><span class="t">Cold Storage Temperature Log</span><span class="f">Twice daily</span><span class="tag">REG</span><span class="dl" aria-hidden="true">PDF ↓</span></a><a class="sheet" href="/assets/records-pack/02-cooking-and-reheating-temperature-log.pdf" download>
+  <span class="n">02</span><span class="t">Cooking &amp; Reheating Temperature Log</span><span class="f">Every batch</span><span class="tag">OPS</span><span class="dl" aria-hidden="true">PDF ↓</span></a><a class="sheet" href="/assets/records-pack/03-hot-holding-log.pdf" download>
+  <span class="n">03</span><span class="t">Hot Holding Log</span><span class="f">Every 2 hours in service</span><span class="tag">REG</span><span class="dl" aria-hidden="true">PDF ↓</span></a><a class="sheet" href="/assets/records-pack/04-cooling-and-chill-down-log.pdf" download>
+  <span class="n">04</span><span class="t">Cooling &amp; Chill-Down Log</span><span class="f">Every batch cooled</span><span class="tag">OPS</span><span class="dl" aria-hidden="true">PDF ↓</span></a><a class="sheet" href="/assets/records-pack/05-thermometer-calibration-log.pdf" download>
+  <span class="n">05</span><span class="t">Thermometer Calibration Log</span><span class="f">Weekly, and after a drop</span><span class="tag">OPS</span><span class="dl" aria-hidden="true">PDF ↓</span></a><a class="sheet" href="/assets/records-pack/06-goods-receiving-log.pdf" download>
+  <span class="n">06</span><span class="t">Goods Receiving Log</span><span class="f">Every delivery</span><span class="tag">OPS</span><span class="dl" aria-hidden="true">PDF ↓</span></a><a class="sheet" href="/assets/records-pack/07-approved-supplier-list.pdf" download>
+  <span class="n">07</span><span class="t">Approved Supplier List</span><span class="f">Annually, and new suppliers</span><span class="tag">REG</span><span class="dl" aria-hidden="true">PDF ↓</span></a><a class="sheet" href="/assets/records-pack/08-daily-cleaning-schedule-and-sign-off.pdf" download>
+  <span class="n">08</span><span class="t">Daily Cleaning Schedule &amp; Sign-Off</span><span class="f">Daily, at close</span><span class="tag">REG</span><span class="dl" aria-hidden="true">PDF ↓</span></a><a class="sheet" href="/assets/records-pack/09-pest-sighting-and-action-log.pdf" download>
+  <span class="n">09</span><span class="t">Pest Sighting &amp; Action Log</span><span class="f">Same day as any sighting</span><span class="tag">REG</span><span class="dl" aria-hidden="true">PDF ↓</span></a><a class="sheet" href="/assets/records-pack/10-staff-fitness-to-work-log.pdf" download>
+  <span class="n">10</span><span class="t">Staff Fitness-to-Work Log</span><span class="f">On every return from illness</span><span class="tag">OPS</span><span class="dl" aria-hidden="true">PDF ↓</span></a><a class="sheet" href="/assets/records-pack/11-staff-training-and-medical-register.pdf" download>
+  <span class="n">11</span><span class="t">Staff Training &amp; Medical Register</span><span class="f">On hire, then annually</span><span class="tag">REG</span><span class="dl" aria-hidden="true">PDF ↓</span></a><a class="sheet" href="/assets/records-pack/12-master-allergen-matrix.pdf" download>
+  <span class="n">12</span><span class="t">Master Allergen Matrix</span><span class="f">Every menu or recipe change</span><span class="tag">REG</span><span class="dl" aria-hidden="true">PDF ↓</span></a><a class="sheet" href="/assets/records-pack/13-corrective-action-log.pdf" download>
+  <span class="n">13</span><span class="t">Corrective Action Log</span><span class="f">Whenever a limit is breached</span><span class="tag">OPS</span><span class="dl" aria-hidden="true">PDF ↓</span></a><a class="sheet" href="/assets/records-pack/14-used-cooking-oil-disposal-log.pdf" download>
+  <span class="n">14</span><span class="t">Used Cooking Oil Disposal Log</span><span class="f">Every collection</span><span class="tag">REG</span><span class="dl" aria-hidden="true">PDF ↓</span></a><a class="sheet" href="/assets/records-pack/15-water-ice-and-tank-records.pdf" download>
+  <span class="n">15</span><span class="t">Water, Ice &amp; Tank Records</span><span class="f">Annual test, 6-monthly tank clean</span><span class="tag">REG</span><span class="dl" aria-hidden="true">PDF ↓</span></a>
+    </div>
+    <p class="legend"><b>REG</b>: a regulatory reference, believed to derive from the FSS Act 2006 or Schedule 4 of the 2011 Regulations, cited so you can check it. <b>OPS</b>: The Pass’s own working rule, drawn from UK kitchen practice, with no regulatory claim. It is stricter than required in places, on purpose.</p>
+  </div>
+</section>
+
+<section class="section" id="start">
+  <div class="wrap">
+    <span class="eyebrow"><span class="dot"></span>Getting started</span>
+    <h2 class="sec-h">Three things to do <em>this week.</em></h2>
+    <p class="sec-p">The how-to guide covers every sheet in detail. If you do nothing else, do these.</p>
+    <div class="three">
+      <div class="step"><div class="num">01 · DAY ONE</div><h3>Calibrate your probes first</h3><p>Number every probe and check it in iced water and boiling water (Sheet 05). If a probe is 3 degrees out, every reading on every other sheet is wrong.</p></div>
+      <div class="step"><div class="num">02 · DAY ONE</div><h3>Put each sheet where the reading is taken</h3><p>On the fridge, at the pass, by the receiving door. A log kept in the office gets filled in from memory at the end of the week.</p></div>
+      <div class="step"><div class="num">03 · EVERY WEEK</div><h3>Have someone senior sign it off</h3><p>Look for gaps, numbers that are too perfect, and breaches with no action beside them. A log nobody reviews is a log nobody trusts.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section lite">
+  <div class="wrap">
+    <span class="eyebrow"><span class="dot"></span>Four things a template can’t give you</span>
+    <h2 class="sec-h">Issued by someone else. <em>Three are a phone call.</em></h2>
+    <p class="sec-p">No blank sheet stands in for these. The pack records that you have them.</p>
+    <div class="four">
+      <div><b>Potable water test certificate</b><span>From a recognised laboratory, annually. Sheet 15 records it.</span></div>
+      <div><b>FoSTaC certificate</b><span>One supervisor per 25 food handlers, from an FSSAI-empanelled training partner. Sheet 11 records it.</span></div>
+      <div><b>Pest control contract and service reports</b><span>From a licensed operator. Sheet 09 is your own sighting log, not theirs.</span></div>
+      <div><b>Extraction canopy and duct deep-clean certificate</b><span>From a specialist contractor, every six months.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="cta-band">
+      <div>
+        <span class="eyebrow"><span class="dot"></span>When you want to know it’s working</span>
+        <h2>Find it <em>before they do.</em></h2>
+        <p>The Pass is an unannounced 90-minute kitchen standards review in Kolkata. We walk your kitchen in the order food moves, against 63 written controls, check these records against what we see, and give you a written report in 72 hours.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <a class="btn btn-primary" href="https://cal.com/kurokaa/30min" target="_blank" rel="noopener">Book a review</a>
+        <a class="btn btn-ghost" href="/the-pass">How The Pass works</a>
+      </div>
+    </div>
+    <p class="fine">Keeping these sheets does not make a kitchen compliant and certifies nothing. They are the evidence that the work was done. The Pass is not an FSSAI-recognised auditing agency, and this pack is not legal advice. Check each regulatory reference against the current clause before relying on it.</p>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a href="/" style="display:inline-block;margin-bottom:14px">
+          <img src="/assets/kurokaa_logo_white.png" height="24" alt="Kurokaa" style="display:block;width:auto" />
+        </a>
+        <p style="color:var(--ink-soft);font-size:14.5px;max-width:34ch;margin:0">
+          The Pass is the kitchen standards practice of Kurokaa. Built by a chef, in Kolkata.
+        </p>
+        <div class="addr">
+          Operated by Oe Delli Belly<br />
+          GSTIN: 19BAJPB6981R1ZS<br />
+          P22 Amrapali, Garia Station Road<br />
+          Kolkata, South 24 Parganas<br />
+          West Bengal, Pin 700084
+        </div>
+      </div>
+      <div>
+        <h4>The Pass</h4>
+        <a href="/the-pass">About The Pass</a>
+        <a href="#sheets">The 15 sheets</a>
+        <a href="#start">Getting started</a>
+        <a href="/the-pass-terms">Service terms &amp; cancellation</a>
+      </div>
+      <div>
+        <h4>Kurokaa</h4>
+        <a href="/">Restaurant software</a>
+        <a href="mailto:hello@kurokaa.com">hello@kurokaa.com</a>
+        <a href="/terms.html">Software terms of service</a>
+        <a href="/privacy.html">Software privacy policy</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>&copy; 2026 Kurokaa&trade; &mdash; All rights reserved.</div>
+      <div>Not an FSSAI-recognised audit &middot; Not a certification</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
